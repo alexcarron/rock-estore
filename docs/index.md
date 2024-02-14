@@ -6,6 +6,7 @@ Welcome to the PROJECT Project!
 
 * MEMBER1
 * MEMBER2
+* Alex Carron
 
 ## [Design Documentation](DesignDoc)
 
