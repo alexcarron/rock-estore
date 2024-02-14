@@ -14,7 +14,7 @@ geometry: margin=1in
   * MEMBER1
   * MEMBER2
   * MEMBER3
-  * MEMBER4
+  * Alex Carron
 
 ## Executive Summary
 
@@ -67,15 +67,15 @@ This section describes the application architecture.
 
 ### Summary
 
-The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
+The following Tiers/Layers model shows a high-level view of the webapp's architecture.
 **NOTE**: detailed diagrams are required in later sections of this document.
 > _**[Sprint 1]** (Augment this diagram with your **own** rendition and representations of sample system classes, placing them into the appropriate M/V/VM (orange rectangle) tier section. Focus on what is currently required to support **Sprint 1 - Demo requirements**. Make sure to describe your design choices in the corresponding _**Tier Section**_ and also in the _**OO Design Principles**_ section below.)_
 
 ![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
 
-The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
+The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern.
 
-The Model stores the application data objects including any functionality to provide persistance. 
+The Model stores the application data objects including any functionality to provide persistance.
 
 The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeScript. The ViewModel provides RESTful APIs to the client (View) as well as any logic required to manipulate the data objects from the Model.
 
@@ -95,10 +95,10 @@ This section describes the web interface flow; this is how the user views and in
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
 
-> _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
-> of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
+> _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects
+> of the design that you are describing.  (**For example**, in a shopping experience application you might create a
 > sequence diagram of a customer searching for an item and adding to their cart.)
-> As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
+> As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side
 > to help illustrate the end-to-end flow._
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
@@ -116,7 +116,7 @@ This section describes the web interface flow; this is how the user views and in
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
+>
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
@@ -128,7 +128,7 @@ This section describes the web interface flow; this is how the user views and in
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
+>
 ![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 ## OO Design Principles
@@ -140,9 +140,9 @@ This section describes the web interface flow; this is how the user views and in
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
 ## Static Code Analysis/Future Design Improvements
-> _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
-> **Identify 3-4** areas within your code that have been flagged by the Static Code 
-> Analysis Tool (SonarQube) and provide your analysis and recommendations.  
+> _**[Sprint 4]** With the results from the Static Code Analysis exercise,
+> **Identify 3-4** areas within your code that have been flagged by the Static Code
+> Analysis Tool (SonarQube) and provide your analysis and recommendations.
 > Include any relevant screenshot(s) with each area._
 
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
