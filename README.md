@@ -7,7 +7,7 @@ An online E-store system built in Java 11=> and ___ _replace with other platform
 
 - MEMBER1
 - MEMBER2
-- MEMBER3
+- Victor Rabinovich
 - MEMBER4
 
 
