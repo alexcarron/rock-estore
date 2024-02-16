@@ -1,4 +1,4 @@
-package com.heroes.api.heroesapi.controller;
+package com.estore.api.estoreapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.heroes.api.heroesapi.persistence.HeroDAO;
-import com.heroes.api.heroesapi.model.Hero;
+import com.estore.api.estoreapi.persistence.HeroDAO;
+import com.estore.api.estoreapi.model.Hero;
 
 /**
  * Handles the REST API requests for the Hero resource

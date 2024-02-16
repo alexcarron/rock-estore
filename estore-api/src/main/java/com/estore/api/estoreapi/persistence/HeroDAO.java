@@ -1,7 +1,7 @@
-package com.heroes.api.heroesapi.persistence;
+package com.estore.api.estoreapi.persistence;
 
 import java.io.IOException;
-import com.heroes.api.heroesapi.model.Hero;
+import com.estore.api.estoreapi.model.Hero;
 
 /**
  * Defines the interface for Hero object persistence

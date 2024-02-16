@@ -1,4 +1,4 @@
-package com.heroes.api.heroesapi.model;
+package com.estore.api.estoreapi.model;
 
 import java.util.logging.Logger;
 
