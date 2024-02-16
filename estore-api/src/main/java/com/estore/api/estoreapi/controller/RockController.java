@@ -16,11 +16,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.estore.api.estoreapi.persistence.HeroDAO;
-import com.estore.api.estoreapi.model.Hero;
+import com.estore.api.estoreapi.persistence.RockDAO;
+import com.estore.api.estoreapi.model.Rock;
 
 /**
- * Handles the REST API requests for the Hero resource
+ * Handles the REST API requests for the Rock resource
  * <p>
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
@@ -29,38 +29,38 @@ import com.estore.api.estoreapi.model.Hero;
  */
 
 @RestController
-@RequestMapping("heroes")
-public class HeroController {
-    private static final Logger LOG = Logger.getLogger(HeroController.class.getName());
-    private HeroDAO heroDao;
+@RequestMapping("rocks")
+public class RockController {
+    private static final Logger LOG = Logger.getLogger(RockController.class.getName());
+    private RockDAO rockDao;
 
     /**
      * Creates a REST API controller to reponds to requests
      *
-     * @param heroDao The {@link HeroDAO Hero Data Access Object} to perform CRUD operations
+     * @param rockDao The {@link RockDAO Rock Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
-    public HeroController(HeroDAO heroDao) {
-        this.heroDao = heroDao;
+    public RockController(RockDAO rockDao) {
+        this.rockDao = rockDao;
     }
 
     /**
-     * Responds to the GET request for a {@linkplain Hero hero} for the given id
+     * Responds to the GET request for a {@linkplain Rock rock} for the given id
      *
-     * @param id The id used to locate the {@link Hero hero}
+     * @param id The id used to locate the {@link Rock rock}
      *
-     * @return ResponseEntity with {@link Hero hero} object and HTTP status of OK if found<br>
+     * @return ResponseEntity with {@link Rock rock} object and HTTP status of OK if found<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Hero> getHero(@PathVariable int id) {
-        LOG.info("GET /heroes/" + id);
+    public ResponseEntity<Rock> getRock(@PathVariable int id) {
+        LOG.info("GET /rocks/" + id);
         try {
-            Hero hero = heroDao.getHero(id);
-            if (hero != null)
-                return new ResponseEntity<Hero>(hero,HttpStatus.OK);
+            Rock rock = rockDao.getRock(id);
+            if (rock != null)
+                return new ResponseEntity<Rock>(rock,HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -71,19 +71,19 @@ public class HeroController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Hero heroes}
+     * Responds to the GET request for all {@linkplain Rock rocks}
      *
-     * @return ResponseEntity with array of {@link Hero hero} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Rock rock} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Hero[]> getHeroes() {
-        LOG.info("GET /heroes");
+    public ResponseEntity<Rock[]> getRocks() {
+        LOG.info("GET /rocks");
 
         try {
-            Hero[] heroesArray = heroDao.getHeroes();
-            return new ResponseEntity<>(heroesArray, HttpStatus.OK);
+            Rock[] rocksArray = rockDao.getRocks();
+            return new ResponseEntity<>(rocksArray, HttpStatus.OK);
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -92,25 +92,25 @@ public class HeroController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Hero heroes} whose name contains
+     * Responds to the GET request for all {@linkplain Rock rocks} whose name contains
      * the text in name
      *
-     * @param name The name parameter which contains the text used to find the {@link Hero heroes}
+     * @param name The name parameter which contains the text used to find the {@link Rock rocks}
      *
-     * @return ResponseEntity with array of {@link Hero hero} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Rock rock} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * <p>
-     * Example: Find all heroes that contain the text "ma"
-     * GET http://localhost:8080/heroes/?name=ma
+     * Example: Find all rocks that contain the text "ma"
+     * GET http://localhost:8080/rocks/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Hero[]> searchHeroes(@RequestParam String name) {
-        LOG.info("GET /heroes/?name="+name);
+    public ResponseEntity<Rock[]> searchRocks(@RequestParam String name) {
+        LOG.info("GET /rocks/?name="+name);
 
         try {
-            Hero[] filteredHeroes = heroDao.findHeroes(name);
-            return new ResponseEntity<>(filteredHeroes, HttpStatus.OK);
+            Rock[] filteredRocks = rockDao.findRocks(name);
+            return new ResponseEntity<>(filteredRocks, HttpStatus.OK);
         }
         catch (IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -119,22 +119,22 @@ public class HeroController {
     }
 
     /**
-     * Creates a {@linkplain Hero hero} with the provided hero object
+     * Creates a {@linkplain Rock rock} with the provided rock object
      *
-     * @param hero - The {@link Hero hero} to create
+     * @param rock - The {@link Rock rock} to create
      *
-     * @return ResponseEntity with created {@link Hero hero} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Hero hero} object already exists<br>
+     * @return ResponseEntity with created {@link Rock rock} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Rock rock} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Hero> createHero(@RequestBody Hero hero) {
-        LOG.info("POST /heroes " + hero);
+    public ResponseEntity<Rock> createRock(@RequestBody Rock rock) {
+        LOG.info("POST /rocks " + rock);
 
         try {
-            Hero newHero = heroDao.createHero(hero);
-            if (newHero != null)
-                return new ResponseEntity<Hero>(newHero,HttpStatus.CREATED);
+            Rock newRock = rockDao.createRock(rock);
+            if (newRock != null)
+                return new ResponseEntity<Rock>(newRock,HttpStatus.CREATED);
             else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
@@ -145,25 +145,25 @@ public class HeroController {
     }
 
     /**
-     * Updates the {@linkplain Hero hero} with the provided {@linkplain Hero hero} object, if it exists
+     * Updates the {@linkplain Rock rock} with the provided {@linkplain Rock rock} object, if it exists
      *
-     * @param hero The {@link Hero hero} to update
+     * @param rock The {@link Rock rock} to update
      *
-     * @return ResponseEntity with updated {@link Hero hero} object and HTTP status of OK if updated<br>
+     * @return ResponseEntity with updated {@link Rock rock} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Hero> updateHero(@RequestBody Hero hero) {
-        LOG.info("PUT /heroes " + hero);
+    public ResponseEntity<Rock> updateRock(@RequestBody Rock rock) {
+        LOG.info("PUT /rocks " + rock);
 
         try {
-            Hero updatedHero = heroDao.updateHero(hero);
-            if (updatedHero != null) {
-                return new ResponseEntity<Hero>(updatedHero, HttpStatus.OK);
+            Rock updatedRock = rockDao.updateRock(rock);
+            if (updatedRock != null) {
+                return new ResponseEntity<Rock>(updatedRock, HttpStatus.OK);
             }
             else {
-                return new ResponseEntity<Hero>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<Rock>(HttpStatus.NOT_FOUND);
             }
         }
         catch (IOException e) {
@@ -173,20 +173,20 @@ public class HeroController {
     }
 
     /**
-     * Deletes a {@linkplain Hero hero} with the given id
+     * Deletes a {@linkplain Rock rock} with the given id
      *
-     * @param id The id of the {@link Hero hero} to deleted
+     * @param id The id of the {@link Rock rock} to deleted
      *
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Hero> deleteHero(@PathVariable int id) {
-        LOG.info("DELETE /heroes/" + id);
+    public ResponseEntity<Rock> deleteRock(@PathVariable int id) {
+        LOG.info("DELETE /rocks/" + id);
         try {
-            if (heroDao.deleteHero(id))
-                return new ResponseEntity<Hero>(HttpStatus.OK);
+            if (rockDao.deleteRock(id))
+                return new ResponseEntity<Rock>(HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
