@@ -16,10 +16,10 @@ import com.estore.api.estoreapi.model.Hero;
 
 /**
  * Implements the functionality for JSON file-based peristance for Heroes
- * 
+ *
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
- * 
+ *
  * @author SWEN Faculty
  */
 @Component
@@ -36,10 +36,10 @@ public class HeroFileDAO implements HeroDAO {
 
     /**
      * Creates a Hero File Data Access Object
-     * 
+     *
      * @param filename Filename to read from and write to
      * @param objectMapper Provides JSON Object to/from Java Object serialization and deserialization
-     * 
+     *
      * @throws IOException when file cannot be accessed or read from
      */
     public HeroFileDAO(@Value("${heroes.file}") String filename,ObjectMapper objectMapper) throws IOException {
@@ -50,7 +50,7 @@ public class HeroFileDAO implements HeroDAO {
 
     /**
      * Generates the next id for a new {@linkplain Hero hero}
-     * 
+     *
      * @return The next id
      */
     private synchronized static int nextId() {
@@ -61,7 +61,7 @@ public class HeroFileDAO implements HeroDAO {
 
     /**
      * Generates an array of {@linkplain Hero heroes} from the tree map
-     * 
+     *
      * @return  The array of {@link Hero heroes}, may be empty
      */
     private Hero[] getHeroesArray() {
@@ -74,7 +74,7 @@ public class HeroFileDAO implements HeroDAO {
      * <br>
      * If containsText is null, the array contains all of the {@linkplain Hero heroes}
      * in the tree map
-     * 
+     *
      * @return  The array of {@link Hero heroes}, may be empty
      */
     private Hero[] getHeroesArray(String containsText) { // if containsText == null, no filter
@@ -93,9 +93,9 @@ public class HeroFileDAO implements HeroDAO {
 
     /**
      * Saves the {@linkplain Hero heroes} from the map into the file as an array of JSON objects
-     * 
+     *
      * @return true if the {@link Hero heroes} were written successfully
-     * 
+     *
      * @throws IOException when file cannot be accessed or written to
      */
     private boolean save() throws IOException {
@@ -112,9 +112,9 @@ public class HeroFileDAO implements HeroDAO {
      * Loads {@linkplain Hero heroes} from the JSON file into the map
      * <br>
      * Also sets next id to one more than the greatest id found in the file
-     * 
+     *
      * @return true if the file was read successfully
-     * 
+     *
      * @throws IOException when file cannot be accessed or read from
      */
     private boolean load() throws IOException {

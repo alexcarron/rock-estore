@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a Hero entity
- * 
+ *
  * @author SWEN Faculty
  */
 public class Hero {
@@ -21,7 +21,7 @@ public class Hero {
      * Create a hero with the given id and name
      * @param id The id of the hero
      * @param name The name of the hero
-     * 
+     *
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
