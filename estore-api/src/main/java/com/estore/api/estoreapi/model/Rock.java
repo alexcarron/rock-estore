@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author SWEN Faculty
  */
 public class Rock {
-    private static final Logger LOG = Logger.getLogger(Rock.class.getRockType());
+    private static final Logger LOG = Logger.getLogger(Rock.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Rock [id=%d, type=%s]";
+    static final String STRING_FORMAT = "Rock [id=%d, price=%f, type=%s, size=%f, shape=%s, description=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("price") private int price;
@@ -65,6 +65,6 @@ public class Rock {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,type);
+        return String.format(STRING_FORMAT,id,price,type,size,shape,description);
     }
 }
