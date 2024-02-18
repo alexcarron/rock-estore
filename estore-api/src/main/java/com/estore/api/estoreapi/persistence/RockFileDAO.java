@@ -178,7 +178,7 @@ public class RockFileDAO implements RockDAO {
         synchronized(rocks) {
             // We create a new rock object because the id field is immutable
             // and we need to assign the next unique id
-            Rock newRock = new Rock(nextId(),rock.getName());
+            Rock newRock = new Rock(nextId(),rock.getName(), 0, null, 0, null, null);
             rocks.put(newRock.getId(),newRock);
             save(); // may throw an IOException
             return newRock;
