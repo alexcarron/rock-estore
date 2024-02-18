@@ -2,17 +2,17 @@
     {
         "id": 1,
         "name": "Andesite",
+        "price": 10.0,
         "type": "igneous",
-        "price": 10,
-        "size": 2,
+        "size": 2.0,
         "shape": "spherical",
         "description": "Mined by Dwayne \"The Rock\" Johnson in Yosemite."
     },
     {
         "id": 2,
         "name": "Obsidian",
+        "price": 3.0,
         "type": "igneous",
-        "price": 3,
         "size": 0.5,
         "shape": "spherical",
         "description": "Buy 10 to go to the nether!"
@@ -20,55 +20,64 @@
     {
         "id": 3,
         "name": "Limestone",
+        "price": 500.0,
         "type": "sedimentary",
-        "price": 500,
-        "size": 6,
+        "size": 6.0,
         "shape": "cube",
         "description": "Original slab of limestone used to build the pyramids."
     },
     {
         "id": 4,
         "name": "Marble",
+        "price": 250.0,
         "type": "metamorphic",
-        "price": 250,
-        "size": 8,
+        "size": 8.0,
         "shape": "rectangular prism",
         "description": "From the head of the statue of Zeus. Don't ask how we got it.."
     },
     {
         "id": 5,
         "name": "Arenite",
+        "price": 500.0,
         "type": "sedimentary",
-        "price": 500,
-        "size": 6,
+        "size": 6.0,
         "shape": "cube",
         "description": "Sandstone. Probably formed from the weight of the pyramids."
     },
     {
         "id": 6,
         "name": "Breccia",
+        "price": 100.0,
         "type": "sedimentary",
-        "price": 100,
-        "size": 3,
+        "size": 3.0,
         "shape": "pyramidal",
         "description": "Contains angular clasts."
     },
     {
         "id": 7,
         "name": "Granite",
+        "price": 200.0,
         "type": "igneous",
-        "price": 200,
-        "size": 8,
+        "size": 8.0,
         "shape": "rectangular prism",
         "description": "Cheaper than marble. Use it for a counter top"
     },
     {
         "id": 8,
         "name": "Soapstone",
+        "price": 8.0,
         "type": "metamorphic",
-        "price": 8,
         "size": 0.25,
         "shape": "cube",
         "description": "Better than body wash."
+    },
+    {
+        "id": 9,
+        "name": "Sandstone",
+        "price": 200.0,
+        "type": "sedimentary",
+        "size": 5.0,
+        "shape": "blocky",
+        "description": "So many layers"
     }
 ]
