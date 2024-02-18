@@ -17,7 +17,7 @@ public class Rock {
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("type") private String type;
-    @JsonProperty("price") private int price;
+    @JsonProperty("price") private double price;
     @JsonProperty("size") private double size;
     @JsonProperty("shape") private String shape;
     @JsonProperty("description") private String description;
@@ -37,7 +37,7 @@ public class Rock {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Rock(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("price") int price, @JsonProperty("type") String type,
+    public Rock(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("price") double price, @JsonProperty("type") String type,
                 @JsonProperty("size") double size, @JsonProperty("shape") String shape, @JsonProperty("description") String description) {
         this.id = id;
         this.name = name;
@@ -61,10 +61,41 @@ public class Rock {
     public void setName(String name) {this.name = name;}
 
     /**
-     * Retrieves the type of the rock
-     * @return The type of the rock
+     * Retrieves the name of the rock
+     * @return The name of the rock
      */
-    public String getName() {return name;}
+    public String getName() {return this.name;}
+
+    /**
+     * Gets the price for the rock
+     * @return The rock's price
+     */
+     public double getPrice() {return this.price;}
+
+     /**
+      * Gets the rock type, i.e igneous, sedimentary, metamorphic
+      * @return The rock type
+      */
+     public String getType() {return this.type;}
+
+     /**
+      * Gets the size of the rock
+      * @return The rock's size
+      */
+     public double getSize() {return this.size;}
+
+     /**
+      * Get the rock's shape
+      * @return The shape of the rock
+      */
+     public String getShape() {return this.shape;}
+
+    /**
+     * Gets the product description of the rock
+     * @return The rock's produt description
+     */
+     public String getDescription() {return this.description;}
+
 
     /**
      * {@inheritDoc}
