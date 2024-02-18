@@ -180,12 +180,14 @@ public class RockFileDAO implements RockDAO {
         synchronized(rocks) {
             // We create a new rock object because the id field is immutable
             // and we need to assign the next unique id
+            Rock[] existingRocks = findRocks(rock.getName());
+            for (Rock r : existingRocks){
+                if(r.getName().equals(rock.getName())){
+                    return null;
+                }
+            }
             Rock newRock = new Rock(nextId(),rock.getName(), rock.getPrice(), rock.getType(), 
                         rock.getSize(), rock.getShape(), rock.getDescription());
-            Rock[] existingRocks = findRocks(newRock.getName());
-            if(existingRocks.length > 0) {
-                return null;
-            }
             rocks.put(newRock.getId(),newRock);
             save(); // may throw an IOException
             return newRock;
