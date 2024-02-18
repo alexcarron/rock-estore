@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.Rock;
@@ -180,6 +182,10 @@ public class RockFileDAO implements RockDAO {
             // and we need to assign the next unique id
             Rock newRock = new Rock(nextId(),rock.getName(), rock.getPrice(), rock.getType(), 
                         rock.getSize(), rock.getShape(), rock.getDescription());
+            Rock[] existingRocks = findRocks(newRock.getName());
+            if(existingRocks.length > 0) {
+                return null;
+            }
             rocks.put(newRock.getId(),newRock);
             save(); // may throw an IOException
             return newRock;

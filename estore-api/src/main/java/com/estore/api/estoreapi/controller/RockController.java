@@ -134,12 +134,6 @@ public class RockController {
         try {
             Rock newRock = rockDao.createRock(rock);
             if (newRock != null){
-                Rock[] existingRocks = rockDao.findRocks(newRock.getName());
-                for( Rock r : existingRocks){
-                    if(r.getName().equals(newRock.getName())){
-                        return new ResponseEntity<>(HttpStatus.CONFLICT);
-                    }
-                }
                 return new ResponseEntity<Rock>(newRock,HttpStatus.CREATED);
             }else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
