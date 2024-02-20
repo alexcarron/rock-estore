@@ -17,9 +17,14 @@ public class RockTest {
         // Setup
         int expected_id = 99;
         String expected_name = "Wi-Fire";
+				double expected_price = 10;
+				String expected_type = "igneous";
+				double expected_size = 25;
+				String expected_shape = "spherical";
+				String expected_description = "A rock";
 
         // Invoke
-        Rock rock = new Rock(expected_id,expected_name);
+        Rock rock = new Rock(expected_id, expected_name, expected_type, expected_price, expected_size, expected_shape, expected_description);
 
         // Analyze
         assertEquals(expected_id,rock.getId());
@@ -31,7 +36,15 @@ public class RockTest {
         // Setup
         int id = 99;
         String name = "Wi-Fire";
-        Rock rock = new Rock(id,name);
+				double price = 10;
+				String type = "igneous";
+				double size = 25;
+				String shape = "spherical";
+				String description = "A rock";
+
+        // Invoke
+        Rock rock = new Rock(id, name, type, price, size, shape, description);
+
 
         String expected_name = "Galactic Agent";
 
@@ -47,8 +60,15 @@ public class RockTest {
         // Setup
         int id = 99;
         String name = "Wi-Fire";
-        String expected_string = String.format(Rock.STRING_FORMAT,id,name);
-        Rock rock = new Rock(id,name);
+				double price = 10;
+				String type = "igneous";
+				double size = 25;
+				String shape = "spherical";
+				String description = "A rock";
+
+        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description);
+
+        Rock rock = new Rock(id, name, type, price, size, shape, description);
 
         // Invoke
         String actual_string = rock.toString();

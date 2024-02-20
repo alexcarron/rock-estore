@@ -40,9 +40,9 @@ public class RockFileDAOTest {
     public void setupRockFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testRocks = new Rock[3];
-        testRocks[0] = new Rock(99,"Wi-Fire");
-        testRocks[1] = new Rock(100,"Galactic Agent");
-        testRocks[2] = new Rock(101,"Ice Gladiator");
+        testRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock");
+        testRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock");
+        testRocks[2] = new Rock(101, "Ice Gladiator",  "igneous", 10, 25, "spherical", "A rock");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the rock array above
@@ -101,7 +101,7 @@ public class RockFileDAOTest {
     @Test
     public void testCreateRock() {
         // Setup
-        Rock rock = new Rock(102,"Wonder-Person");
+        Rock rock = new Rock(102, "Wonder-Person",  "igneous", 10, 25, "spherical", "A rock");
 
         // Invoke
         Rock result = assertDoesNotThrow(() -> rockFileDAO.createRock(rock),
@@ -117,7 +117,7 @@ public class RockFileDAOTest {
     @Test
     public void testUpdateRock() {
         // Setup
-        Rock rock = new Rock(99,"Galactic Agent");
+        Rock rock = new Rock(99, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock");
 
         // Invoke
         Rock result = assertDoesNotThrow(() -> rockFileDAO.updateRock(rock),
@@ -133,13 +133,18 @@ public class RockFileDAOTest {
     public void testSaveException() throws IOException{
         doThrow(new IOException())
             .when(mockObjectMapper)
-                .writeValue(any(File.class),any(Rock[].class));
+                .writeValue(
+									any(File.class),
+									any(Rock[].class)
+								);
 
-        Rock rock = new Rock(102,"Wi-Fire");
+        Rock rock = new Rock(102, "Rock",  "igneous", 10, 25, "spherical", "A rock");
 
-        assertThrows(IOException.class,
-                        () -> rockFileDAO.createRock(rock),
-                        "IOException not thrown");
+        assertThrows(
+					IOException.class,
+					() -> rockFileDAO.createRock(rock),
+					"IOException not thrown"
+				);
     }
 
     @Test
@@ -165,7 +170,7 @@ public class RockFileDAOTest {
     @Test
     public void testUpdateRockNotFound() {
         // Setup
-        Rock rock = new Rock(98,"Bolt");
+        Rock rock = new Rock(98, "Bolt",  "igneous", 10, 25, "spherical", "A rock");
 
         // Invoke
         Rock result = assertDoesNotThrow(() -> rockFileDAO.updateRock(rock),
