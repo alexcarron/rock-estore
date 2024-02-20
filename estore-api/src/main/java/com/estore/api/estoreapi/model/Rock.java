@@ -37,8 +37,13 @@ public class Rock {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Rock(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("price") double price, @JsonProperty("type") String type,
-                @JsonProperty("size") double size, @JsonProperty("shape") String shape, @JsonProperty("description") String description) {
+    public Rock(
+			@JsonProperty("id") int id,
+			@JsonProperty("name") String name,
+			@JsonProperty("price") double price,
+			@JsonProperty("type") String type,
+			@JsonProperty("size") double size, @JsonProperty("shape") String shape, @JsonProperty("description") String description
+		) {
         this.id = id;
         this.name = name;
         this.type = type;
