@@ -40,9 +40,11 @@ public class Rock {
     public Rock(
 			@JsonProperty("id") int id,
 			@JsonProperty("name") String name,
-			@JsonProperty("price") double price,
 			@JsonProperty("type") String type,
-			@JsonProperty("size") double size, @JsonProperty("shape") String shape, @JsonProperty("description") String description
+			@JsonProperty("price") double price,
+			@JsonProperty("size") double size,
+			@JsonProperty("shape") String shape,
+			@JsonProperty("description") String description
 		) {
         this.id = id;
         this.name = name;
