@@ -1,0 +1,11 @@
+<h2>Top Rocks</h2>
+<div class="rocks-menu">
+  <a
+		*ngFor="let rock of rocks"
+		routerLink="/detail/{{rock.id}}"
+	>
+    {{rock.name}}
+  </a>
+</div>
+
+<app-rock-search></app-rock-search>
