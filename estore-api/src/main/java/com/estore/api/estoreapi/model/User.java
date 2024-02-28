@@ -23,10 +23,7 @@ public class User {
      * @param id The id of the user
      * @param username The username of the user
      * @param password The type of the user
-     * @param price The price of the user
-     * @param size The size of the user in feet
-     * @param shape The shape of the user
-     * @param description The description of the user
+
      *
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
@@ -65,10 +62,10 @@ public class User {
 
 
      /**
-      * Gets the user type, i.e igneous, sedimentary, metamorphic
+      * Gets the user password
       * @return The user type
       */
-     public String getType() {return this.password;}
+     public String getPassword() {return this.password;}
 
     /**
      * {@inheritDoc}
