@@ -48,10 +48,14 @@ public class User {
 
     /**
      * Sets the name of the user - necessary for JSON object to Java object deserialization
-     * @param name The type of the user
+     * @param username The type of the user
      */
     public void setName(String username) {this.username = username;}
 
+    /**
+     * Sets the name of the user - necessary for JSON object to Java object deserialization
+     * @param password The type of the user
+     */
     public void setPassword(String password) {this.password = password;}
 
     /**
