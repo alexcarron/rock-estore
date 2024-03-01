@@ -73,4 +73,25 @@ public class UserTest {
         // Analyze
         assertEquals(expected_password, user.getPassword());
     }
+
+    /**
+     * @author Ethan Battaglia
+     */
+    @Test
+    public void testToString() {
+        // Setup
+        int id = 99;
+        String username = "EJB";
+                String password = "thisIsMyPassword!!1";
+
+        String expected_string = String.format(User.STRING_FORMAT, id, username, password);
+
+        User user = new User(id, username, password);
+
+        // Invoke
+        String actual_string = user.toString();
+
+        // Analyze
+        assertEquals(expected_string,actual_string);
+    }
 }

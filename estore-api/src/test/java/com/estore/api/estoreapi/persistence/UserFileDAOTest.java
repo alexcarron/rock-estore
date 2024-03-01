@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.estore.api.estoreapi.model.Rock;
 import com.estore.api.estoreapi.model.User;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -156,22 +157,25 @@ public class UserFileDAOTest {
         assertEquals(actual,user);
     }
 
+    /**
+     * @author Ethan Battaglia
+     */
     @Test
     public void testSaveException() throws IOException{
         doThrow(new IOException())
             .when(mockObjectMapper)
                 .writeValue(
-									any(File.class),
-									any(Rock[].class)
-								);
+                                    any(File.class),
+                                    any(User[].class)
+                                );
 
-        Rock rock = new Rock(102, "Rock",  "igneous", 10, 25, "spherical", "A rock");
+        User user = new User(102, "The Rock Johnson",  "dwayne123");
 
         assertThrows(
-					IOException.class,
-					() -> rockFileDAO.createRock(rock),
-					"IOException not thrown"
-				);
+                    IOException.class,
+                    () -> userFileDAO.createUser(user),
+                    "IOException not thrown"
+                );
     }
 
 		/**
@@ -186,15 +190,18 @@ public class UserFileDAOTest {
         assertEquals(user, null);
     }
 
+    /**
+     * @author Ethan Battaglia
+     */
     @Test
-    public void testDeleteRockNotFound() {
+    public void testDeleteUserNotFound() {
         // Invoke
-        boolean result = assertDoesNotThrow(() -> rockFileDAO.deleteRock(98),
+        boolean result = assertDoesNotThrow(() -> userFileDAO.deleteUser(98),
                                                 "Unexpected exception thrown");
 
         // Analyze
         assertEquals(result,false);
-        assertEquals(rockFileDAO.rocks.size(),testRocks.length);
+        assertEquals(userFileDAO.users.size(),testUsers.length);
     }
 
     /**
@@ -213,6 +220,9 @@ public class UserFileDAOTest {
         assertNull(result);
     }
 
+    /**
+     * @author Ethan Battaglia
+     */
     @Test
     public void testConstructorException() throws IOException {
         // Setup
@@ -225,11 +235,11 @@ public class UserFileDAOTest {
         // raised
         doThrow(new IOException())
             .when(mockObjectMapper)
-                .readValue(new File("doesnt_matter.txt"),Rock[].class);
+                .readValue(new File("doesnt_matter.txt"),User[].class);
 
         // Invoke & Analyze
         assertThrows(IOException.class,
-                        () -> new RockFileDAO("doesnt_matter.txt",mockObjectMapper),
+                        () -> new UserFileDAO("doesnt_matter.txt",mockObjectMapper),
                         "IOException not thrown");
     }
 }
