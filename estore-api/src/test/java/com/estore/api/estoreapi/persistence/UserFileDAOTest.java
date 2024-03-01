@@ -97,9 +97,9 @@ public class UserFileDAOTest {
     }
 
     @Test
-    public void testDeleteRock() {
+    public void testDeleteUser() {
         // Invoke
-        boolean result = assertDoesNotThrow(() -> rockFileDAO.deleteRock(99),
+        boolean result = assertDoesNotThrow(() -> userFileDAO.deleteUser(99),
                             "Unexpected exception thrown");
 
         // Analzye
@@ -108,7 +108,7 @@ public class UserFileDAOTest {
         // of the test rocks array - 1 (because of the delete)
         // Because rocks attribute of RockFileDAO is package private
         // we can access it directly
-        assertEquals(rockFileDAO.rocks.size(),testRocks.length-1);
+        assertEquals(userFileDAO.users.size(),testUsers.length-1);
     }
 
     @Test
