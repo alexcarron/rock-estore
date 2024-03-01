@@ -45,7 +45,7 @@ public class UserFileDAOTest {
         testUsers[2] = new User(12, "Ice Gladiator",  "sedimentary");
 
         // When the object mapper is supposed to read from the file
-        // the mock object mapper will return the rock array above
+        // the mock object mapper will return the user array above
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),User[].class))
                 .thenReturn(testUsers);
@@ -111,20 +111,31 @@ public class UserFileDAOTest {
         assertEquals(userFileDAO.users.size(),testUsers.length-1);
     }
 
+
+    /**
+     * @author Victor Rabinovich
+     */
     @Test
     public void testCreateRock() {
         // Setup
-        Rock rock = new Rock(102, "Wonder-Person",  "igneous", 10, 25, "spherical", "A rock");
+        User user = new User(13, "Wonder-Person",  "johnson");
+
+        User sameName = new User(114,"Galactic Agent", "iceicebaby");
 
         // Invoke
-        Rock result = assertDoesNotThrow(() -> rockFileDAO.createRock(rock),
+        User result = assertDoesNotThrow(() -> userFileDAO.createUser(user),
                                 "Unexpected exception thrown");
+
+        User resultSameName = assertDoesNotThrow(() -> userFileDAO.createUser(sameName),
+                                "Can't have same username as someone else");
 
         // Analyze
         assertNotNull(result);
-        Rock actual = rockFileDAO.getRock(rock.getId());
-        assertEquals(actual.getId(),rock.getId());
-        assertEquals(actual.getName(),rock.getName());
+        User actual = userFileDAO.getUser(user.getId());
+        assertEquals(actual.getId(),user.getId());
+        assertEquals(actual.getName(),user.getName());
+
+        assertNull(resultSameName);
     }
 
     /**

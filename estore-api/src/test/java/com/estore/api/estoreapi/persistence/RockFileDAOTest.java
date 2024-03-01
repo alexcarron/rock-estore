@@ -98,21 +98,34 @@ public class RockFileDAOTest {
         assertEquals(rockFileDAO.rocks.size(),testRocks.length-1);
     }
 
+
+    /**
+     * @author Victor Rabinovich
+     */
     @Test
     public void testCreateRock() {
         // Setup
         Rock rock = new Rock(102, "Wonder-Person",  "igneous", 10, 25, "spherical", "A rock");
 
+        // Test if it adds rock with the same name as an existing rock
+        Rock sameName = new Rock(103, "Ice Gladiator",  "sedimentary", 11, 20, "spherical", "A rock");
+
+
         // Invoke
         Rock result = assertDoesNotThrow(() -> rockFileDAO.createRock(rock),
                                 "Unexpected exception thrown");
+
+        Rock resultSameName = assertDoesNotThrow(() -> rockFileDAO.createRock(sameName), "Cannot Create Rock with same name as existing rock");
 
         // Analyze
         assertNotNull(result);
         Rock actual = rockFileDAO.getRock(rock.getId());
         assertEquals(actual.getId(),rock.getId());
         assertEquals(actual.getName(),rock.getName());
+
+        assertNull(resultSameName);
     }
+
 
     @Test
     public void testUpdateRock() {
