@@ -52,9 +52,9 @@ public class UserFileDAOTest {
         userFileDAO = new UserFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
-		/**
-		 * @author Alex Carron
-		 */
+    /**
+     * @author Alex Carron
+     */
     @Test
     public void testGetUsers() {
         // Invoke
@@ -70,9 +70,9 @@ public class UserFileDAOTest {
 				}
     }
 
-		/**
-		 * @author Alex Carron
-		 */
+    /**
+     * @author Alex Carron
+     */
     @Test
     public void testFindUsers() {
         // Invoke
@@ -84,11 +84,11 @@ public class UserFileDAOTest {
         assertEquals(usersContainingLa[1], testUsers[2]);
     }
 
-		/**
-		 * @author Alex Carron
-		 */
+    /**
+     * @author Alex Carron
+     */
     @Test
-    public void testGetRock() {
+    public void testGetUser() {
         // Invoke
         User user = userFileDAO.getUser(10);
 
@@ -127,19 +127,22 @@ public class UserFileDAOTest {
         assertEquals(actual.getName(),rock.getName());
     }
 
+    /**
+     * @author Ryan Lembo-Ehms
+     */
     @Test
     public void testUpdateRock() {
         // Setup
-        Rock rock = new Rock(99, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock");
+        User user = new User(99, "Galactic Agent",  "igneous");
 
         // Invoke
-        Rock result = assertDoesNotThrow(() -> rockFileDAO.updateRock(rock),
+        User result = assertDoesNotThrow(() -> userFileDAO.updateUser(user),
                                 "Unexpected exception thrown");
 
         // Analyze
         assertNotNull(result);
-        Rock actual = rockFileDAO.getRock(rock.getId());
-        assertEquals(actual,rock);
+        User actual = userFileDAO.getUser(user.getId());
+        assertEquals(actual,user);
     }
 
     @Test
@@ -183,13 +186,16 @@ public class UserFileDAOTest {
         assertEquals(rockFileDAO.rocks.size(),testRocks.length);
     }
 
+    /**
+     * @author Ryan Lembo-Ehms
+     */
     @Test
     public void testUpdateRockNotFound() {
         // Setup
-        Rock rock = new Rock(98, "Bolt",  "igneous", 10, 25, "spherical", "A rock");
+        User user = new User(98, "Bolt",  "igneous");
 
         // Invoke
-        Rock result = assertDoesNotThrow(() -> rockFileDAO.updateRock(rock),
+        User result = assertDoesNotThrow(() -> userFileDAO.updateUser(user),
                                                 "Unexpected exception thrown");
 
         // Analyze
