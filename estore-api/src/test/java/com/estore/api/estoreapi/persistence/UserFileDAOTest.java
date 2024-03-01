@@ -100,7 +100,7 @@ public class UserFileDAOTest {
     @Test
     public void testDeleteUser() {
         // Invoke
-        boolean result = assertDoesNotThrow(() -> userFileDAO.deleteUser(99),
+        boolean result = assertDoesNotThrow(() -> userFileDAO.deleteUser(10),
                             "Unexpected exception thrown");
 
         // Analzye
@@ -121,7 +121,7 @@ public class UserFileDAOTest {
         // Setup
         User user = new User(13, "Wonder-Person",  "johnson");
 
-        User sameName = new User(114,"Galactic Agent", "iceicebaby");
+        User sameName = new User(14,"Galactic Agent", "iceicebaby");
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.createUser(user),
@@ -145,7 +145,7 @@ public class UserFileDAOTest {
     @Test
     public void testUpdateUser() {
         // Setup
-        User user = new User(99, "Galactic Agent",  "igneous");
+        User user = new User(11, "Galactic Agent",  "ig");
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.updateUser(user),
