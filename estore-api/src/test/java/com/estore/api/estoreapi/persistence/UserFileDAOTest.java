@@ -52,35 +52,48 @@ public class UserFileDAOTest {
         userFileDAO = new UserFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
+		/**
+		 * @author Alex Carron
+		 */
     @Test
-    public void testGetRocks() {
+    public void testGetUsers() {
         // Invoke
-        Rock[] rocks = rockFileDAO.getRocks();
+        User[] users = userFileDAO.getUsers();
 
         // Analyze
-        assertEquals(rocks.length,testRocks.length);
-        for (int i = 0; i < testRocks.length;++i)
-            assertEquals(rocks[i],testRocks[i]);
+        assertEquals(users.length, testUsers.length);
+
+				int testUsersIndex = 0;
+				for (User user : users) {
+					assertEquals(user, testUsers[testUsersIndex]);
+					testUsersIndex++;
+				}
     }
 
+		/**
+		 * @author Alex Carron
+		 */
     @Test
-    public void testFindRocks() {
+    public void testFindUsers() {
         // Invoke
-        Rock[] rocks = rockFileDAO.findRocks("la");
+        User[] usersContainingLa = userFileDAO.findUsers("la");
 
         // Analyze
-        assertEquals(rocks.length,2);
-        assertEquals(rocks[0],testRocks[1]);
-        assertEquals(rocks[1],testRocks[2]);
+        assertEquals(usersContainingLa.length, 2);
+        assertEquals(usersContainingLa[0], testUsers[1]);
+        assertEquals(usersContainingLa[1], testUsers[2]);
     }
 
+		/**
+		 * @author Alex Carron
+		 */
     @Test
     public void testGetRock() {
         // Invoke
-        Rock rock = rockFileDAO.getRock(99);
+        User user = userFileDAO.getUser(10);
 
         // Analzye
-        assertEquals(rock,testRocks[0]);
+        assertEquals(user, testUsers[0]);
     }
 
     @Test
@@ -147,13 +160,16 @@ public class UserFileDAOTest {
 				);
     }
 
+		/**
+		 * @author Alex Carron
+		 */
     @Test
     public void testGetRockNotFound() {
         // Invoke
-        Rock rock = rockFileDAO.getRock(98);
+        User user = userFileDAO.getUser(98);
 
         // Analyze
-        assertEquals(rock,null);
+        assertEquals(user, null);
     }
 
     @Test
