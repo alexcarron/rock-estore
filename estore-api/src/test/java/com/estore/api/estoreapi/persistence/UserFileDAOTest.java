@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test the Rock File DAO class
+ * Test the User File DAO class
  *
  * @author SWEN Faculty
  */
@@ -117,7 +117,7 @@ public class UserFileDAOTest {
      * @author Victor Rabinovich
      */
     @Test
-    public void testCreateRock() {
+    public void testCreateUser() {
         // Setup
         User user = new User(13, "Wonder-Person",  "johnson");
 
@@ -143,7 +143,7 @@ public class UserFileDAOTest {
      * @author Ryan Lembo-Ehms
      */
     @Test
-    public void testUpdateRock() {
+    public void testUpdateUser() {
         // Setup
         User user = new User(99, "Galactic Agent",  "igneous");
 
@@ -182,7 +182,7 @@ public class UserFileDAOTest {
 		 * @author Alex Carron
 		 */
     @Test
-    public void testGetRockNotFound() {
+    public void testGetUserNotFound() {
         // Invoke
         User user = userFileDAO.getUser(98);
 
@@ -208,7 +208,7 @@ public class UserFileDAOTest {
      * @author Ryan Lembo-Ehms
      */
     @Test
-    public void testUpdateRockNotFound() {
+    public void testUpdateUserNotFound() {
         // Setup
         User user = new User(98, "Bolt",  "igneous");
 
