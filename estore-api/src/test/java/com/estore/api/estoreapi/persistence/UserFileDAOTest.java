@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.estore.api.estoreapi.model.Rock;
+import com.estore.api.estoreapi.model.User;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -26,9 +26,9 @@ import org.junit.jupiter.api.Test;
  * @author SWEN Faculty
  */
 @Tag("Persistence-tier")
-public class RockFileDAOTest {
-    RockFileDAO rockFileDAO;
-    Rock[] testRocks;
+public class UserFileDAOTest {
+    UserFileDAO userFileDAO;
+    User[] testUsers;
     ObjectMapper mockObjectMapper;
 
     /**
@@ -37,19 +37,19 @@ public class RockFileDAOTest {
      * @throws IOException
      */
     @BeforeEach
-    public void setupRockFileDAO() throws IOException {
+    public void setupUserFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
-        testRocks = new Rock[3];
-        testRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock");
-        testRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock");
-        testRocks[2] = new Rock(101, "Ice Gladiator",  "igneous", 10, 25, "spherical", "A rock");
+        testUsers = new User[3];
+        testUsers[0] = new User(10, "admin", "admin");
+        testUsers[1] = new User(11, "Galactic Agent",  "igneous");
+        testUsers[2] = new User(12, "Ice Gladiator",  "sedimentary");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the rock array above
         when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"),Rock[].class))
-                .thenReturn(testRocks);
-        rockFileDAO = new RockFileDAO("doesnt_matter.txt",mockObjectMapper);
+            .readValue(new File("doesnt_matter.txt"),User[].class))
+                .thenReturn(testUsers);
+        userFileDAO = new UserFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
     @Test
