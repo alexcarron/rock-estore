@@ -1,1 +1,1 @@
-<p>logout works!</p>
+<button *ngIf="isLoggedIn()" (click)="logOut()" routerLink="/login">Log Out</button>
