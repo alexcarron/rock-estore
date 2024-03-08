@@ -139,6 +139,25 @@ public class UserFileDAOTest {
         assertNull(resultSameName);
     }
 
+
+    /**
+     * @author Alex Carron
+     */
+    @Test
+    public void testCreateAdminUser() {
+        // Setup
+        User admin_user = new User(1, "admin",  "password");
+
+        // Invoke
+        User result = assertDoesNotThrow(
+					() -> userFileDAO.createUser(admin_user),
+					"Unexpected exception thrown"
+				);
+
+        // Analyze
+        assertNull(result);
+    }
+
     /**
      * @author Ryan Lembo-Ehms
      */
