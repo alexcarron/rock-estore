@@ -62,8 +62,8 @@ public class Rock {
     public int getId() {return id;}
 
     /**
-     * Sets the type of the rock - necessary for JSON object to Java object deserialization
-     * @param type The type of the rock
+     * Sets the name of the rock - necessary for JSON object to Java object deserialization
+     * @param name The name of the rock
      */
     public void setName(String name) {this.name = name;}
 
