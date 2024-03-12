@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Rock } from '../../models/Rock';
+import { CartService } from '../../services/cart/cart.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class CartComponent {
 
+  items: Rock[] = [];
+
+  constructor(
+    private cartService: CartService
+  ) {}
+  
 }

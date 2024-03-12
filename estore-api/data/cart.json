@@ -1,6 +1,10 @@
 [
     {
         "cart id": 1,
-        "product id": 1
+        "product ids": [
+            1,
+            2,
+            3
+        ]
     }
 ]
