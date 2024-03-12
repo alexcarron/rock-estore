@@ -1,6 +1,6 @@
 <div id="search-component">
-  <label for="search-box">Rock Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <label for="search-box">Search for Rocks</label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search rocks by name..." />
 
   <ul class="search-result">
     <li *ngFor="let rock of rocks$ | async" >
