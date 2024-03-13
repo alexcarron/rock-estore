@@ -1,7 +1,7 @@
 [
     {
-        "cart id": 1,
-        "product ids": [
+        "id": 1,
+        "item_ids": [
             1,
             2,
             3
