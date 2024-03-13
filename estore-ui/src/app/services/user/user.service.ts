@@ -10,6 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class UserService {
 	private usersUrl = 'http://localhost:8080/users';  // URL to web api
+	private signedInUserID = -1;
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
@@ -21,6 +22,16 @@ export class UserService {
 
 	private log(message: string) {
 		this.messageService.add(`UserService: ${message}`);
+	}
+
+	signInUser(id: number) : void{
+		this.signedInUserID = id;
+		this.log(`Signed in user w/ id=${this.signedInUserID}`);
+		catchError(this.handleError('signInUser'));
+	}
+
+	getSignedInUser(): Observable<User>{
+		return this.getUser(this.signedInUserID);
 	}
 
 	getUsers(): Observable<User[]> {

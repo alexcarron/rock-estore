@@ -11,9 +11,25 @@
     <button
       type="button"
       class="add-button"
-      (click)="signUp(userBox.value, passwordBox.value)"
+      (click)="
+        signUp(userBox.value, passwordBox.value);
+        userBox.value = '';
+        passwordBox.value = ''
+      "
     >
       Sign Up
+    </button>
+
+    <button
+      type="button"
+      class="add-button"
+      (click)="
+        signIn(userBox.value, passwordBox.value);
+        userBox.value = '';
+        passwordBox.value = ''
+      "
+    >
+      Sign In
     </button>
   </div>
   <!-- <ul class="search-result">
