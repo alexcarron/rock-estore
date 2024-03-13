@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.persistence;
 
 import java.io.IOException;
 import com.estore.api.estoreapi.model.Cart;
+import com.estore.api.estoreapi.model.Rock;
 
 /**
  * Defines the interface for Cart object persistence
@@ -21,4 +22,13 @@ public interface CartDAO {
      * @throws IOException if an issue with underlying storage
      */
     Cart getCart(int id) throws IOException;
+
+    /**
+     * Retrieves all {@linkplain Rock rocks}
+     *
+     * @return An array of {@link Rock rock} objects, may be empty
+     *
+     * @throws IOException if an issue with underlying storage
+     */
+    public Rock[] getRocksFromCart(int[] rockIds) throws IOException;
 }

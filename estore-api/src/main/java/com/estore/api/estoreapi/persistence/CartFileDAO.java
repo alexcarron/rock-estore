@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.Cart;
-import com.estore.api.estoreapi.model.User;
+import com.estore.api.estoreapi.model.Rock;
 
 /**
  * Implements the functionality for JSON file-based peristance for Carts
@@ -85,5 +85,24 @@ public class CartFileDAO implements CartDAO{
             else
                 return null;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Rock[] getRocksFromCart(int[] rockIds) throws IOException {
+        RockFileDAO rockDAO = new RockFileDAO("rocks.json",objectMapper);
+        ArrayList<Rock> rockArrayList = new ArrayList<Rock>();
+        
+        for (int rockId : rockIds) {
+            Rock rock = rockDAO.getRock(rockId);
+            if (rock != null) {
+                rockArrayList.add(rock);
+            }
+        }
+
+        Rock[] rockArray = new Rock[rockArrayList.size()];
+        rockArrayList.toArray(rockArray);
+        return rockArray;
     }
 }
