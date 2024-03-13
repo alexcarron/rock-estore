@@ -9,8 +9,10 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CartService {
-  private rocksUrl = 'http://localhost:8080/cart';  // URL to web api
-	httpOptions = {
+  private cartUrl = 'http://localhost:8080/cart';  // URL to web api
+  private rocksUrl = 'http://localhost:8080/rocks';  // URL to web api
+  
+  httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
 
