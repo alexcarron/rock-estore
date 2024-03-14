@@ -25,8 +25,9 @@ import com.estore.api.estoreapi.model.Rock;
  *
  * @author Ryan Lembo-Ehms
  */
+@Component
 public class CartFileDAO implements CartDAO{
-    private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
+    private static final Logger LOG = Logger.getLogger(CartFileDAO.class.getName());
     Map<Integer,Cart> carts;   // Provides a local cache of the cart objects
                                 // so that we don't need to read from the file
                                 // each time
@@ -91,7 +92,7 @@ public class CartFileDAO implements CartDAO{
      * {@inheritDoc}
      */
     public Rock[] getRocksFromCart(int[] rockIds) throws IOException {
-        RockFileDAO rockDAO = new RockFileDAO("rocks.json",objectMapper);
+        RockFileDAO rockDAO = new RockFileDAO("data/rocks.json",objectMapper);
         ArrayList<Rock> rockArrayList = new ArrayList<Rock>();
         
         for (int rockId : rockIds) {
@@ -104,5 +105,37 @@ public class CartFileDAO implements CartDAO{
         Rock[] rockArray = new Rock[rockArrayList.size()];
         rockArrayList.toArray(rockArray);
         return rockArray;
+    }
+
+    // FOR TESTING PURPOSES //
+    /**
+     * Generates an array of {@linkplain Rock rocks} from the tree map for any
+     * {@linkplain Rock rocks} that contains the text specified by containsText
+     * <br>
+     * If containsText is null, the array contains all of the {@linkplain Rock rocks}
+     * in the tree map
+     *
+     * @return  The array of {@link Rock rocks}, may be empty
+     */
+    private Cart[] getCartsArray() { // if containsText == null, no filter
+        ArrayList<Cart> cartArrayList = new ArrayList<>();
+
+        for (Cart cart : carts.values()) {
+            cartArrayList.add(cart);
+        }
+
+        Cart[] cartArray = new Cart[cartArrayList.size()];
+        cartArrayList.toArray(cartArray);
+        return cartArray;
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Cart[] getCarts() {
+        synchronized(carts) {
+            return getCartsArray();
+        }
     }
 }

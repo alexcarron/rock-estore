@@ -10,18 +10,48 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class CartService {
   private cartUrl = 'http://localhost:8080/cart';  // URL to web api
-  private rocksUrl = 'http://localhost:8080/rocks';  // URL to web api
-  
+
   httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
 
   constructor(
-  private http: HttpClient,
-  private messageService: MessageService
+    private http: HttpClient,
+    private messageService: MessageService
   ) { }
 
   private log(message: string) {
     this.messageService.add(`CartService: ${message}`);
   }
+
+  getRocksFromCart(id: number): Observable<Rock[]> {
+		const url = `${this.cartUrl}/${id}`;
+
+		return this.http.get<Rock[]>(url)
+			.pipe(
+				tap(() => this.log(`fetched rock from cart =${id}`)),
+				catchError(this.handleError<Rock[]>(`getRocksFromCart id=${id}`))
+			);
+	}
+
+  /**
+	 * Handle Http operation that failed.
+	 * Let the app continue.
+	 *
+	 * @param operation - name of the operation that failed
+	 * @param result - optional value to return as the observable result
+	 */
+	private handleError<Type>(operation = 'operation', result?: Type) {
+		return (error: any): Observable<Type> => {
+
+			// TODO: send the error to remote logging infrastructure
+			console.error(error); // log to console instead
+
+			// TODO: better job of transforming error for user consumption
+			this.log(`${operation} failed: ${error.message}`);
+
+			// Let the app keep running by returning an empty result.
+			return of(result as Type);
+		};
+	}
 }

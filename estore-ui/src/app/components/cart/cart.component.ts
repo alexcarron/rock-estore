@@ -10,10 +10,19 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class CartComponent {
 
-  items: Rock[] = [];
+  rocks: Rock[] = [];
 
   constructor(
     private cartService: CartService
   ) {}
+
+  retrieveRocks(): void {
+		this.cartService.getRocksFromCart(1)
+			.subscribe(rocks => this.rocks = rocks);
+	}
+
+	ngOnInit(): void {
+		this.retrieveRocks();
+	}
   
 }

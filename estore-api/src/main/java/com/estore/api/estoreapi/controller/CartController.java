@@ -21,7 +21,7 @@ import com.estore.api.estoreapi.model.Cart;
 import com.estore.api.estoreapi.model.Rock;
 
 /**
- * Handles the REST API requests for the User resource
+ * Handles the REST API requests for the Cart resource
  * <p>
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
@@ -32,13 +32,13 @@ import com.estore.api.estoreapi.model.Rock;
  @RestController
  @RequestMapping("cart")
 public class CartController {
-    private static final Logger LOG = Logger.getLogger(UserController.class.getName());
+    private static final Logger LOG = Logger.getLogger(CartController.class.getName());
     private CartDAO cartDao;
 
     /**
      * Creates a REST API controller to reponds to requests
      *
-     * @param userDao The {@link CartDAO Cart Data Access Object} to perform CRUD operations
+     * @param cartDao The {@link CartDAO Cart Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
@@ -68,6 +68,27 @@ public class CartController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for all {@linkplain Cart carts}
+     *
+     * @return ResponseEntity with array of {@link Cart cart} objects (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @GetMapping("")
+    public ResponseEntity<Cart[]> getCarts() {
+        LOG.info("GET /cart");
+
+        try {
+            Cart[] cartsArray = cartDao.getCarts();
+            return new ResponseEntity<>(cartsArray, HttpStatus.OK);
+        }
+        catch (IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -31,4 +31,13 @@ public interface CartDAO {
      * @throws IOException if an issue with underlying storage
      */
     public Rock[] getRocksFromCart(int[] rockIds) throws IOException;
+
+    /**
+     * Retrieves all {@linkplain Cart carts}
+     *
+     * @return An array of {@link Cart cart} objects, may be empty
+     *
+     * @throws IOException if an issue with underlying storage
+     */
+    Cart[] getCarts() throws IOException;
 }
