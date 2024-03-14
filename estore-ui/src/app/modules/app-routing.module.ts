@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RocksComponent } from '../components/rocks/rocks.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { RockDetailComponent } from '../components/rock-detail/rock-detail.component';
+import { LoginComponent } from '../components/login/login.component';
 import { CartComponent } from '../components/cart/cart.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
 	{path: 'dashboard', component: DashboardComponent},
   {path: 'cart', component: CartComponent},
   {path: 'detail/:id', component: RockDetailComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

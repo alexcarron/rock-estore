@@ -11,6 +11,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RockSearchComponent } from './components/rock-search/rock-search.component';
+import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CartComponent } from './components/cart/cart.component';
     MessagesComponent,
     DashboardComponent,
     RockSearchComponent,
+    LoginComponent,
     CartComponent,
   ],
   imports: [
