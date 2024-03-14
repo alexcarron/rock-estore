@@ -29,7 +29,7 @@ export class CartService {
 
 		return this.http.get<Rock[]>(url)
 			.pipe(
-				tap(() => this.log(`fetched rock from cart =${id}`)),
+				tap(() => this.log(`fetched rocks from cart ${id}`)),
 				catchError(this.handleError<Rock[]>(`getRocksFromCart id=${id}`))
 			);
 	}

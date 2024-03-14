@@ -17,7 +17,7 @@ export class CartComponent {
   ) {}
 
   retrieveRocks(): void {
-		this.cartService.getRocksFromCart(1)
+		this.cartService.getRocksFromCart(3)
 			.subscribe(rocks => this.rocks = rocks);
 	}
 
