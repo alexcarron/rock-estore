@@ -26,6 +26,7 @@ export class CartComponent {
 	}
 
 	ngOnInit(): void {
+    this.cartID = this.userService.getSignedInUserId();
 		this.retrieveRocks();
 	}
   

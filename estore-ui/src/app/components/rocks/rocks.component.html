@@ -1,5 +1,5 @@
 <h2>Rocks</h2>
-<div>
+<div *ngIf="userService.getSignedInUserId() == 0">
   <label for="new-rock">Rock name: </label>
   <input id="new-rock" #rockName />
 

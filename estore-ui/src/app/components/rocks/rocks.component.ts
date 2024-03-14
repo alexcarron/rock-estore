@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Rock } from '../../models/Rock';
 import { RockService } from '../../services/rock/rock.service';
-import { MessageService } from '../../services/message/message.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-rocks',
@@ -13,7 +13,10 @@ export class RocksComponent {
 
 	constructor(
 		private rockService: RockService,
-	) {}
+		public userService: UserService
+	) {
+		this.userService = userService;
+	}
 
 	retrieveRocks(): void {
 		this.rockService.getRocks()
