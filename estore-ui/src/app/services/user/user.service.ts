@@ -34,6 +34,10 @@ export class UserService {
 		return this.getUser(this.signedInUserID);
 	}
 
+	getSignedInUserId(): number{
+		return this.signedInUserID;
+	}
+
 	getUsers(): Observable<User[]> {
 		return this.http.get<User[]>(this.usersUrl)
 			.pipe(
