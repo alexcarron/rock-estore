@@ -30,7 +30,7 @@ public interface CartDAO {
      *
      * @throws IOException if an issue with underlying storage
      */
-    public Rock[] getRocksFromCart(int[] rockIds) throws IOException;
+    public Rock[] getRocksFromCart(Cart cart) throws IOException;
 
     /**
      * Retrieves all {@linkplain Cart carts}

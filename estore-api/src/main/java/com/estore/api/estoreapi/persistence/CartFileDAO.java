@@ -91,8 +91,10 @@ public class CartFileDAO implements CartDAO{
     /**
      * {@inheritDoc}
      */
-    public Rock[] getRocksFromCart(int[] rockIds) throws IOException {
-        RockFileDAO rockDAO = new RockFileDAO("data/rocks.json",objectMapper);
+    public Rock[] getRocksFromCart(Cart cart) throws IOException {
+        int[] rockIds = cart.getItemIds();
+
+        RockFileDAO rockDAO = new RockFileDAO("data/rocks.json", objectMapper);
         ArrayList<Rock> rockArrayList = new ArrayList<Rock>();
         
         for (int rockId : rockIds) {

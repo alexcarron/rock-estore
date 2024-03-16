@@ -47,17 +47,12 @@ public class CartFileDAOTest {
         testCarts[1] = new Cart(11, new int[]{6, 7, 8, 9, 10});
         testCarts[2] = new Cart(12, new int[]{99, 100, 101});
 
-        testRocks = new Rock[3];
-        testRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock");
-        testRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock");
-        testRocks[2] = new Rock(101, "Ice Gladiator",  "igneous", 10, 25, "spherical", "A rock");
-
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the cart array above
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),Cart[].class))
                 .thenReturn(testCarts);
-        cartFileDao = new CartFileDAO("doesnt_matter.txt",mockObjectMapper);
+        cartFileDao = new CartFileDAO("doesnt_matter.txt",mockObjectMapper);      
     }
 
     /**
@@ -89,5 +84,23 @@ public class CartFileDAOTest {
 
         // Assert
         assertNull(cart);
+    }
+
+    /**
+     * Test the getCarts method
+     */
+    @Test
+    public void testGetCarts() {
+        // Invoke
+        Cart[] carts = cartFileDao.getCarts();
+
+        // Analyze
+        assertEquals(carts.length, testCarts.length);
+        
+        int index = 0;
+        for (Cart cart : carts) {
+            assertEquals(cart, testCarts[index]);
+            index++;
+        }
     }
 }

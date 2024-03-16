@@ -61,7 +61,7 @@ public class CartController {
         try {
             Cart cart = cartDao.getCart(id);
             if (cart != null) {
-                Rock[] rocksArray = cartDao.getRocksFromCart(cart.getItemIds());
+                Rock[] rocksArray = cartDao.getRocksFromCart(cart);
                 return new ResponseEntity<Rock[]>(rocksArray,HttpStatus.OK);
             }
             else
