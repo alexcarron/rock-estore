@@ -1,6 +1,7 @@
 package com.estore.api.estoreapi.model;
 
 import java.util.logging.Logger;
+import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -12,7 +13,7 @@ public class Cart {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "cart [id=%d]";
+    static final String STRING_FORMAT = "cart [id=%d,item_ids=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("item_ids") private int[] item_ids;
@@ -53,6 +54,6 @@ public class Cart {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id);
+        return String.format(STRING_FORMAT,id, Arrays.toString(item_ids));
     }
 }
