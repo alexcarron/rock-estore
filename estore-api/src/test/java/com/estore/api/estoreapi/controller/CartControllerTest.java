@@ -1,6 +1,7 @@
 package com.estore.api.estoreapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -57,6 +58,38 @@ public class CartControllerTest {
 
         // Assert
         assertEquals(expectedRocks, actualRocks);
+    }
+
+    /**
+     * Test the getItemsFromCart method when the cart is not found
+     */
+    @Test
+    public void testGetItemsFromCartNotFound() throws IOException {
+        // Setup
+        int testCartId = 10;
+        when(mockCartDao.getCart(testCartId)).thenReturn(null);
+
+        // Invoke
+        Rock[] actualRocks = cartController.getItemsFromCart(testCartId).getBody();
+
+        // Assert
+        assertNull(actualRocks);
+    }
+
+    /**
+     * Test the getItemsFromCart method when an IOException is thrown
+     */
+    @Test
+    public void testGetItemsFromCartIOException() throws IOException {
+        // Setup
+        int testCartId = -1;
+        doThrow(new IOException()).when(mockCartDao).getCart(testCartId);
+
+        // Invoke
+        Rock[] actualRocks = cartController.getItemsFromCart(testCartId).getBody();
+
+        // Assert
+        assertNull(actualRocks);
     }
 
     /**
