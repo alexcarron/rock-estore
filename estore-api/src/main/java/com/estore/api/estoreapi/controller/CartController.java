@@ -26,7 +26,7 @@ import com.estore.api.estoreapi.model.Rock;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  *
- * @author Victor Rabinovich
+ * @author Ryan Lembo-Ehms
  */
 
  @RestController
