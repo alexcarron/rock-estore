@@ -1,12 +1,8 @@
 package com.estore.api.estoreapi.persistence;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -16,7 +12,6 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.estore.api.estoreapi.model.Cart;
 import com.estore.api.estoreapi.model.Rock;
-import com.estore.api.estoreapi.model.User;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -96,7 +91,7 @@ public class CartFileDAOTest {
 
         // Analyze
         assertEquals(carts.length, testCarts.length);
-        
+
         int index = 0;
         for (Cart cart : carts) {
             assertEquals(cart, testCarts[index]);
