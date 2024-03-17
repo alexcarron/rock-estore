@@ -38,6 +38,20 @@ public interface CartDAO {
     Cart addItem(int rockId, int userId) throws IOException;
 
     /**
+     * Adds and saves a {@linkplain int rockId} to the cart
+     *
+     * @param rockId {@linkplain int rockId} id of the rock to be deleted
+     *  
+     * @param userId {@linkplain int userId} id of the user's cart that
+     * the rock will be deleted from
+     *
+     * @return updated {@link Cart cart} with matching id to userId
+     *
+     * @throws IOException if an issue with underlying storage
+     */
+    Cart deleteItem(int rockId, int userId) throws IOException;
+
+    /**
      * Retrieves all {@linkplain Rock rocks}
      *
      * @return An array of {@link Rock rock} objects, may be empty

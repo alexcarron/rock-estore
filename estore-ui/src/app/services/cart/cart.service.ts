@@ -34,15 +34,27 @@ export class CartService {
 			);
 	}
 
-	addToCart(rock_adding: number, id: number): Observable<any> {
+	addToCart(rock_updating: number, id: number): Observable<any> {
 		const url = `${this.cartUrl}`;
 		let adding = true;
-		const payload = { rock_adding, id, adding };
+		const payload = { rock_updating, id, adding };
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`adding rock id=${rock_adding} to user id=${id}`)),
-				catchError(this.handleError<any>(`addToCart rock id=${rock_adding} user id=${id}`))
+				tap(() => this.log(`adding rock id=${rock_updating} to user id=${id}`)),
+				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
+			);
+	}
+
+	removeFromCart(rock_updating: number, id: number): Observable<any> {
+		const url = `${this.cartUrl}`;
+		let adding = false;
+		const payload = { rock_updating, id, adding };
+
+		return this.http.put(url, payload, this.httpOptions)
+			.pipe(
+				tap(() => this.log(`removing rock id=${rock_updating} from user id=${id}`)),
+				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
 

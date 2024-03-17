@@ -15,8 +15,9 @@ export class CartComponent {
 
   constructor(
     private cartService: CartService,
-    private userService: UserService
+    public userService: UserService
   ) {
+    this.userService = userService;
     this.cartID = this.userService.getSignedInUserId();
   }
 
@@ -29,5 +30,8 @@ export class CartComponent {
     this.cartID = this.userService.getSignedInUserId();
 		this.retrieveRocks();
 	}
-  
+
+  removeFromCart(rock_removing_from_cart: number, user_id: number): void {
+		this.cartService.removeFromCart(rock_removing_from_cart, user_id).subscribe();
+	}
 }
