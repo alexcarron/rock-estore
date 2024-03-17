@@ -1,6 +1,7 @@
 <h1>{{title}}</h1>
 <nav>
-	<a routerLink="/rocks">Rocks</a>
+	<a *ngIf="userService.getSignedInUserId()>0"routerLink="/rocks">Rocks</a>
+	<a *ngIf="userService.getSignedInUserId()==0"routerLink="/rocks">Inventory</a>
 	<a routerLink="/dashboard">Dashboard</a>
 	<a routerLink="/login">login</a>
 	<a *ngIf="userService.getSignedInUserId()>0" routerLink="/cart">Cart</a>

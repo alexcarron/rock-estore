@@ -1,5 +1,5 @@
 <h2>Rocks</h2>
-<div *ngIf="userService.getSignedInUserId() == 0">
+<div *ngIf="userService.userIsAdmin()">
   <label for="new-rock">Rock name: </label>
   <input id="new-rock" #rockName />
 
@@ -21,6 +21,7 @@
 			<span class="badge">{{rock.id}}</span> {{rock.name}}
 		</a>
 		<button
+			*ngIf="userService.userIsAdmin()"
 			type="button"
 			class="delete"
 			title="delete rock"

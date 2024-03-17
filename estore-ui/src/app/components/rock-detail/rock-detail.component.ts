@@ -3,6 +3,7 @@ import { Rock } from '../../models/Rock';
 import { ActivatedRoute } from '@angular/router';
 import { RockService } from '../../services/rock/rock.service';
 import { Location } from '@angular/common';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-rock-detail',
@@ -16,6 +17,7 @@ export class RockDetailComponent {
 		private route: ActivatedRoute,
 		private rockService: RockService,
 		private location: Location,
+		public userService: UserService
 	) {}
 
 	ngOnInit(): void {

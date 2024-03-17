@@ -1,8 +1,9 @@
 <div *ngIf="rock">
   <h2>{{rock.name | uppercase}} Details</h2>
   <div>id: {{rock.id}}</div>
-  <div>
-    <label for="rock-name">Rock name: </label>
+  <div>name: {{rock.name}}</div>
+  <div *ngIf="userService.userIsAdmin()">
+    <label for="rock-name">Edit name: </label>
     <input id="rock-name" [(ngModel)]="rock.name" placeholder="name">
   </div>
 	<button type="button" (click)="goBack()">go back</button>
