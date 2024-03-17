@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Rock } from '../../models/Rock';
 import { RockService } from '../../services/rock/rock.service';
 import { UserService } from '../../services/user/user.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-rocks',
@@ -13,9 +14,11 @@ export class RocksComponent {
 
 	constructor(
 		private rockService: RockService,
-		public userService: UserService
+		public userService: UserService,
+		public cartService: CartService
 	) {
 		this.userService = userService;
+		this.cartService = cartService;
 	}
 
 	retrieveRocks(): void {
@@ -42,5 +45,9 @@ export class RocksComponent {
 	delete(rock_deleting: Rock): void {
 		this.rocks = this.rocks.filter(rock => rock !== rock_deleting);
 		this.rockService.deleteRock(rock_deleting.id).subscribe();
+	}
+
+	addToCart(rock_adding_to_cart: number, user_id: number): void {
+		this.cartService.addToCart(rock_adding_to_cart, user_id).subscribe();
 	}
 }

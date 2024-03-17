@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +27,7 @@ import com.estore.api.estoreapi.model.Rock;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  *
- * @author Ryan Lembo-Ehms
+ * @author Ryan Lembo-Ehms, Ethan Battaglia
  */
 
  @RestController
@@ -89,6 +90,38 @@ public class CartController {
             return new ResponseEntity<>(cartsArray, HttpStatus.OK);
         }
         catch (IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Creates a {@linkplain Rock rock} with the provided rock object
+     *
+     * @param rock - The {@link Rock rock} to create
+     *
+     * @return ResponseEntity with created {@link Rock rock} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Rock rock} object already exists<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @PutMapping("")
+    public ResponseEntity<Cart> updateCart(@RequestBody Map<String, Object> payload) {
+        int rockId = (int) payload.get("rock_adding");
+        int userId = (int) payload.get("id");
+        boolean adding = (boolean) payload.get("adding");
+
+        LOG.info("PUT /cart " + rockId + " " + userId + " " + adding);
+        
+        try {
+            Cart updatedCart = null;
+            if(adding) 
+                updatedCart = cartDao.addItem(rockId, userId);
+            if (updatedCart != null)
+                return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

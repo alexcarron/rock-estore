@@ -7,7 +7,7 @@ import com.estore.api.estoreapi.model.Rock;
 /**
  * Defines the interface for Cart object persistence
  *
- * @author Ryan Lembo-Ehms
+ * @author Ryan Lembo-Ehms, Ethan Battaglia
  */
 public interface CartDAO {
     /**
@@ -22,6 +22,20 @@ public interface CartDAO {
      * @throws IOException if an issue with underlying storage
      */
     Cart getCart(int id) throws IOException;
+
+    /**
+     * Adds and saves a {@linkplain int rockId} to the cart
+     *
+     * @param rockId {@linkplain int rockId} id of the rock to be added
+     *  
+     * @param userId {@linkplain int userId} id of the user's cart that
+     * the rock will be added to
+     *
+     * @return updated {@link Cart cart} with matching id to userId
+     *
+     * @throws IOException if an issue with underlying storage
+     */
+    Cart addItem(int rockId, int userId) throws IOException;
 
     /**
      * Retrieves all {@linkplain Rock rocks}

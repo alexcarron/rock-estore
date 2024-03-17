@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.annotation.UserConfigurations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,7 @@ import com.estore.api.estoreapi.model.Rock;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  *
- * @author Ryan Lembo-Ehms
+ * @author Ryan Lembo-Ehms, Ethan Battagila
  */
 @Component
 public class CartFileDAO implements CartDAO{
@@ -86,6 +87,15 @@ public class CartFileDAO implements CartDAO{
             else
                 return null;
         }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    public Cart addItem(int rockId, int userId) throws IOException {
+        Cart userCart = getCart(userId);
+        userCart.appendItem(rockId);
+        return userCart;
     }
 
     /**

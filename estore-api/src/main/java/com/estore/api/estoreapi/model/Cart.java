@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a cart entity
  *
- * @author Ryan Lembo-Ehms
+ * @author Ryan Lembo-Ehms, Ethan Battaglia
  */
 public class Cart {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
@@ -48,6 +48,15 @@ public class Cart {
      * @return The ids of the rocks in the cart
      */
     public int[] getItemIds() {return item_ids;}
+
+    /**
+     * Appends an item onto the item_ids list
+     * @return The ids of the rocks in the cart
+     */
+    public void appendItem(int itemId) {
+        item_ids = Arrays.copyOf(item_ids, item_ids.length + 1);
+        item_ids[item_ids.length - 1] = itemId;
+    }
 
     /**
      * {@inheritDoc}
