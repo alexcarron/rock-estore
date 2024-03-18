@@ -175,5 +175,14 @@ This section describes the web interface flow; this is how the user views and in
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 
+### Controller Tier
+![Code Coverage for Controller Tier](code-coverage-controller-tier.png)
+
+### Model Tier
+![Code Coverage for Controller Tier](code-coverage-model-tier.png)
+
+### Persistence Tier
+![Code Coverage for Controller Tier](code-coverage-persistence-tier.png)
+
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
