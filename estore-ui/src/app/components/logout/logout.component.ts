@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-logout',
@@ -6,23 +7,17 @@ import { Component } from '@angular/core';
   styleUrl: './logout.component.css'
 })
 export class LogoutComponent {
-	// Temporary mock variable to maintain state of user logged in or not
-	isUserLoggedIn: boolean = true;
-
 	constructor(
-		// Should pass service which manages log in state
+		private userService: UserService
 	) {
-		// Initialize service here
+		this.userService = userService;
 	}
 
 	isLoggedIn(): boolean {
-		// TODO: Implement way to check if user is current logged in
-		return this.isUserLoggedIn;
+		return this.userService.isUserSignedIn();
 	}
 
 	logOut() {
-		// TODO: Implement way to logout
-		this.isUserLoggedIn = false;
-		console.log("Logged Out User");
+		this.userService.logOutUser();
 	}
 }
