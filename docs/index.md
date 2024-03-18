@@ -1,11 +1,13 @@
 # PROJECT Home
 
-Welcome to the PROJECT Project!
+Welcome to the Party Rockers Project!
 
 ## Team
 
-* MEMBER1
-* MEMBER2
+* Victor Rabinovich
+* Ethan Battaglia
+* Ryan Lembo-Ehms
+* Samuel Roberts
 * Alex Carron
 
 ## [Design Documentation](DesignDoc)
