@@ -8,7 +8,7 @@
 				type="button"
 				class="remove"
 				title="remove rock from cart"
-				(click)="removeFromCart(rock.id, this.userService.getSignedInUserId())"
+				(click)="removeFromCart(rock, this.userService.getSignedInUserId())"
 			>
 				Remove from cart
 		</button>

@@ -110,6 +110,7 @@ public class CartFileDAO implements CartDAO{
     /**
     ** {@inheritDoc}
      */
+    @Override
     public Cart addItem(int rockId, int userId) throws IOException {
         synchronized(carts) {
             Cart userCart = getCart(userId);
@@ -122,6 +123,7 @@ public class CartFileDAO implements CartDAO{
     /**
     ** {@inheritDoc}
      */
+    @Override
     public Cart deleteItem(int rockId, int userId) throws IOException {
         synchronized(carts) {
             Cart userCart = getCart(userId);
@@ -134,6 +136,7 @@ public class CartFileDAO implements CartDAO{
     /**
      * {@inheritDoc}
      */
+    @Override
     public Rock[] getRocksFromCart(Cart cart) throws IOException {
         synchronized(carts) {
             int[] rockIds = cart.getItemIds();
