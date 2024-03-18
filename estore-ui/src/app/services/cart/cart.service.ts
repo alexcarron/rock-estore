@@ -65,7 +65,7 @@ export class CartService {
 			this.httpOptions
 		)
 		.pipe(
-			tap((newId: number) => this.log(`added cart w/ id=${newId}`)),
+			tap(() => this.log(`added cart w/ id=${id}`)),
 			catchError(this.handleError<Rock>('addRock')),
 		)
 	}
