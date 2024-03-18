@@ -134,6 +134,23 @@ public class CartFileDAO implements CartDAO{
     }
 
     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Cart addCart(int id) throws IOException {
+        synchronized(carts) {
+            if (!carts.containsKey(id)) {
+                Cart newCart = new Cart(id, new int[0]);
+                carts.put(id, newCart);
+                save();
+                return newCart;
+            }
+            else
+                return null;
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

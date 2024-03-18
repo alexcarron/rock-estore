@@ -58,6 +58,18 @@ export class CartService {
 			);
 	}
 
+	addCart(id: number): Observable<any> {
+		return this.http.post<number>(
+			this.cartUrl,
+			id,
+			this.httpOptions
+		)
+		.pipe(
+			tap((newId: number) => this.log(`added cart w/ id=${newId}`)),
+			catchError(this.handleError<Rock>('addRock')),
+		)
+	}
+
   /**
 	 * Handle Http operation that failed.
 	 * Let the app continue.
