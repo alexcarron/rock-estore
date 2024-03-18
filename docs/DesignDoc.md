@@ -9,11 +9,12 @@ geometry: margin=1in
 > and appear in the generated PDF in italics but do so only **after** all team members agree that the requirements for that section and current Sprint have been met. **Do not** delete future Sprint expectations._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: Party Rockers
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
+  * Victor Rabinovich
+  * Ethan Battaglia
+  * Ryan Lembo-Ehms
+  * Samuel Roberts
   * Alex Carron
 
 ## Executive Summary
@@ -42,6 +43,9 @@ This section describes the features of the application.
 
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+  The minimum viable product involves an ecommerce website which sells rocks. This website can be accessed by both admin and customer users by logging in to their respective accounts, the
+  actions that a user can take is dictated by the account type they have (customer vs. admin). An administrator will be able to create new rocks, update the information pertaining to a rock, update stock and quantity of various rocks, delete rocks from the website and so forth.  
+
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
@@ -109,6 +113,9 @@ This section describes the web interface flow; this is how the user views and in
 
 ### ViewModel Tier
 > _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+  * RockController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the  rock model takes place. This class creates the urls for the calls, and defines what functions it will call, status codes to return and error handles.
+  * UserController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the User model takes place. This allows for calls to create new users, updating users, retrieving users, and gethering the information neccessary to sign in users.
+  * [INSERT SHOPPING CART INFO]
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
