@@ -44,7 +44,7 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
   The minimum viable product involves an ecommerce website which sells rocks. This website can be accessed by both admin and customer users by logging in to their respective accounts, the
-  actions that a user can take is dictated by the account type they have (customer vs. admin). An administrator will be able to create new rocks, update the information pertaining to a rock, update stock and quantity of various rocks, delete rocks from the website and so forth.  
+  actions that a user can take is dictated by the account type they have (customer vs. admin). An administrator will be able to create new rocks, update the information pertaining to a rock, update stock and quantity of various rocks, delete rocks from the website and so forth.
 
 
 ### MVP Features
@@ -58,7 +58,7 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](domain-model.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
