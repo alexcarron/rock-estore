@@ -1,0 +1,42 @@
+<p>login works!</p>
+
+<div id="login-component">
+  <label for="username-box">Username: </label>
+  <input #userBox id="username-box" />
+
+  <label for="password-box">Password: </label>
+  <input #passwordBox id="password-box" />
+
+  <div class="sign in/up">
+    <button
+      type="button"
+      class="add-button"
+      (click)="
+        signUp(userBox.value, passwordBox.value);
+        userBox.value = '';
+        passwordBox.value = ''
+      "
+    >
+      Sign Up
+    </button>
+
+    <button
+      type="button"
+      class="add-button"
+      (click)="
+        signIn(userBox.value, passwordBox.value);
+        userBox.value = '';
+        passwordBox.value = ''
+      "
+    >
+      Sign In
+    </button>
+  </div>
+  <!-- <ul class="search-result">
+      <li *ngFor="let rock of rocks$ | async" >
+        <a routerLink="/detail/{{rock.id}}">
+          {{rock.name}}
+        </a>
+      </li>
+    </ul> -->
+</div>
