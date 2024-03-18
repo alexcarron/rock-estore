@@ -11,6 +11,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RockSearchComponent } from './components/rock-search/rock-search.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RockSearchComponent } from './components/rock-search/rock-search.compon
     MessagesComponent,
     DashboardComponent,
     RockSearchComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
