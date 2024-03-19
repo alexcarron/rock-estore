@@ -20,7 +20,19 @@
 		<a routerLink="/detail/{{rock.id}}">
 			<span class="badge">{{rock.id}}</span> {{rock.name}}
 		</a>
-		<button
+		
+		<div *ngIf="userService.getSignedInUserId() > 0">
+			<button
+				type="button"
+				class="add"
+				title="add rock to cart"
+				(click)="addToCart(rock.id, userService.getSignedInUserId())"
+			>
+				Add to cart
+			</button>
+		</div>
+    
+    <button
 			*ngIf="userService.userIsAdmin()"
 			type="button"
 			class="delete"

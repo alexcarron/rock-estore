@@ -3,6 +3,10 @@ package com.estore.api.estoreapi.persistence;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -98,4 +102,98 @@ public class CartFileDAOTest {
             index++;
         }
     }
+
+/*
+    @Test
+    public void testGetRocksFromCart() throws IOException {
+        // Setup: Define the rock IDs present in the test cart
+        int[] rockIdsInCart = {1, 2, 3}; // IDs from the provided rocks.json
+        Cart testCart = new Cart(10, rockIdsInCart); // Create a cart for testing
+    
+        // Expected Rocks based on rocks.json
+        Rock[] expectedRocks = new Rock[]{
+            new Rock(1, "Andesite", "igneous", 10, 2, "spherical", "Mined by Dwayne \"The Rock\" Johnson in Yosemite."),
+            new Rock(2, "Obsidian", "igneous", 3, 0.5, "spherical", "Buy 10 to go to the nether!"),
+            new Rock(3, "Limestone", "sedimentary", 500, 6, "cube", "Original slab of limestone used to build the pyramids.")
+        };
+    
+        // Since RockFileDAO is instantiated directly in CartFileDAO, we cannot directly mock it.
+        // This test will need to be an integration test that relies on the actual rocks.json file
+        // being correctly read by RockFileDAO. This assumes RockFileDAO and ObjectMapper are working as expected.
+        
+        // Act: Retrieve rocks from cart
+        Rock[] retrievedRocks = cartFileDao.getRocksFromCart(testCart);
+    
+        // Assert: Validate the retrieved rocks match the expected rocks
+        assertNotNull(retrievedRocks, "Retrieved rocks should not be null.");
+        assertEquals(expectedRocks.length, retrievedRocks.length, "The number of retrieved rocks should match the expected number.");
+        
+        // Additional assertions could be made here to compare the properties of each expected Rock object with the retrieved ones.
+        // For simplicity, we're only checking the count.
+    }
+    
+
+
+    @Test
+    public void testAddItem() throws IOException {
+        // Setup
+        int userId = 10; // Assume this cart exists
+        int rockIdToAdd = 999; // New rock id to add
+        Cart expectedCart = new Cart(userId, new int[]{1, 2, 3, 4, 5, 999});
+        testCarts[0].appendItem(999); // Adding rock id 999 to the first test cart
+
+        doThrow(new IOException()).when(mockObjectMapper).writeValue(new File("doesnt_matter.txt"), any());
+
+        // Invoke
+        Cart resultCart = cartFileDao.addItem(rockIdToAdd, userId);
+
+        // Assert
+        assertEquals(expectedCart, resultCart, "The cart should have the new item added");
+    }
+
+    @Test
+    public void testDeleteItem() throws IOException {
+        // Setup
+        int userId = 10; // Assume this cart exists
+        int rockIdToDelete = 3; // Rock id to delete
+        Cart expectedCart = new Cart(userId, new int[]{1, 2, 4, 5}); // Expected cart after deletion
+        testCarts[0].removeItem(3); // Removing rock id 3 from the first test cart
+        
+        doThrow(new IOException()).when(mockObjectMapper).writeValue(new File("doesnt_matter.txt"), any());
+
+        // Invoke
+        Cart resultCart = cartFileDao.deleteItem(rockIdToDelete, userId);
+
+        // Assert
+        assertEquals(expectedCart, resultCart, "The cart should not have the deleted item");
+    }
+
+    @Test
+    public void testAddCartNew() throws IOException {
+        // Setup
+        int newCartId = 999; // ID for the new cart
+        Cart expectedCart = new Cart(newCartId, new int[0]); // Expected new empty cart
+
+        doThrow(new IOException()).when(mockObjectMapper).writeValue(new File("doesnt_matter.txt"), any());
+
+        // Invoke
+        Cart resultCart = cartFileDao.addCart(newCartId);
+
+        // Assert
+        assertEquals(expectedCart, resultCart, "A new cart should be added with the specified ID");
+    }
+*/
+    @Test
+    public void testAddCartExisting() throws IOException {
+        // Setup
+        int existingCartId = 10; // Assume this cart exists
+
+        // Invoke
+        Cart resultCart = cartFileDao.addCart(existingCartId);
+
+        // Assert
+        assertNull(resultCart, "No new cart should be added if it already exists");
+    }
+
+
 }

@@ -24,7 +24,7 @@ export class CartService {
     this.messageService.add(`CartService: ${message}`);
   }
 
-  getRocksFromCart(id: number): Observable<Rock[]> {
+    getRocksFromCart(id: number): Observable<Rock[]> {
 		const url = `${this.cartUrl}/${id}`;
 
 		return this.http.get<Rock[]>(url)
@@ -32,6 +32,42 @@ export class CartService {
 				tap(() => this.log(`fetched rocks from cart ${id}`)),
 				catchError(this.handleError<Rock[]>(`getRocksFromCart id=${id}`))
 			);
+	}
+
+	addToCart(rock_updating: number, id: number): Observable<any> {
+		const url = `${this.cartUrl}`;
+		let adding = true;
+		const payload = { rock_updating, id, adding };
+
+		return this.http.put(url, payload, this.httpOptions)
+			.pipe(
+				tap(() => this.log(`adding rock id=${rock_updating} to user id=${id}`)),
+				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
+			);
+	}
+
+	removeFromCart(rock_updating: number, id: number): Observable<any> {
+		const url = `${this.cartUrl}`;
+		let adding = false;
+		const payload = { rock_updating, id, adding };
+
+		return this.http.put(url, payload, this.httpOptions)
+			.pipe(
+				tap(() => this.log(`removing rock id=${rock_updating} from user id=${id}`)),
+				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
+			);
+	}
+
+	addCart(id: number): Observable<any> {
+		return this.http.post<number>(
+			this.cartUrl,
+			id,
+			this.httpOptions
+		)
+		.pipe(
+			tap(() => this.log(`added cart w/ id=${id}`)),
+			catchError(this.handleError<Rock>('addRock')),
+		)
 	}
 
   /**

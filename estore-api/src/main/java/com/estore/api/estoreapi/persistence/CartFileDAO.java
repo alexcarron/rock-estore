@@ -10,12 +10,14 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.annotation.UserConfigurations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.estore.api.estoreapi.model.Cart;
 import com.estore.api.estoreapi.model.Rock;
+import com.estore.api.estoreapi.model.User;
 
 /**
  * Implements the functionality for JSON file-based peristance for Carts
@@ -23,7 +25,7 @@ import com.estore.api.estoreapi.model.Rock;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  *
- * @author Ryan Lembo-Ehms
+ * @author Ryan Lembo-Ehms, Ethan Battagila
  */
 @Component
 public class CartFileDAO implements CartDAO{
@@ -48,6 +50,23 @@ public class CartFileDAO implements CartDAO{
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();  // load the users from the file
+    }
+
+    /**
+     * Saves the {@linkplain User users} from the map into the file as an array of JSON objects
+     *
+     * @return true if the {@link User users} were written successfully
+     *
+     * @throws IOException when file cannot be accessed or written to
+     */
+    private boolean save() throws IOException {
+        Cart[] cartArray = getCartsArray();
+
+        // Serializes the Java Objects to JSON objects into the file
+        // writeValue will thrown an IOException if there is an issue
+        // with the file or reading from the file
+        objectMapper.writeValue(new File(filename),cartArray);
+        return true;
     }
 
     /**
@@ -89,24 +108,70 @@ public class CartFileDAO implements CartDAO{
     }
 
     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Cart addItem(int rockId, int userId) throws IOException {
+        synchronized(carts) {
+            Cart userCart = getCart(userId);
+            userCart.appendItem(rockId);
+            save();
+            return userCart;
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Cart deleteItem(int rockId, int userId) throws IOException {
+        synchronized(carts) {
+            Cart userCart = getCart(userId);
+            userCart.removeItem(rockId);
+            save();
+            return userCart;
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Cart addCart(int id) throws IOException {
+        synchronized(carts) {
+            if (!carts.containsKey(id)) {
+                Cart newCart = new Cart(id, new int[0]);
+                carts.put(id, newCart);
+                save();
+                return newCart;
+            }
+            else
+                return null;
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
+    @Override
     public Rock[] getRocksFromCart(Cart cart) throws IOException {
-        int[] rockIds = cart.getItemIds();
+        synchronized(carts) {
+            int[] rockIds = cart.getItemIds();
 
-        RockFileDAO rockDAO = new RockFileDAO("data/rocks.json", objectMapper);
-        ArrayList<Rock> rockArrayList = new ArrayList<Rock>();
-        
-        for (int rockId : rockIds) {
-            Rock rock = rockDAO.getRock(rockId);
-            if (rock != null) {
-                rockArrayList.add(rock);
+            RockFileDAO rockDAO = new RockFileDAO("data/rocks.json", objectMapper);
+            ArrayList<Rock> rockArrayList = new ArrayList<Rock>();
+            
+            for (int rockId : rockIds) {
+                Rock rock = rockDAO.getRock(rockId);
+                if (rock != null) {
+                    rockArrayList.add(rock);
+                }
             }
-        }
 
-        Rock[] rockArray = new Rock[rockArrayList.size()];
-        rockArrayList.toArray(rockArray);
-        return rockArray;
+            Rock[] rockArray = new Rock[rockArrayList.size()];
+            rockArrayList.toArray(rockArray);
+            return rockArray;
+        }
     }
 
     // FOR TESTING PURPOSES //
@@ -120,15 +185,17 @@ public class CartFileDAO implements CartDAO{
      * @return  The array of {@link Rock rocks}, may be empty
      */
     private Cart[] getCartsArray() { // if containsText == null, no filter
-        ArrayList<Cart> cartArrayList = new ArrayList<>();
+        synchronized(carts) {
+            ArrayList<Cart> cartArrayList = new ArrayList<>();
 
-        for (Cart cart : carts.values()) {
-            cartArrayList.add(cart);
+            for (Cart cart : carts.values()) {
+                cartArrayList.add(cart);
+            }
+
+            Cart[] cartArray = new Cart[cartArrayList.size()];
+            cartArrayList.toArray(cartArray);
+            return cartArray;
         }
-
-        Cart[] cartArray = new Cart[cartArrayList.size()];
-        cartArrayList.toArray(cartArray);
-        return cartArray;
     }
 
     /**

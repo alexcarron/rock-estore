@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.util.Map;
 
 import com.estore.api.estoreapi.persistence.CartDAO;
 import com.estore.api.estoreapi.model.Cart;
@@ -15,6 +18,8 @@ import com.estore.api.estoreapi.model.Rock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  * The unit test suite for the CartController class
@@ -109,5 +114,116 @@ public class CartControllerTest {
 
         // Assert
         assertEquals(expected_carts, actual_carts);
+    }
+
+    @Test
+    public void testUpdateCartAddingItem() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("rock_updating", 1, "id", 10, "adding", true);
+        Cart expectedCart = new Cart(10, new int[]{1});
+        when(mockCartDao.addItem(1, 10)).thenReturn(expectedCart);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.updateCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(expectedCart, response.getBody());
+    }
+
+    @Test
+    public void testUpdateCartDeletingItem() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("rock_updating", 1, "id", 10, "adding", false);
+        Cart expectedCart = new Cart(10, new int[]{});
+        when(mockCartDao.deleteItem(1, 10)).thenReturn(expectedCart);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.updateCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(expectedCart, response.getBody());
+    }
+
+    @Test
+    public void testUpdateCartNotFound() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("rock_updating", 1, "id", 10, "adding", true);
+        when(mockCartDao.addItem(1, 10)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.updateCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    @Test
+    public void testUpdateCartIOException() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("rock_updating", -1, "id", 10, "adding", true);
+        doThrow(new IOException()).when(mockCartDao).addItem(-1, 10);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.updateCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    @Test
+    public void testAddCart() throws IOException {
+        // Setup
+        int id = 10;
+        Cart expectedCart = new Cart(id, new int[]{});
+        when(mockCartDao.getCart(id)).thenReturn(expectedCart);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.addCart(id);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(expectedCart, response.getBody());
+    }
+
+    @Test
+    public void testAddCartNotFound() throws IOException {
+        // Setup
+        int id = 10;
+        when(mockCartDao.getCart(id)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.addCart(id);
+
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    @Test
+    public void testAddCartIOException() throws IOException {
+        // Setup
+        int id = -1;
+        doThrow(new IOException()).when(mockCartDao).getCart(id);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.addCart(id);
+
+        // Assert
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+    @Test
+    public void testGetCartsIOException() throws IOException {
+        // Setup
+        doThrow(new IOException("Database access error")).when(mockCartDao).getCarts();
+
+        // Invoke
+        ResponseEntity<Cart[]> response = cartController.getCarts();
+
+        // Assert
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode(), "The response status should be INTERNAL_SERVER_ERROR when an IOException occurs.");
     }
 }

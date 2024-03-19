@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a cart entity
  *
- * @author Ryan Lembo-Ehms
+ * @author Ryan Lembo-Ehms, Ethan Battaglia
  */
 public class Cart {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
@@ -48,6 +48,31 @@ public class Cart {
      * @return The ids of the rocks in the cart
      */
     public int[] getItemIds() {return item_ids;}
+
+    /**
+     * Appends itemId onto the item_ids list
+     */
+    public void appendItem(int itemId) {
+        item_ids = Arrays.copyOf(item_ids, item_ids.length + 1);
+        item_ids[item_ids.length - 1] = itemId;
+    }
+
+    /**
+     * Removes the first instance of an itemId from the item_ids list
+     */
+    public void removeItem(int itemId) {
+        int[] new_item_ids = new int[item_ids.length - 1];
+        boolean foundFirstItem = false;
+        for(int i=0; i<item_ids.length; i++) {
+            if(item_ids[i] == itemId && !foundFirstItem)
+                foundFirstItem = true;
+            else if (foundFirstItem)
+                new_item_ids[i-1] = item_ids[i];
+            else 
+                new_item_ids[i] = item_ids[i];
+        }
+        item_ids = new_item_ids;
+    }
 
     /**
      * {@inheritDoc}
