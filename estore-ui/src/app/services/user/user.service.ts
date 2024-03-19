@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from '../message/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class UserService {
 
   constructor(
 		private http: HttpClient,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private router: Router
 	) { }
 
 	private log(message: string) {
@@ -49,6 +51,8 @@ export class UserService {
 		this.signedInUserID = id;
 		this.log(`Signed in user w/ id=${this.signedInUserID}`);
 		catchError(this.handleError('signInUser'));
+
+		this.router.navigate(['/dashboard']);
 	}
 
 	getSignedInUser(): Observable<User>{
