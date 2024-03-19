@@ -44,7 +44,7 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
   The minimum viable product involves an ecommerce website which sells rocks. This website can be accessed by both admin and customer users by logging in to their respective accounts, the
-  actions that a user can take is dictated by the account type they have (customer vs. admin). An administrator will be able to create new rocks, update the information pertaining to a rock, update stock and quantity of various rocks, delete rocks from the website and so forth.
+  actions that a user can take is dictated by the account type they have (customer vs. admin). An administrator will be able to create new rocks, update the information pertaining to a rock, give the rocks a price, and perform any action neccessary for mainaining the products. The adming will also be able to control an inventory in which he will able to set the quantity of each rock that is availbile, remove, and add inventory as needed. A user will be able to register an account with the website that is unique and not 'admin'. Once they have signed in with this account they will then have access to a shoping cart with which they can add and remove items to with which they can head to the checkout with.
 
 
 ### MVP Features
@@ -129,6 +129,12 @@ This section describes the web interface flow; this is how the user views and in
 
 ### Model Tier
 > _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+  * Rock - This class defines what a rock object should look like, and the properties it holds.
+  * RockDao - This class creates an interface in order to access or manipulate the information related to the rock object which can then be implemented by some storage system.
+  * User -  This class defines what a user object should look like, and the properties it holds.
+  * UserDao - This class creates an interface in order to access or manipulate the information related to a user which can then be implemented by some storage system.
+  * Cart - This class defines what a shopping cart object should look like, and the properties it holds.
+  * CartDao - This class creates an interface in order to access or manipulate the information related to a shooping cart which can then be implemented by some storage system.
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -142,8 +148,14 @@ This section describes the web interface flow; this is how the user views and in
 ## OO Design Principles
 
 > _**[Sprint 1]** Name and describe the initial OO Principles that your team has considered in support of your design (and implementation) for this first Sprint._
+We have considered the following OO principles for our project:
+
+- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
+
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+
+- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrive information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls. 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
@@ -165,6 +177,13 @@ This section describes the web interface flow; this is how the user views and in
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+For Sprint 1 there were 7 user stories, all of which had all of their acceptance criteria pass.
+
+
+For Sprint 2 we planned to complete 10 user stories, of these so far
+  * 5 have passed all of their acceptance criteria
+  * 3 are partially completed
+  * 2 are yet to be tested
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage

@@ -4,11 +4,13 @@ import { RocksComponent } from '../components/rocks/rocks.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { RockDetailComponent } from '../components/rock-detail/rock-detail.component';
 import { LoginComponent } from '../components/login/login.component';
+import { LogoutComponent } from '../components/logout/logout.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'rocks', component: RocksComponent},
 	{path: 'dashboard', component: DashboardComponent},
+	{path: 'logout', component: LogoutComponent},
   {path: 'detail/:id', component: RockDetailComponent},
   {path: 'login', component: LoginComponent},
 ];
