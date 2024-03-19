@@ -149,13 +149,13 @@ This section describes the web interface flow; this is how the user views and in
 
 > _**[Sprint 1]** Name and describe the initial OO Principles that your team has considered in support of your design (and implementation) for this first Sprint._
 We have considered the following OO principles for our project:
- * Single Responsibility - Each class should be responible for one thing and should be good at that one thing only
- * Open/Closed - 
- * Interface Segregation - 
- * Dependency Inversion - 
+
+- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
+
+
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrive information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls. 
+- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrive information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls. 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
