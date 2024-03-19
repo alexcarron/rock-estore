@@ -24,6 +24,27 @@ export class UserService {
 		this.messageService.add(`UserService: ${message}`);
 	}
 
+	isUserSignedIn() {
+		return this.signedInUserID !== -1;
+	}
+
+	/**
+	 * If a user is signed in, logs out user that is currently signed in.
+	 * @returns The id of the user that is signed in if a user is signed in, otherwise returns undefined
+	 */
+	logOutUser(): number | undefined {
+		if (this.isUserSignedIn()) {
+			let userLoggingOutID = this.signedInUserID;
+			this.signedInUserID = -1;
+
+			this.log(`Logged out user w/ id=${userLoggingOutID}`);
+			return userLoggingOutID;
+		}
+		else {
+			return undefined;
+		}
+	}
+
 	signInUser(id: number) : void{
 		this.signedInUserID = id;
 		this.log(`Signed in user w/ id=${this.signedInUserID}`);

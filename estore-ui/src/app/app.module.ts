@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RockSearchComponent } from './components/rock-search/rock-search.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
     DashboardComponent,
     RockSearchComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
