@@ -111,7 +111,7 @@ This section describes the web interface flow; this is how the user views and in
 
 
 ### ViewModel Tier
-> _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+
   * RockController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the  rock model takes place. This class creates the urls for the calls, and defines what functions it will call, status codes to return and error handles.
   * UserController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the User model takes place. This allows for calls to create new users, updating users, retrieving users, and gathering the information necessary to sign in users.
   * CartController Class - This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to add, delete, and view the shopping cart.
@@ -125,7 +125,7 @@ This section describes the web interface flow; this is how the user views and in
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
-> _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+
   * Rock - This class defines what a rock object should look like, and the properties it holds.
   * RockDao - This class creates an interface in order to access or manipulate the information related to the rock object which can then be implemented by some storage system.
   * User -  This class defines what a user object should look like, and the properties it holds.
@@ -146,8 +146,6 @@ The model tier is the core of the application. It defines essential classes and 
 
 ## OO Design Principles
 
-> _**[Sprint 1]** Name and describe the initial OO Principles that your team has considered in support of your design (and implementation) for this first Sprint._
-We have considered the following OO principles for our project:
 
 - Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
 
