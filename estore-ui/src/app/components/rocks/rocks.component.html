@@ -1,5 +1,5 @@
 <h2>Rocks</h2>
-<div *ngIf="userService.getSignedInUserId() == 0">
+<div *ngIf="userService.userIsAdmin()">
   <label for="new-rock">Rock name: </label>
   <input id="new-rock" #rockName />
 
@@ -20,6 +20,7 @@
 		<a routerLink="/detail/{{rock.id}}">
 			<span class="badge">{{rock.id}}</span> {{rock.name}}
 		</a>
+		
 		<div *ngIf="userService.getSignedInUserId() > 0">
 			<button
 				type="button"
@@ -30,15 +31,15 @@
 				Add to cart
 			</button>
 		</div>
-		<div *ngIf="userService.getSignedInUserId() == 0">
-			<button
-				type="button"
-				class="delete"
-				title="delete rock"
-				(click)="delete(rock)"
-			>
-				x
-			</button>
-		</div>
+    
+    <button
+			*ngIf="userService.userIsAdmin()"
+			type="button"
+			class="delete"
+			title="delete rock"
+			(click)="delete(rock)"
+		>
+			x
+		</button>
 	</div>
 </div>
