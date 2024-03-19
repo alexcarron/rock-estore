@@ -184,14 +184,16 @@ For Sprint 2 we planned to complete 10 user stories, of these so far
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 
-### Controller Tier
-![Code Coverage for Controller Tier](code-coverage-controller-tier.png)
+### Overall Code Coverage
+In general, we had excellent code coverage. In fact, nearly all files were completely covered except a couple.
 
-### Model Tier
-![Code Coverage for Controller Tier](code-coverage-model-tier.png)
+![Overall Code Coverage](overall-code-coverage.png)
 
-### Persistence Tier
-![Code Coverage for Controller Tier](code-coverage-persistence-tier.png)
+### Anomalies
+We only have one anomaly, and it is the CartFileDAO.java class. This class was difficult to write tests for and eventually we weren't able to complete them all. More specifically, the challenges came from ensuring that file writing is done correctly.
+
+![CartFileDAO Code Coverage](CartFileDAO-coverage.png)
+
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
