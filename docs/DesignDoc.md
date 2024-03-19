@@ -146,10 +146,16 @@ The model tier is the core of the application. It defines essential classes and 
 
 ## OO Design Principles
 
-
-- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
+We have considered the following OO principles for our project:
+  * Single Responsility - Each class is responsible for one task and should be very good at that one task
+  * Dependency Inversion - High level classes should not rely on lowqer level classes instead they should rely on abstractions
+  * Information Expert - The class that has the information needed to complete a task should be the one to implement it
+  * Open/Closed - A class should be extended by another class not modified
+  * Law of Demeter - Keep coupling low. Meaning that a class should only use the methods of the classes directly linked to it.
 
 > _**[Sprint 2, 3 & 4]** Will eventually address up to **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+
+- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
 
 - Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrieve information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls.
 
