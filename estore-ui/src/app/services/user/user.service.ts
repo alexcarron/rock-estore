@@ -55,6 +55,14 @@ export class UserService {
 		return this.getUser(this.signedInUserID);
 	}
 
+	getSignedInUserId(): number{
+		return this.signedInUserID;
+	}
+
+	userIsAdmin(): boolean {
+		return this.signedInUserID === 0;
+	}
+
 	getUsers(): Observable<User[]> {
 		return this.http.get<User[]>(this.usersUrl)
 			.pipe(

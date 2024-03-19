@@ -1,0 +1,16 @@
+<h2> Shopping Cart </h2>
+<div>
+	<div class="rock_button" *ngFor="let rock of rocks" >
+		<a routerLink="/detail/{{rock.id}}">
+			<span class="badge">{{rock.id}}</span> {{rock.name}}
+		</a>
+		<button
+				type="button"
+				class="remove"
+				title="remove rock from cart"
+				(click)="removeFromCart(rock, this.userService.getSignedInUserId())"
+			>
+				Remove from cart
+		</button>
+	</div>
+</div>

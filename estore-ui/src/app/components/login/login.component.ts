@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/User';
 import { Observable } from 'rxjs';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,10 @@ import { Observable } from 'rxjs';
 export class LoginComponent {
   users: User[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private cartService: CartService
+    ) {}
 
   retrieveUsers(): void {
     this.userService.getUsers().subscribe((users) => (this.users = users));
@@ -29,6 +33,11 @@ export class LoginComponent {
     const user = { username, password };
     this.userService.addUser(user as User).subscribe((user) => {
       this.users.push(user);
+
+      this.cartService.addCart(user.id).subscribe({
+        next: () => console.log(`created cart for user id=${user.id}`),
+        error: error => console.error('An error occurred while creating the cart: ', error)
+      });
     });
   }
 
