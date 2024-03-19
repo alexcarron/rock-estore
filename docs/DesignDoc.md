@@ -83,6 +83,8 @@ This section describes the web interface flow; this is how the user views and in
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
 
+
+
 ### ViewModel Tier
 > _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
 
@@ -101,6 +103,10 @@ This section describes the web interface flow; this is how the user views and in
 ## OO Design Principles
 
 > _**[Sprint 1]** Name and describe the initial OO Principles that your team has considered in support of your design (and implementation) for this first Sprint._
+
+- **Single Responsibility** is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored.  Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
+
+- **Controllers** are used when needed to make api calls to any of our objects instead of having the UI directly interact with our data.
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
