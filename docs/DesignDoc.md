@@ -161,6 +161,8 @@ This section describes the web interface flow; this is how the user views and in
 > section will follow the same instructions that are given for the View
 > Tier above._
 
+The model tier is the core of the application. It defines essential classes and interfaces for managing rocks, users, and shopping carts. These components manipulate the data of and interaction with the application to make sure the business logic and information is handled consistently
+
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 >
