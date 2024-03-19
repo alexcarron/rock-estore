@@ -25,6 +25,27 @@ This is a summary of the project.
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
 
+This project involves building an e-store platform for selling rocks. They're are two main user groups.
+
+#### E-Store Owners
+Small business owners specializing in selling rocks who require a customized e-store for their business
+
+They're user goals are to...
+- Manage rock inventory.
+- Have authentication for accessing the platform.
+- Add, remove, and edit rock products.
+- Ensure persistent data storage to reflect changes made by users.
+
+#### Customers
+Users interested in purchasing rocks from the e-store
+
+They're user goals are to...
+- View a list of available rocks.
+- Search for specific types of rocks.
+- Add or remove rocks from the shopping cart.
+- Complete purchases securely through checkout.
+
+
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
 
@@ -155,7 +176,7 @@ We have considered the following OO principles for our project:
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrive information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls. 
+- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrive information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls.
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
