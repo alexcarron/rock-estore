@@ -1,5 +1,6 @@
 package com.estore.api.estoreapi.model;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Tag;
@@ -25,6 +26,44 @@ public class CartTest {
         assertEquals(expected_id, cart.getId());
         assertEquals(expected_item_ids, cart.getItemIds());
     }
+
+    @Test
+    public void testAppend() {
+        // Setup
+        int expected_id = 53;
+        int[] expected_item_ids = {1,2,3,4,5};
+
+        int appended_id = 6;
+        int[] append_item_ids = {1,2,3,4,5,6};
+
+        // Invoke
+        Cart cart = new Cart(expected_id, expected_item_ids);
+
+        cart.appendItem(appended_id);
+        
+        // Assert
+        assertArrayEquals(append_item_ids, cart.getItemIds());
+    }
+
+    @Test
+    public void testRemove() {
+        // Setup
+        int expected_id = 53;
+        int[] expected_item_ids = {1,2,3,4,5};
+
+        int remove_id = 3;
+        int[] remove_item_ids = {1,2,4,5};
+
+        // Invoke
+        Cart cart = new Cart(expected_id, expected_item_ids);
+
+        cart.removeItem(remove_id);
+        
+        // Assert
+        assertArrayEquals(remove_item_ids, cart.getItemIds());
+        
+    }
+
 
     @Test
     public void testToString() {
