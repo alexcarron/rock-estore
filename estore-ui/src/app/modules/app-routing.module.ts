@@ -8,7 +8,7 @@ import { LogoutComponent } from '../components/logout/logout.component';
 import { CartComponent } from '../components/cart/cart.component';
 
 const routes: Routes = [
-	{path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+	{path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'rocks', component: RocksComponent},
 	{path: 'dashboard', component: DashboardComponent},
   {path: 'cart', component: CartComponent},

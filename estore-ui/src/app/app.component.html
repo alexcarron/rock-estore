@@ -1,11 +1,11 @@
 <h1>{{title}}</h1>
 <nav>
-	<a *ngIf="userService.getSignedInUserId()>0"routerLink="/rocks">Rocks</a>
-	<a *ngIf="userService.getSignedInUserId()==0"routerLink="/rocks">Inventory</a>
-	<a routerLink="/dashboard">Dashboard</a>
-	<a routerLink="/login">login</a>
-	<a routerLink="/logout">Log Out</a>
-  <a *ngIf="userService.getSignedInUserId()>0" routerLink="/cart">Cart</a>
+	<a *ngIf="userService.getSignedInUserId()>   0"routerLink="/rocks">Rocks</a>
+	<a *ngIf="userService.getSignedInUserId()==  0"routerLink="/rocks">Inventory</a>
+	<a *ngIf="userService.getSignedInUserId()>  -1"routerLink="/dashboard">Dashboard</a>
+    <a *ngIf="userService.getSignedInUserId()>   0"routerLink="/cart">Cart</a>
+	<a *ngIf="userService.getSignedInUserId()== -1"routerLink="/login">Login</a>
+	<a *ngIf="userService.getSignedInUserId()>-  1"routerLink="/logout">Log Out</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

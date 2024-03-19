@@ -7,7 +7,7 @@ import { UserService } from './services/user/user.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Tour of Rocks';
+  title = 'Party Rockers';
   public userService: UserService;
 
   constructor(userService: UserService){
