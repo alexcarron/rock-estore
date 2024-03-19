@@ -49,10 +49,10 @@ public class CartTest {
     public void testRemove() {
         // Setup
         int expected_id = 53;
-        int[] expected_item_ids = {1,2,3,4,5};
+        int[] expected_item_ids = {1,2,3,4,3,5};
 
         int remove_id = 3;
-        int[] remove_item_ids = {1,2,4,5};
+        int[] remove_item_ids = {1,2,4,3,5};
 
         // Invoke
         Cart cart = new Cart(expected_id, expected_item_ids);
