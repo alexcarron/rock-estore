@@ -1,20 +1,23 @@
 package com.estore.api.estoreapi.model;
 
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  * Validates all user passwords
  *
  * @author Samuel Roberts
  */
 public class Password {
-  private static String validPasswordRegex = "";
+  private static final String validPasswordRegex = "";
+  private static final Pattern regexPattern = Pattern.compile(validPasswordRegex);
 
-  public boolean validPassword(String password){
-    return true;
+  public static boolean validPassword(String password){
+    Matcher matches = regexPattern.matcher(password);
+    return matches.matches();
   }
 
-  public String createStrongPassword(String password){
-    return "";
+  public static String createStrongPassword(String password){
+    return validPasswordRegex;
   }
 
 }

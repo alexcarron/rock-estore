@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.estore.api.estoreapi.model.Password;
 import com.estore.api.estoreapi.model.User;
 
 /**
@@ -191,6 +192,11 @@ public class UserFileDAO implements UserDAO {
                     return null;
                 }
             }
+            
+            if(!Password.validPassword(user.getPassword())){
+                return null;
+            }
+
             User newUser = new User(
 							nextId(),
 							user.getName(),
