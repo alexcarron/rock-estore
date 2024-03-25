@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
  * @author Samuel Roberts
  */
 public class Password {
-  private static final String validPasswordRegex = "";
+  private static final String validPasswordRegex = 
+  "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";;
   private static final Pattern regexPattern = Pattern.compile(validPasswordRegex);
 
   public static boolean validPassword(String password){
