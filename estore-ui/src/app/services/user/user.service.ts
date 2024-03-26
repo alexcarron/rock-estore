@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class UserService {
 	private usersUrl = 'http://localhost:8080/users';  // URL to web api
 	private signedInUserID = -1;
+	private signedInUser: User | null = null;
+
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
@@ -58,6 +60,7 @@ export class UserService {
 		if (this.isUserSignedIn()) {
 			let userLoggingOutID = this.signedInUserID;
 			this.signedInUserID = -1;
+			this.signedInUser = null;
 
 			this.log(`Logged out user w/ id=${userLoggingOutID}`);
 			return userLoggingOutID;
@@ -67,16 +70,18 @@ export class UserService {
 		}
 	}
 
-	signInUser(id: number) : void{
-		this.signedInUserID = id;
+	signInUser(user: User) : void{
+		this.signedInUserID = user.id;
+		this.signedInUser = user;
+
 		this.log(`Signed in user w/ id=${this.signedInUserID}`);
 		catchError(this.handleError('signInUser'));
 
 		this.router.navigate(['/dashboard']);
 	}
 
-	getSignedInUser(): Observable<User>{
-		return this.getUser(this.signedInUserID);
+	getSignedInUser(): User | null {
+		return this.signedInUser;
 	}
 
 	getSignedInUserId(): number{
