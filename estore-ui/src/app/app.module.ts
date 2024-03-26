@@ -14,7 +14,7 @@ import { RockSearchComponent } from './components/rock-search/rock-search.compon
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { CartComponent } from './components/cart/cart.component';
-import { PasswordSettingsComponent } from './password-settings/password-settings.component';
+import { PasswordSettingsComponent } from './components/password-settings/password-settings.component';
 
 @NgModule({
   declarations: [
