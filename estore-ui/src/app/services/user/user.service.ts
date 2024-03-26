@@ -80,6 +80,25 @@ export class UserService {
 		this.router.navigate(['/dashboard']);
 	}
 
+	/**
+	 * Updates the password of the currently signed in user
+	 * @param password The new password the signed in user will have
+	 * @returns new User object if succesfully updated password, otherwise null
+	 */
+	updatePassword(password: string): Observable<User> | null {
+		if (this.signedInUser !== null) {
+			const new_user_object: User = {
+				id: this.signedInUser.id,
+				username: this.signedInUser.username,
+				password: password,
+			}
+
+			return this.updateUser(new_user_object);
+		}
+
+		return null;
+	}
+
 	getSignedInUser(): User | null {
 		return this.signedInUser;
 	}

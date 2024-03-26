@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-password-settings',
@@ -16,7 +17,7 @@ export class PasswordSettingsComponent {
 	 * @param newPassword The password the user wants to change their password to
 	 */
 	changePassword(newPassword: string) {
-		// TODO: Implement
+		this.userService.updatePassword(newPassword);
 	}
 
 	/**
