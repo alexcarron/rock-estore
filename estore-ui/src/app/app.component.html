@@ -6,6 +6,7 @@
 	<a *ngIf="userService.isCustomerSignedIn()"routerLink="/cart"> Cart </a>
 	<a *ngIf="!userService.isUserSignedIn()"routerLink="/login"> Login </a>
 	<a *ngIf="userService.isUserSignedIn()"routerLink="/logout"> Log Out </a>
+	<a *ngIf="userService.isUserSignedIn()"routerLink="/password-settings"> Change Password </a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
