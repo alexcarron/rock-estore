@@ -31,6 +31,26 @@ export class UserService {
 	}
 
 	/**
+	 * @returns True if a user is signed into the app and that user is a customer, otherwise false
+	 */
+	isCustomerSignedIn() {
+		return (
+			this.isUserSignedIn() &&
+			!this.userIsAdmin()
+		)
+	}
+
+	/**
+	 * @returns True if a user is signed into the app and that user is an admin, otherwise false
+	 */
+	isAdminSignedIn() {
+		return (
+			this.isUserSignedIn() &&
+			this.userIsAdmin()
+		)
+	}
+
+	/**
 	 * If a user is signed in, logs out user that is currently signed in.
 	 * @returns The id of the user that is signed in if a user is signed in, otherwise returns undefined
 	 */
