@@ -3,6 +3,7 @@ import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/User';
 import { Observable } from 'rxjs';
 import { CartService } from '../../services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
     ) {}
 
   retrieveUsers(): void {
@@ -49,8 +51,14 @@ export class LoginComponent {
 
     this.userService.searchUsers(username).subscribe((users) => (this.users = users));
 
-    this.users.forEach(user => { if(username == user.username && password == user.password) {this.userService.signInUser(user.id);}
-      
+    this.users.forEach(user => { if(username == user.username && password == user.password) {
+      this.userService.signInUser(user.id);
+      this.showSuccess();
+    }
     });
+  }
+
+  showSuccess() {
+    this.toastr.success('You have successfully signed in!', 'Success!');
   }
 }
