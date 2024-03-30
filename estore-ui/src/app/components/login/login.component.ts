@@ -16,7 +16,6 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private cartService: CartService,
-    private toastr: ToastrService
     ) {}
 
   retrieveUsers(): void {
@@ -53,12 +52,7 @@ export class LoginComponent {
 
     this.users.forEach(user => { if(username == user.username && password == user.password) {
       this.userService.signInUser(user.id);
-      //this.showSuccess();
     }
     });
-  }
-
-  showSuccess() {
-    this.toastr.success('You have successfully signed in!', 'Success!');
   }
 }
