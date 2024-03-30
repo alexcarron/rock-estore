@@ -81,17 +81,28 @@ export class UserService {
 	}
 
 	/**
+	 * Updates cached user stored in user service so we don't have to make an HTTP request to get user info
+	 */
+	updateUserCache(user: User) {
+		this.signedInUser = user;
+	}
+
+	/**
 	 * Updates the password of the currently signed in user
 	 * @param password The new password the signed in user will have
 	 * @returns new User object if succesfully updated password, otherwise null
 	 */
 	updatePassword(password: string): Observable<User> | null {
+		console.log({password});
+		console.log({user: this.signedInUser});
 		if (this.signedInUser !== null) {
 			const new_user_object: User = {
 				id: this.signedInUser.id,
 				username: this.signedInUser.username,
 				password: password,
 			}
+
+			console.log({new_user_object});
 
 			return this.updateUser(new_user_object);
 		}
