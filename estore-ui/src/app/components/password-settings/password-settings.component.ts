@@ -17,7 +17,15 @@ export class PasswordSettingsComponent {
 	 * @param newPassword The password the user wants to change their password to
 	 */
 	changePassword(newPassword: string) {
-		this.userService.updatePassword(newPassword);
+		if (newPassword.length > 0) {
+			const result = this.userService.updatePassword(newPassword);
+
+			if (result !== null) {
+				result.forEach(user => {
+					this.userService.updateUserCache(user);
+				})
+			}
+		}
 	}
 
 	/**
