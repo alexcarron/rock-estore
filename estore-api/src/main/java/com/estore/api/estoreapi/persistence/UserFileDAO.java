@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -196,11 +197,18 @@ public class UserFileDAO implements UserDAO {
             if(!Password.validPassword(user.getPassword())){
                 return null;
             }
+            
+            String hashedPassword = user.getPassword();
+            try{
+                hashedPassword = Password.hashPassword(user.getPassword());
+            } catch(NoSuchAlgorithmException e){
+                return null;
+            }
 
             User newUser = new User(
 							nextId(),
 							user.getName(),
-							user.getPassword()
+							hashedPassword
                             );
             users.put(newUser.getId(),newUser);
             save(); // may throw an IOException
