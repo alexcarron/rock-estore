@@ -3,7 +3,6 @@
 	<table>
 		<tr>
 			<th>Product</th>
-			<th>Quantity</th>
 			<th>Price</th>
 		</tr>
 		<tr class = "rocks-in-cart" *ngFor="let rock of rocks">
@@ -15,9 +14,7 @@
 					</div>
 				</div>
 			</td>
-			<td><input type="number" value="1"></td>
-			<!-- <td>{{rock.price}}</td> -->
-			<td>$100</td>
+			<td>${{rock.price}}.00</td>
 		</tr>
 		<!-- <div class="rock_button" *ngFor="let rock of rocks" >
 			<a routerLink="/detail/{{rock.id}}">
@@ -35,9 +32,7 @@
 	</table>
 	<!-- Cart summary -->
 	<div class="cart-summary">
-		<h3>Cart Summary</h3>
-		<!-- Replace 'cartService.getSummary()' with the actual method to get the cart summary -->
-		<!-- <p>{{ cartService.getSummary() }}</p> -->
+		<h3>Cart Total: ${{calculateCartTotal()}}.00</h3>
 		<button type="button" class="checkout-button" (click) = "proceedToCheckout()">
 			Proceed to Checkout
 		</button>

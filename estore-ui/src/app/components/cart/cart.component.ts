@@ -44,6 +44,14 @@ export class CartComponent {
 		this.cartService.removeFromCart(rock_removing_from_cart.id, user_id).subscribe();
 	}
 
+  calculateCartTotal(): number {
+    let total = 0;
+    this.rocks.forEach(rock => {
+      total += rock.price;
+    });
+    return total;
+  }
+
   proceedToCheckout(): void {
     if (this.rocks.length == 0) {
       this.log("Cart is empty!");
