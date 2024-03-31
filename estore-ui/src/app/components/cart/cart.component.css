@@ -1,7 +1,13 @@
-div.rock_button {
+body {
+  margin: 0em;
+}
+
+.rock_button {
 	display: block;
+  width: 400px;
   background-color: #eee;
-  border: none;
+  border: 25px;
+  border-color: black;
   border-radius: 4px;
   cursor: pointer;
   color: black;
@@ -24,4 +30,32 @@ div.rock_button:disabled {
 .selected {
 	background-color: lightcoral;
 	color: red;
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+  border-radius: 10px;
+  color: #4e3d3d;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 5px;
+  color: #fff;
+  background: #ff4d00;
+  font-size: 14px;
+  font-weight: normal;
 }

@@ -16,7 +16,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { CartComponent } from './components/cart/cart.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule from 'ngx-toastr' package
+import { ToastrModule } from 'ngx-toastr';
+import { CheckoutComponent } from './components/checkout/checkout.component'; // Import ToastrModule from 'ngx-toastr' package
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule from 'ngx-toas
     LoginComponent,
     LogoutComponent,
     CartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
