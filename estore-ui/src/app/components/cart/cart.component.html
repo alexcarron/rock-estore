@@ -9,8 +9,11 @@
 			<td>
 				<div class ="rocks-info">
 					<img [src] = "'../../../assets/' + rock.name + '.jpg'">
-					<div>
+					<div class = "col">
 						<p>{{rock.name}}</p>
+						<button (click) = "removeFromCart(rock, this.userService.getSignedInUserId())">
+							Remove
+						</button>
 					</div>
 				</div>
 			</td>
@@ -30,6 +33,7 @@
 			</button>
 		</div> -->
 	</table>
+
 	<!-- Cart summary -->
 	<div class="cart-summary">
 		<h3>Cart Total: ${{calculateCartTotal()}}.00</h3>

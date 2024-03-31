@@ -17,7 +17,7 @@ export class CartComponent {
 
   constructor(
     private cartService: CartService,
-    private userService: UserService,
+    public userService: UserService,
     private messageService: MessageService,
     private router: Router
   ) {

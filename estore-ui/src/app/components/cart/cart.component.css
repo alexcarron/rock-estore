@@ -32,6 +32,15 @@ div.rock_button:disabled {
 	color: red;
 }
 
+.rocks-in-cart {
+  border: 2px solid #000;
+}
+
+.rocks-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .cart-summary {
   display: flex;
   justify-content: space-between;
