@@ -137,6 +137,33 @@ public class CartController {
      * ResponseEntity with HTTP status of CONFLICT if {@link Rock rock} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
+    @PutMapping("/clear")
+    public ResponseEntity<Cart> clearCart(@RequestBody Map<String, Object> payload) {
+        int cartId = (int) payload.get("id");
+        
+        try {
+            Cart updatedCart = cartDao.clearCart(cartId);
+
+            if (updatedCart != null)
+                return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Creates a {@linkplain Rock rock} with the provided rock object
+     *
+     * @param rock - The {@link Rock rock} to create
+     *
+     * @return ResponseEntity with created {@link Rock rock} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Rock rock} object already exists<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @PostMapping("")
     public ResponseEntity<Cart> addCart(@RequestBody int id) {
         LOG.info("POST /cart " + id);
