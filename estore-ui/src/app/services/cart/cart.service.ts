@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from '../message/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class CartService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+	private router: Router
   ) { }
 
   private log(message: string) {
@@ -57,6 +59,16 @@ export class CartService {
 				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
+
+	clearCart(id: number): Observable<any> {
+		const url = `${this.cartUrl}/clear`;
+		const payload = { id };
+	  
+		return this.http.put(url, payload, this.httpOptions)
+		  .pipe(
+			catchError(this.handleError<any>(`clearCart user id=${id}`))
+		  );
+	  }
 
 	addCart(id: number): Observable<any> {
 		return this.http.post<number>(
