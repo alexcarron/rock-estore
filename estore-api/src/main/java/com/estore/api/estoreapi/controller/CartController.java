@@ -140,6 +140,8 @@ public class CartController {
     @PutMapping("/clear")
     public ResponseEntity<Cart> clearCart(@RequestBody Map<String, Object> payload) {
         int cartId = (int) payload.get("id");
+
+        LOG.info("PUT /cart/clear " + cartId);
         
         try {
             Cart updatedCart = cartDao.clearCart(cartId);
