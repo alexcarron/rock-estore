@@ -38,7 +38,6 @@ export class RockService {
 
 		return this.http.get<Rock>(url)
 			.pipe(
-				tap(() => this.log(`Fetched rock id=${id}`)),
 				catchError(this.handleError<Rock>(`getRock id=${id}`))
 			);
 	}
@@ -62,7 +61,6 @@ export class RockService {
 			this.httpOptions
 		)
 		.pipe(
-			tap((newRock: Rock) => this.log(`Added rock w/ id=${newRock.id}`)),
 			catchError(this.handleError<Rock>('addRock')),
 		)
 	}

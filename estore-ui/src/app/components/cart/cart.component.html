@@ -38,8 +38,8 @@
 		<h3>Cart Summary</h3>
 		<!-- Replace 'cartService.getSummary()' with the actual method to get the cart summary -->
 		<!-- <p>{{ cartService.getSummary() }}</p> -->
-		<button type="button" class="checkout-button">
-			<a routerLink="/checkout">Proceed to Checkout</a>
+		<button type="button" class="checkout-button" (click) = "proceedToCheckout()">
+			Proceed to Checkout
 		</button>
 	</div>
 </body>

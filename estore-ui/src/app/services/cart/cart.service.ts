@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from '../message/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +17,7 @@ export class CartService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
-	private router: Router
+    private messageService: MessageService
   ) { }
 
   private log(message: string) {
@@ -31,7 +29,6 @@ export class CartService {
 
 		return this.http.get<Rock[]>(url)
 			.pipe(
-				tap(() => this.log(`Fetched rocks from cart ${id}`)),
 				catchError(this.handleError<Rock[]>(`getRocksFromCart id=${id}`))
 			);
 	}
