@@ -198,6 +198,7 @@ public class UserFileDAO implements UserDAO {
                 return null;
             }
             
+            // This hashes the password before the user is added to the system
             String hashedPassword = user.getPassword();
             try{
                 hashedPassword = Password.hashPassword(user.getPassword());

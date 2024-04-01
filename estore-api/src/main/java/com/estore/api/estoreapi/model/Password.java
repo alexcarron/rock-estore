@@ -32,7 +32,11 @@ public class Password {
     return bytesToHex(hash);
   }
 
-  
+  /**
+   * A method to take a SHA256 hash and put it into hexadecimal
+   * @param hash The computed hash
+   * @return The hash in base 16
+   */
   private static String bytesToHex(byte[] hash) {
     StringBuilder hexString = new StringBuilder(2 * hash.length);
     for (int i = 0; i < hash.length; i++) {
