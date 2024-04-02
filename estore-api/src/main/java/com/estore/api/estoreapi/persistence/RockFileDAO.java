@@ -193,7 +193,8 @@ public class RockFileDAO implements RockDAO {
 							rock.getPrice(),
 							rock.getSize(),
 							rock.getShape(),
-							rock.getDescription()
+							rock.getDescription(),
+							rock.getImageUrl()
 						);
             rocks.put(newRock.getId(),newRock);
             save(); // may throw an IOException
