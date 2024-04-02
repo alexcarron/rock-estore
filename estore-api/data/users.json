@@ -1,1 +1,14 @@
-[{"id":0,"username":"admin","password":"admin","name":"admin"},{"id":1,"username":"RJLE","password":"build1","name":"RJLE"},{"id":2,"username":"RYman123","password":"theboss123","name":"RYman123"},{"id":3,"username":"rizzler","password":"skibidi","name":"rizzler"},{"id":4,"username":"opp","password":"opp","name":"opp"},{"id":5,"username":"alex","password":"Alex@R1T","name":"alex"},{"id":6,"username":"Jesus","password":"sadsadsadsadJ7^","name":"Jesus"},{"id":7,"username":"Alex","password":"Alex","name":"Alex"}]
+[
+  {
+    "id": 0,
+    "username": "admin",
+    "password": "admin",
+    "name": "admin"
+  },
+  {
+    "id": 1,
+    "username": "customer",
+    "password": "customer",
+    "name": "customer"
+  }
+]
