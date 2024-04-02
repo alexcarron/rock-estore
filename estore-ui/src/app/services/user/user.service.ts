@@ -13,6 +13,8 @@ export class UserService {
 	private usersUrl = 'http://localhost:8080/users';  // URL to web api
 	private passwordUrl = 'http://localhost:8080/password';
 	private signedInUserID = -1;
+	private signedInUser: User | null = null;
+
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
@@ -32,6 +34,26 @@ export class UserService {
 	}
 
 	/**
+	 * @returns True if a user is signed into the app and that user is a customer, otherwise false
+	 */
+	isCustomerSignedIn() {
+		return (
+			this.isUserSignedIn() &&
+			!this.userIsAdmin()
+		)
+	}
+
+	/**
+	 * @returns True if a user is signed into the app and that user is an admin, otherwise false
+	 */
+	isAdminSignedIn() {
+		return (
+			this.isUserSignedIn() &&
+			this.userIsAdmin()
+		)
+	}
+
+	/**
 	 * If a user is signed in, logs out user that is currently signed in.
 	 * @returns The id of the user that is signed in if a user is signed in, otherwise returns undefined
 	 */
@@ -39,6 +61,7 @@ export class UserService {
 		if (this.isUserSignedIn()) {
 			let userLoggingOutID = this.signedInUserID;
 			this.signedInUserID = -1;
+			this.signedInUser = null;
 
 			this.log(`Logged out user w/ id=${userLoggingOutID}`);
 			return userLoggingOutID;
@@ -48,17 +71,47 @@ export class UserService {
 		}
 	}
 
-
-	signInUser(id: number) : void{
-		this.signedInUserID = id;
+	signInUser(user: User) : void{
+		this.signedInUserID = user.id;
+		this.signedInUser = user;
 		this.log(`Signed in user w/ id=${this.signedInUserID}`);
 		catchError(this.handleError('signInUser'));
 
 		this.router.navigate(['/dashboard']);
 	}
 
-	getSignedInUser(): Observable<User>{
-		return this.getUser(this.signedInUserID);
+	/**
+	 * Updates cached user stored in user service so we don't have to make an HTTP request to get user info
+	 */
+	updateUserCache(user: User) {
+		this.signedInUser = user;
+	}
+
+	/**
+	 * Updates the password of the currently signed in user
+	 * @param password The new password the signed in user will have
+	 * @returns new User object if succesfully updated password, otherwise null
+	 */
+	updatePassword(password: string): Observable<User> | null {
+		console.log({password});
+		console.log({user: this.signedInUser});
+		if (this.signedInUser !== null) {
+			const new_user_object: User = {
+				id: this.signedInUser.id,
+				username: this.signedInUser.username,
+				password: password,
+			}
+
+			console.log({new_user_object});
+
+			return this.updateUser(new_user_object);
+		}
+
+		return null;
+	}
+
+	getSignedInUser(): User | null {
+		return this.signedInUser;
 	}
 
 	getSignedInUserId(): number{

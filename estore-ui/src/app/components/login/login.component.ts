@@ -52,8 +52,10 @@ export class LoginComponent {
 
     this.userService.searchUsers(username).subscribe((users) => (this.users = users));
 
-    this.users.forEach(user => { if(username == user.username && this.passwordService.hashPassword(password) == user.password) {this.userService.signInUser(user.id);}
-      
+    this.users.forEach(user => {
+			if(username == user.username && password == user.password) {
+				this.userService.signInUser(user);
+			}
     });
   }
 
