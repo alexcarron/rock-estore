@@ -6,7 +6,7 @@
   <div>type: {{rock.type}}</div>
   <div>size: {{rock.size}}</div>
   <div>shape: {{rock.shape}}</div>
-  
+
   <div *ngIf="userService.userIsAdmin()">
     <br><br><br>
     <div>id: {{rock.id}}</div>
@@ -37,5 +37,14 @@
     <button type="button" (click)="save()">save</button>
   </div>
 	<button type="button" (click)="goBack()">go back</button>
-	
+	<button
+		*ngIf="!userService.userIsAdmin()"
+		type="button"
+		class="add"
+		title="add rock to cart"
+		(click)="addToCart(rock.id, userService.getSignedInUserId())"
+	>
+		Add to cart
+	</button>
+
 </div>

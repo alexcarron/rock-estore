@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RockService } from '../../services/rock/rock.service';
 import { Location } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-rock-detail',
@@ -16,6 +17,7 @@ export class RockDetailComponent {
 	constructor(
 		private route: ActivatedRoute,
 		private rockService: RockService,
+		private cartService: CartService,
 		private location: Location,
 		public userService: UserService
 	) {}
@@ -39,5 +41,9 @@ export class RockDetailComponent {
 			this.rockService.updateRock(this.rock)
 				.subscribe(() => {});
 		}
+	}
+
+	addToCart(rock_adding_to_cart: number, user_id: number): void {
+		this.cartService.addToCart(rock_adding_to_cart, user_id).subscribe();
 	}
 }

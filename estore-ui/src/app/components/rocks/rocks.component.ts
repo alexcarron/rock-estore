@@ -46,8 +46,4 @@ export class RocksComponent {
 		this.rocks = this.rocks.filter(rock => rock !== rock_deleting);
 		this.rockService.deleteRock(rock_deleting.id).subscribe();
 	}
-
-	addToCart(rock_adding_to_cart: number, user_id: number): void {
-		this.cartService.addToCart(rock_adding_to_cart, user_id).subscribe();
-	}
 }
