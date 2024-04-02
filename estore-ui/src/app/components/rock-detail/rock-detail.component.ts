@@ -13,6 +13,11 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class RockDetailComponent {
 	@Input() rock?: Rock;
+	
+	/**
+	 * A temporary field to store the image url to the rock image until rock has image property
+	 */
+	readonly mockRockImageURL: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVanHjWdijGsoNIMwdyQq4tQQPM-CA3Iv9CDjKa9VHIA&s";
 
 	constructor(
 		private route: ActivatedRoute,

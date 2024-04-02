@@ -6,6 +6,10 @@
   <div>type: {{rock.type}}</div>
   <div>size: {{rock.size}}</div>
   <div>shape: {{rock.shape}}</div>
+	
+	<div class="rockDetailDisplay">
+		<img src="{{mockRockImageURL}}" alt="{{rock.name}} Rock">
+	</div>
 
   <div *ngIf="userService.userIsAdmin()">
     <br><br><br>
