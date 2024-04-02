@@ -1,11 +1,41 @@
 <div *ngIf="rock">
   <h2>{{rock.name | uppercase}} Details</h2>
-  <div>id: {{rock.id}}</div>
   <div>name: {{rock.name}}</div>
+  <div>description: {{rock.description}}</div>
+  <div>price: {{rock.price}}</div>
+  <div>type: {{rock.type}}</div>
+  <div>size: {{rock.size}}</div>
+  <div>shape: {{rock.shape}}</div>
+  
   <div *ngIf="userService.userIsAdmin()">
-    <label for="rock-name">Edit name: </label>
-    <input id="rock-name" [(ngModel)]="rock.name" placeholder="name">
+    <br><br><br>
+    <div>id: {{rock.id}}</div>
+    <div>
+      <label for="rock-name">Edit name: </label>
+      <input id="rock-name" [(ngModel)]="rock.name" placeholder="name">
+    </div>
+    <div>
+      <label for="rock-price">Edit price: </label>
+      <input id="rock-price" [(ngModel)]="rock.price" placeholder="price">
+    </div>
+    <div>
+      <label for="rock-type">Edit type: </label>
+      <input id="rock-type" [(ngModel)]="rock.type" placeholder="type">
+    </div>
+    <div>
+      <label for="rock-size">Edit size: </label>
+      <input id="rock-size" [(ngModel)]="rock.size" placeholder="size">
+    </div>
+    <div>
+      <label for="rock-shape">Edit shape </label>
+      <input id="rock-shape" [(ngModel)]="rock.shape" placeholder="shape">
+    </div>
+    <div>
+      <label for="rock-price">Edit description: </label>
+      <input id="rock-price" [(ngModel)]="rock.description" placeholder="description">
+    </div>
+    <button type="button" (click)="save()">save</button>
   </div>
 	<button type="button" (click)="goBack()">go back</button>
-	<button type="button" (click)="save()">save</button>
+	
 </div>
