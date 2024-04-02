@@ -1,0 +1,30 @@
+:root {
+  --img-size: 100px;
+}
+
+div.rock-detail-image-display {
+  position: relative;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+img.hat-overlay {
+  width: 60%;
+	position: absolute;
+	top: -20%;
+	left: 50%;
+  transform: translateX(-50%);
+	z-index: 2;
+}
+
+img.clothing-overlay {
+  width: 60%;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+  transform: translateX(-50%);
+	z-index: 1;
+}

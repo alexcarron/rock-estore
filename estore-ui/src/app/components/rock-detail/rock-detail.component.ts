@@ -6,6 +6,21 @@ import { Location } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { CartService } from '../../services/cart/cart.service';
 
+/**
+ * Type to store all information needed for a hat customization option
+ */
+type Hat = {
+	name: string;
+	image_url: string;
+}
+/**
+ * Type to store all information needed for a clothing customization option
+ */
+type Clothing = {
+	name: string;
+	image_url: string;
+}
+
 @Component({
   selector: 'app-rock-detail',
   templateUrl: './rock-detail.component.html',
@@ -13,11 +28,30 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class RockDetailComponent {
 	@Input() rock?: Rock;
-	
+
 	/**
 	 * A temporary field to store the image url to the rock image until rock has image property
 	 */
 	readonly mockRockImageURL: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVanHjWdijGsoNIMwdyQq4tQQPM-CA3Iv9CDjKa9VHIA&s";
+
+	/**
+	 * A temporary field to store all hats with their image urls
+	 */
+	readonly mockAvailableHats: Hat[] = [
+		{ name: "Baseball Cap", image_url: "https://zildjian.com/cdn/shop/products/alchemy-curve-hat-threeforths_grande.png?v=1684246018" },
+		{name: "Cowboy Hat", image_url: "https://jillcorbett.com/wp-content/uploads/2020/05/Cowboy-Hats.png"},
+	];
+
+	/**
+	 * A temporary field to store all clothing options with their image urls
+	 */
+	readonly mockAvailableClothing: Clothing[] = [
+		{ name: "Dwayne", image_url: "https://media.tenor.com/IyweQyb3MhIAAAAj/the-rock-sus.gif" },
+		{name: "Blazer", image_url: "https://ae01.alicdn.com/kf/Sba54dde3b8d64be2b9de7f38a8ec9a02b/Men-s-Suit-Jackets-New-Slim-Fit-Business-Casual-Jacket-Fashion-Men-s-Top-Blazer-Masculino.jpg"},
+	];
+
+	selectedHatName: string | null = null;
+	selectedClothingName: string | null = null;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -26,6 +60,13 @@ export class RockDetailComponent {
 		private location: Location,
 		public userService: UserService
 	) {}
+
+	getHatURLFromName(name: string): string | undefined {
+		return this.mockAvailableHats.find(hat => hat.name === name)?.image_url;
+	}
+	getClothingURLFromName(name: string): string | undefined {
+		return this.mockAvailableClothing.find(hat => hat.name === name)?.image_url;
+	}
 
 	ngOnInit(): void {
 		this.retrieveRock();

@@ -6,10 +6,20 @@
   <div>type: {{rock.type}}</div>
   <div>size: {{rock.size}}</div>
   <div>shape: {{rock.shape}}</div>
-	
-	<div class="rockDetailDisplay">
+
+	<div class="rock-detail-image-display">
 		<img src="{{mockRockImageURL}}" alt="{{rock.name}} Rock">
+		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay">
+		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
 	</div>
+
+	<select [(ngModel)]="selectedHatName">
+		<option *ngFor="let hat of mockAvailableHats" [value]="hat.name">{{ hat.name }}</option>
+	</select>
+
+	<select [(ngModel)]="selectedClothingName">
+		<option *ngFor="let clothing of mockAvailableClothing" [value]="clothing.name">{{ clothing.name }}</option>
+	</select>
 
   <div *ngIf="userService.userIsAdmin()">
     <br><br><br>
