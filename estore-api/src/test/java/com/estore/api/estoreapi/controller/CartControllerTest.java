@@ -23,7 +23,7 @@ import org.springframework.http.ResponseEntity;
 
 /**
  * The unit test suite for the CartController class
- * 
+ *
  * @author Ryan Lembo-Ehms
  */
 @Tag("Controller-tier")
@@ -43,15 +43,15 @@ public class CartControllerTest {
 
     /**
      * Test the getItemsFromCart method
-     * @throws IOException 
+     * @throws IOException
      */
     @Test
     public void testGetItemsFromCart() throws IOException {
         // Setup rocks
         Rock[] expectedRocks = new Rock[2];
-        expectedRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock");
-        expectedRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock");
-        
+        expectedRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        expectedRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png");
+
         // Set up cart
         int testCartId = 10;
         Cart testCart = new Cart(testCartId, new int[]{99, 100});
