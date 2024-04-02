@@ -24,12 +24,12 @@ public class Password {
     String strongPassword = "";
 
     for(int i = 0; i < 10; i++){
-      if(i < 6){
+      if(i < 6){ 
         int randomLowerCase = rand.nextInt(123-97) + 97;
-        strongPassword += randomLowerCase + "";
-      }else if (i < 10) {
+        strongPassword += String.valueOf((char)randomLowerCase) + "";
+      }else if (i < 9) {
         int randomUpperCase = rand.nextInt(91-65) + 65;
-        strongPassword += randomUpperCase + "";
+        strongPassword += String.valueOf((char)randomUpperCase) + "";
       }else{
         String[] specialChar = {"!","@","#","&","(",")","–","[","{","}","]",
         ":",";","\'","?","/","*","~","$","^","+","=","<",">"};
@@ -37,6 +37,8 @@ public class Password {
         strongPassword += specialChar[randomIndex];
       }
     }
+
+    strongPassword += rand.nextInt(1000) + "";
 
     return strongPassword;
   }

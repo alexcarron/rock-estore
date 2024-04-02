@@ -144,7 +144,7 @@ export class UserService {
 	}
 
 	generatePassword(): Observable<string> {
-		return this.http.get<string>(this.passwordUrl)
+		return this.http.get(this.passwordUrl, {responseType: 'text'})
 			.pipe(
 				tap(() => this.log(`generated password successfully`)),
 				catchError(
