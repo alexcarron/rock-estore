@@ -13,6 +13,7 @@ export class RockService {
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
+	private readonly ROCK_IMAGES_DIRECTORY = "media/images/rocks";
 
   constructor(
 		private http: HttpClient,
