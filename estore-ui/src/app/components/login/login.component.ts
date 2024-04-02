@@ -12,6 +12,7 @@ import { PasswordService } from '../../services/password/password.service';
 })
 export class LoginComponent {
   users: User[] = [];
+  password: string = '';
 
   constructor(
     private userService: UserService,
@@ -53,6 +54,18 @@ export class LoginComponent {
 
     this.users.forEach(user => { if(username == user.username && this.passwordService.hashPassword(password) == user.password) {this.userService.signInUser(user.id);}
       
+    });
+  }
+
+  generatePassword() {
+    this.userService.generatePassword().subscribe({
+      next: (newPassword) => {
+        console.log(newPassword);
+        this.password = newPassword;
+      },
+      error: (error) => {
+        console.error('Error generating password:', error)
+      }
     });
   }
 }

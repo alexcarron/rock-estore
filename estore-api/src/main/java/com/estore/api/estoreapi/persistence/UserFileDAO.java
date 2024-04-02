@@ -246,4 +246,14 @@ public class UserFileDAO implements UserDAO {
                 return false;
         }
     }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public String generateStrongUserPassword() throws IOException {
+        synchronized(users) {
+            return Password.createStrongPassword();
+        }
+    }
 }
