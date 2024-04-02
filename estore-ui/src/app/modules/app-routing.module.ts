@@ -6,6 +6,7 @@ import { RockDetailComponent } from '../components/rock-detail/rock-detail.compo
 import { LoginComponent } from '../components/login/login.component';
 import { LogoutComponent } from '../components/logout/logout.component';
 import { CartComponent } from '../components/cart/cart.component';
+import { CheckoutComponent } from '../components/checkout/checkout.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'detail/:id', component: RockDetailComponent},
   {path: 'login', component: LoginComponent},
 	{path: 'logout', component: LogoutComponent},
+  {path: 'checkout', component: CheckoutComponent},
 ];
 
 @NgModule({

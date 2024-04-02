@@ -174,6 +174,23 @@ public class CartFileDAO implements CartDAO{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Cart clearCart(int id) throws IOException {
+        synchronized(carts) {
+            if (carts.containsKey(id)) {
+                Cart cart = carts.get(id);
+                cart.clearItems();
+                save();
+                return cart;
+            }
+            else
+                return null;
+        }
+    }
+
     // FOR TESTING PURPOSES //
     /**
      * Generates an array of {@linkplain Rock rocks} from the tree map for any
