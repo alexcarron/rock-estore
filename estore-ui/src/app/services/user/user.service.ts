@@ -48,6 +48,7 @@ export class UserService {
 		}
 	}
 
+
 	signInUser(id: number) : void{
 		this.signedInUserID = id;
 		this.log(`Signed in user w/ id=${this.signedInUserID}`);
