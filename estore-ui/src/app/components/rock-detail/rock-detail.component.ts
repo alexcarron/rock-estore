@@ -5,6 +5,7 @@ import { RockService } from '../../services/rock/rock.service';
 import { Location } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { CartService } from '../../services/cart/cart.service';
+import { MessageService } from '../../services/message/message.service';
 
 /**
  * Type to store all information needed for a hat customization option
@@ -58,8 +59,13 @@ export class RockDetailComponent {
 		private rockService: RockService,
 		private cartService: CartService,
 		private location: Location,
-		public userService: UserService
+		public userService: UserService,
+		public messageService: MessageService,
 	) {}
+
+	private log(message: string) {
+		this.messageService.add(`${message}`);
+	}
 
 	getHatURLFromName(name: string): string | undefined {
 		return this.mockAvailableHats.find(hat => hat.name === name)?.image_url;
@@ -99,7 +105,11 @@ export class RockDetailComponent {
 		}
 	}
 
-	addToCart(rock_adding_to_cart: number, user_id: number): void {
-		this.cartService.addToCart(rock_adding_to_cart, user_id).subscribe();
+
+	addToCart(rock_adding_to_cart: Rock, user_id: number): void {
+		this.cartService.addToCart(rock_adding_to_cart.id, user_id).subscribe(
+			() => this.log(`${rock_adding_to_cart.name} has been added to your cart!`),
+			error => this.log(`An error occurred while adding ${rock_adding_to_cart.name} to cart`)
+		);
 	}
 }
