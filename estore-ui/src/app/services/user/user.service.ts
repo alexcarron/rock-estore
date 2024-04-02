@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 	private usersUrl = 'http://localhost:8080/users';  // URL to web api
+	private passwordUrl = 'http://localhost:8080/password';
 	private signedInUserID = -1;
 	private signedInUser: User | null = null;
 
@@ -73,7 +74,6 @@ export class UserService {
 	signInUser(user: User) : void{
 		this.signedInUserID = user.id;
 		this.signedInUser = user;
-
 		this.log(`Signed in user w/ id=${this.signedInUserID}`);
 		catchError(this.handleError('signInUser'));
 
@@ -195,6 +195,16 @@ export class UserService {
 			}),
 			catchError(this.handleError<User[]>('searchUsers', []))
 		);
+	}
+
+	generatePassword(): Observable<string> {
+		return this.http.get(this.passwordUrl, {responseType: 'text'})
+			.pipe(
+				tap(() => this.log(`generated password successfully`)),
+				catchError(
+					this.handleError<string>('generate password failure')
+				)
+			)
 	}
 
 	/**
