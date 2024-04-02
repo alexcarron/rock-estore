@@ -68,6 +68,16 @@ export class RockDetailComponent {
 		return this.mockAvailableClothing.find(hat => hat.name === name)?.image_url;
 	}
 
+	/**
+	 * @returns Path to image of rock. Empty string if rock undefined
+	 */
+	getImagePath(): string {
+		if (this.rock !== undefined)
+			return this.rockService.getRockImagePath(this.rock);
+		else
+			return "";
+	}
+
 	ngOnInit(): void {
 		this.retrieveRock();
 	}

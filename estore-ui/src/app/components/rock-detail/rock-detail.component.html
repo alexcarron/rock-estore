@@ -6,10 +6,11 @@
   <div>type: {{rock.type}}</div>
   <div>size: {{rock.size}}</div>
   <div>shape: {{rock.shape}}</div>
+  <div>shape: {{rock.image_url}}</div>
 
 	<div class="rock-detail-image-display">
-		<img src="{{mockRockImageURL}}" alt="{{rock.name}} Rock">
-		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay">
+		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock">
+		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay" >
 		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
 	</div>
 
