@@ -22,13 +22,28 @@ public class RockTest {
 				double expected_size = 25;
 				String expected_shape = "spherical";
 				String expected_description = "A rock";
+				String expected_image_url = "media/images/rocks/andesite.png";
 
         // Invoke
-        Rock rock = new Rock(expected_id, expected_name, expected_type, expected_price, expected_size, expected_shape, expected_description);
+        Rock rock = new Rock(
+					expected_id,
+					expected_name,
+					expected_type,
+					expected_price,
+					expected_size,
+					expected_shape,
+					expected_description,
+					expected_image_url
+				);
 
         // Analyze
-        assertEquals(expected_id,rock.getId());
-        assertEquals(expected_name,rock.getName());
+        assertEquals(expected_id, rock.getId());
+        assertEquals(expected_name, rock.getName());
+        assertEquals(expected_type, rock.getType());
+        assertEquals(expected_size, rock.getSize());
+        assertEquals(expected_shape, rock.getShape());
+        assertEquals(expected_description, rock.getDescription());
+        assertEquals(expected_image_url, rock.getImageUrl());
     }
 
     @Test
@@ -41,9 +56,11 @@ public class RockTest {
 				double size = 25;
 				String shape = "spherical";
 				String description = "A rock";
+				String image_url = "media/images/rocks/andesite.png";
+
 
         // Invoke
-        Rock rock = new Rock(id, name, type, price, size, shape, description);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url);
 
 
         String expected_name = "Galactic Agent";
@@ -65,15 +82,17 @@ public class RockTest {
 				double size = 25;
 				String shape = "spherical";
 				String description = "A rock";
+				String image_url = "media/images/rocks/andesite.png";
 
-        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description);
 
-        Rock rock = new Rock(id, name, type, price, size, shape, description);
+        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url);
+
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url);
 
         // Invoke
         String actual_string = rock.toString();
 
         // Analyze
-        assertEquals(expected_string,actual_string);
+        assertEquals(expected_string, actual_string);
     }
 }
