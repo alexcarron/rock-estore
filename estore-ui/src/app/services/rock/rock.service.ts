@@ -21,7 +21,7 @@ export class RockService {
 	) { }
 
 	private log(message: string) {
-		this.messageService.add(`RockService: ${message}`);
+		this.messageService.add(`${message}`);
 	}
 
 	/**
@@ -36,7 +36,7 @@ export class RockService {
 	getRocks(): Observable<Rock[]> {
 		return this.http.get<Rock[]>(this.rocksUrl)
 			.pipe(
-				tap(() => this.log('fetched rocks')),
+				tap(() => this.log('Fetched rocks')),
 				catchError(
 					this.handleError<Rock[]>('getRocks', [])
 				)
@@ -48,7 +48,6 @@ export class RockService {
 
 		return this.http.get<Rock>(url)
 			.pipe(
-				tap(() => this.log(`fetched rock id=${id}`)),
 				catchError(this.handleError<Rock>(`getRock id=${id}`))
 			);
 	}
@@ -60,7 +59,7 @@ export class RockService {
 			this.httpOptions
 		)
 		.pipe(
-			tap(() => this.log(`updated rock id=${rock.id}`)),
+			tap(() => this.log(`Updated rock id=${rock.id}`)),
 			catchError(this.handleError<any>('updateRock')),
 		)
 	}
@@ -72,7 +71,6 @@ export class RockService {
 			this.httpOptions
 		)
 		.pipe(
-			tap((newRock: Rock) => this.log(`added rock w/ id=${newRock.id}`)),
 			catchError(this.handleError<Rock>('addRock')),
 		)
 	}
@@ -82,7 +80,7 @@ export class RockService {
 
 		return this.http.delete<Rock>(url, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`deleted rock id=${id}`)),
+				tap(() => this.log(`Deleted rock id=${id}`)),
 				catchError(this.handleError<Rock>('deleteRock')),
 			)
 	}
@@ -100,9 +98,9 @@ export class RockService {
 		.pipe(
 			tap(rocks => {
 				if (rocks.length)
-					this.log(`found rocks matching "${search_term}"`);
+					this.log(`Found rocks matching "${search_term}"`);
 				else
-					this.log(`no rocks matching "${search_term}"`);
+					this.log(`No rocks matching "${search_term}"`);
 			}),
 			catchError(this.handleError<Rock[]>('searchRocks', []))
 		);

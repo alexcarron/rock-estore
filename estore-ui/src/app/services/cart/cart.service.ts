@@ -21,7 +21,7 @@ export class CartService {
   ) { }
 
   private log(message: string) {
-    this.messageService.add(`CartService: ${message}`);
+    this.messageService.add(`${message}`);
   }
 
     getRocksFromCart(id: number): Observable<Rock[]> {
@@ -29,7 +29,6 @@ export class CartService {
 
 		return this.http.get<Rock[]>(url)
 			.pipe(
-				tap(() => this.log(`fetched rocks from cart ${id}`)),
 				catchError(this.handleError<Rock[]>(`getRocksFromCart id=${id}`))
 			);
 	}
@@ -41,7 +40,7 @@ export class CartService {
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`adding rock id=${rock_updating} to user id=${id}`)),
+				tap(() => this.log(`Added rock id=${rock_updating} to cart!`)),
 				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
@@ -53,10 +52,20 @@ export class CartService {
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`removing rock id=${rock_updating} from user id=${id}`)),
+				tap(() => this.log(`Removed rock id=${rock_updating} from cart!`)),
 				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
+
+	clearCart(id: number): Observable<any> {
+		const url = `${this.cartUrl}/clear`;
+		const payload = { id };
+	  
+		return this.http.put(url, payload, this.httpOptions)
+		  .pipe(
+			catchError(this.handleError<any>(`clearCart user id=${id}`))
+		  );
+	  }
 
 	addCart(id: number): Observable<any> {
 		return this.http.post<number>(
@@ -65,7 +74,6 @@ export class CartService {
 			this.httpOptions
 		)
 		.pipe(
-			tap(() => this.log(`added cart w/ id=${id}`)),
 			catchError(this.handleError<Rock>('addRock')),
 		)
 	}
