@@ -37,7 +37,7 @@ export class RockDetailComponent {
 	save(): void {
 		if (this.rock) {
 			this.rockService.updateRock(this.rock)
-				.subscribe(() => this.goBack())
+				.subscribe(() => {});
 		}
 	}
 }
