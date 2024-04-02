@@ -3,7 +3,6 @@ import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/User';
 import { Observable } from 'rxjs';
 import { CartService } from '../../services/cart/cart.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
