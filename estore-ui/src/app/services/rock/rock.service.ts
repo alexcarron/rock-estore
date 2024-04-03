@@ -85,12 +85,6 @@ export class RockService {
 			`${this.rocksUrl}/?name=${search_term}`
 		)
 		.pipe(
-			tap(rocks => {
-				if (rocks.length)
-					this.log(`Found rocks matching "${search_term}"`);
-				else
-					this.log(`No rocks matching "${search_term}"`);
-			}),
 			catchError(this.handleError<Rock[]>('searchRocks', []))
 		);
 	}
