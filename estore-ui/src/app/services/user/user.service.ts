@@ -5,6 +5,7 @@ import { MessageService } from '../message/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { PasswordService } from '../password/password.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class UserService {
   constructor(
 		private http: HttpClient,
 		private messageService: MessageService,
+		private passwordService: PasswordService,
 		private router: Router
 	) { }
 
@@ -99,7 +101,7 @@ export class UserService {
 			const new_user_object: User = {
 				id: this.signedInUser.id,
 				username: this.signedInUser.username,
-				password: password,
+				password: String(this.passwordService.hashPassword(password)),
 			}
 
 			console.log({new_user_object});
