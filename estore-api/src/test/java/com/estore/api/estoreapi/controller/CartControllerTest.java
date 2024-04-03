@@ -49,8 +49,8 @@ public class CartControllerTest {
     public void testGetItemsFromCart() throws IOException {
         // Setup rocks
         Rock[] expectedRocks = new Rock[2];
-        expectedRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock", "rock.png");
-        expectedRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        expectedRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 33);
+        expectedRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 67);
 
         // Set up cart
         int testCartId = 10;

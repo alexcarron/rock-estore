@@ -7,4 +7,5 @@ export interface Rock {
 	shape: string;
 	description: string;
 	image_url: string;
+	stock: number;
 }

@@ -12,7 +12,7 @@ public class Rock {
     private static final Logger LOG = Logger.getLogger(Rock.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "Rock [id=%d, name=%s, type=%s, price=%f, size=%f, shape=%s, description=%s, image_url=%s]";
+    static final String STRING_FORMAT = "Rock [id=%d, name=%s, type=%s, price=%f, size=%f, shape=%s, description=%s, image_url=%s, stock=%s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
@@ -22,6 +22,7 @@ public class Rock {
     @JsonProperty("shape") private String shape;
     @JsonProperty("description") private String description;
     @JsonProperty("image_url") private String image_url;
+    @JsonProperty("stock") private int stock;
 
     /**
      * Create a rock with the given id, price, type, size, shape, description, and image_url
@@ -33,6 +34,7 @@ public class Rock {
      * @param shape The shape of the rock
      * @param description The description of the rock
      * @param image_url The url to the image of the rock
+     * @param stock the total available count of the rock
      *
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
@@ -47,7 +49,8 @@ public class Rock {
 			@JsonProperty("size") double size,
 			@JsonProperty("shape") String shape,
 			@JsonProperty("description") String description,
-			@JsonProperty("image_url") String image_url
+			@JsonProperty("image_url") String image_url,
+            @JsonProperty("stock") int stock
 		) {
         this.id = id;
         this.name = name;
@@ -57,6 +60,7 @@ public class Rock {
         this.shape = shape;
         this.description = description;
         this.image_url = image_url;
+        this.stock = stock;
     }
 
     /**
@@ -113,12 +117,18 @@ public class Rock {
      */
      public String getImageUrl() {return this.image_url;}
 
+     /**
+     * Gets the image url of the rock
+     * @return The rock's image url
+     */
+    public int getStock() {return this.stock;}
+
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,type,price,size,shape,description, image_url);
+        return String.format(STRING_FORMAT,id,name,type,price,size,shape,description,image_url,stock);
     }
 }

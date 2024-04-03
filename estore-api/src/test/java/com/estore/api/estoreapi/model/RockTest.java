@@ -23,6 +23,7 @@ public class RockTest {
 				String expected_shape = "spherical";
 				String expected_description = "A rock";
 				String expected_image_url = "media/images/rocks/andesite.png";
+        int expected_stock = 33;
 
         // Invoke
         Rock rock = new Rock(
@@ -33,7 +34,8 @@ public class RockTest {
 					expected_size,
 					expected_shape,
 					expected_description,
-					expected_image_url
+					expected_image_url,
+          expected_stock
 				);
 
         // Analyze
@@ -44,6 +46,7 @@ public class RockTest {
         assertEquals(expected_shape, rock.getShape());
         assertEquals(expected_description, rock.getDescription());
         assertEquals(expected_image_url, rock.getImageUrl());
+        assertEquals(expected_image_url, rock.getStock());
     }
 
     @Test
@@ -57,10 +60,11 @@ public class RockTest {
 				String shape = "spherical";
 				String description = "A rock";
 				String image_url = "media/images/rocks/andesite.png";
+        int stock = 33;
 
 
         // Invoke
-        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, stock);
 
 
         String expected_name = "Galactic Agent";
@@ -83,11 +87,12 @@ public class RockTest {
 				String shape = "spherical";
 				String description = "A rock";
 				String image_url = "media/images/rocks/andesite.png";
+        int stock = 33;
 
 
-        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url);
+        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url, stock);
 
-        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, stock);
 
         // Invoke
         String actual_string = rock.toString();

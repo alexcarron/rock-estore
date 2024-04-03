@@ -7,6 +7,7 @@
   <div>size: {{rock.size}}</div>
   <div>shape: {{rock.shape}}</div>
   <div>shape: {{rock.image_url}}</div>
+  <div>stock: {{rock.stock}}</div>
 
 	<div class="rock-detail-image-display">
 		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock">
@@ -49,17 +50,29 @@
       <label for="rock-price">Edit description: </label>
       <input id="rock-price" [(ngModel)]="rock.description" placeholder="description">
     </div>
+    <div>
+      <label for="rock-stock">Edit stock: </label>
+      <input id="rock-stock" [(ngModel)]="rock.stock" placeholder="stock">
+    </div>
     <button type="button" (click)="save()">save</button>
   </div>
 	<button type="button" (click)="goBack()">go back</button>
 	<button
-		*ngIf="!userService.userIsAdmin()"
+		*ngIf="!userService.userIsAdmin() && rock.stock > 0"
 		type="button"
 		class="add"
 		title="add rock to cart"
 		(click)="addToCart(rock.id, userService.getSignedInUserId())"
 	>
 		Add to cart
+	</button>
+  <button
+		*ngIf="!userService.userIsAdmin() && rock.stock <= 0"
+		type="button"
+		class="stock"
+		title="rock is out of stock"
+	>
+		OUT OF STOCK
 	</button>
 
 </div>
