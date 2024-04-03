@@ -15,22 +15,21 @@ import java.util.Random;
  */
 public class Password {
 
-  private static final String validPasswordRegex = 
+  private static final String validPasswordRegex =
   "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
   private static final Pattern regexPattern = Pattern.compile(validPasswordRegex);
   private static Random rand = new Random();
 
   public static boolean validPassword(String password){
-    // Matcher matches = regexPattern.matcher(password);
-    // return matches.matches();
-		return true; // TODO: Replace with implementation
+    Matcher matches = regexPattern.matcher(password);
+    return matches.matches();
   }
 
   public static String createStrongPassword(){
     String strongPassword = "";
 
     for(int i = 0; i < 10; i++){
-      if(i < 6){ 
+      if(i < 6){
         int randomLowerCase = rand.nextInt(123-97) + 97;
         strongPassword += String.valueOf((char)randomLowerCase) + "";
       }else if (i < 9) {
