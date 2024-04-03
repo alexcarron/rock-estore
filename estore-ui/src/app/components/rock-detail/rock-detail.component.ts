@@ -5,6 +5,7 @@ import { RockService } from '../../services/rock/rock.service';
 import { Location } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { CartService } from '../../services/cart/cart.service';
+import { MessageService } from '../../services/message/message.service';
 
 /**
  * Type to store all information needed for a hat customization option

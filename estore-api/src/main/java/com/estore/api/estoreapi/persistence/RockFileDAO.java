@@ -145,6 +145,14 @@ public class RockFileDAO implements RockDAO {
     @Override
     public Rock[] getRocks() {
         synchronized(rocks) {
+            try {
+                load();
+            }
+            catch(IOException e) {
+                LOG.severe(e.getLocalizedMessage());
+                return null;
+            }
+
             return getRocksArray();
         }
     }
@@ -165,6 +173,14 @@ public class RockFileDAO implements RockDAO {
     @Override
     public Rock getRock(int id) {
         synchronized(rocks) {
+            try {
+                load();
+            }
+            catch(IOException e) {
+                LOG.severe(e.getLocalizedMessage());
+                return null;
+            }
+
             if (rocks.containsKey(id))
                 return rocks.get(id);
             else
@@ -249,7 +265,10 @@ public class RockFileDAO implements RockDAO {
                 else
                     return false;
             }
-            return save();
+            boolean success = save();
+            if(!success)
+                return false;
+            return success;
         }
     }
 }

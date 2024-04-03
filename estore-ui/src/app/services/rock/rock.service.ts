@@ -48,6 +48,7 @@ export class RockService {
 
 		return this.http.get<Rock>(url)
 			.pipe(
+				tap(() => this.log(`Fetched rock id=${id}`)),
 				catchError(this.handleError<Rock>(`getRock id=${id}`))
 			);
 	}
