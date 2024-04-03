@@ -3,6 +3,7 @@ import { Rock } from '../../models/Rock';
 import { RockService } from '../../services/rock/rock.service';
 import { UserService } from '../../services/user/user.service';
 import { CartService } from '../../services/cart/cart.service';
+import { MessageService } from '../../services/message/message.service';
 
 @Component({
   selector: 'app-rocks',
@@ -15,10 +16,16 @@ export class RocksComponent {
 	constructor(
 		private rockService: RockService,
 		public userService: UserService,
-		public cartService: CartService
+		public cartService: CartService,
+		private messageService: MessageService
 	) {
 		this.userService = userService;
 		this.cartService = cartService;
+		this.messageService = messageService;
+	}
+
+	private log(message: string) {
+		this.messageService.add(`${message}`);
 	}
 
 	retrieveRocks(): void {

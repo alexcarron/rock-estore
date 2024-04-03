@@ -79,4 +79,17 @@ public interface UserDAO {
      * @throws IOException if underlying storage cannot be accessed
      */
     boolean deleteUser(int id) throws IOException;
+
+    /**
+     * Deletes a {@linkplain User user} with the given id
+     *
+     * @param id The id of the {@link User user}
+     *
+     * @return true if the {@link User user} was deleted
+     * <br>
+     * false if user with the given id does not exist
+     *
+     * @throws IOException if underlying storage cannot be accessed
+     */
+    String generateStrongUserPassword() throws IOException;
 }

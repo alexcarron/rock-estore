@@ -3,6 +3,7 @@ import { UserService } from '../../services/user/user.service';
 import { User } from '../../models/User';
 import { Observable } from 'rxjs';
 import { CartService } from '../../services/cart/cart.service';
+import { PasswordService } from '../../services/password/password.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,12 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class LoginComponent {
   users: User[] = [];
+  password: string = '';
 
   constructor(
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private passwordService: PasswordService
     ) {}
 
   retrieveUsers(): void {
@@ -49,8 +52,22 @@ export class LoginComponent {
 
     this.userService.searchUsers(username).subscribe((users) => (this.users = users));
 
-    this.users.forEach(user => { if(username == user.username && password == user.password) {this.userService.signInUser(user.id);}
-      
+    this.users.forEach(user => {
+			if(username == user.username && this.passwordService.hashPassword(password) == user.password) {
+        this.userService.signInUser(user);
+      }
+    });
+  }
+
+  generatePassword() {
+    this.userService.generatePassword().subscribe({
+      next: (newPassword) => {
+        console.log(newPassword);
+        this.password = newPassword;
+      },
+      error: (error) => {
+        console.error('Error generating password:', error)
+      }
     });
   }
 }

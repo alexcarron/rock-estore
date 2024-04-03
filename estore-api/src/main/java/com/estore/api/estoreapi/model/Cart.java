@@ -75,6 +75,11 @@ public class Cart {
         item_ids = new_item_ids;
     }
 
+    public void clearItems() {
+        item_ids = new int[0];
+    
+    }
+
     /**
      * {@inheritDoc}
      */
