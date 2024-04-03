@@ -3,9 +3,10 @@
     <label for="username-box">Username: </label>
     <input #userBox id="username-box" />
 
-    <label for="password-box"> Password: </label>
-    <input #passwordBox id="password-box" />
-  </div>
+  <label for="password-box"> Password: </label>
+  <input #passwordBox id="password-box" [value] = "password"/>
+  <p><i>A password must be 8-20 characters long and have 
+    both a uppercase and lowercase letter and one special character !,#,*,^</i></p>
 
   <div class="sign-in-up">
     <button
@@ -31,5 +32,10 @@
     >
       Sign In
     </button>
+
+    <button (click)="generatePassword()">
+      Generate Strong Password
+    </button>
+    
   </div>
 </div>
