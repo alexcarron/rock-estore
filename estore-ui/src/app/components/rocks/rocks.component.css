@@ -1,11 +1,11 @@
 .rock-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 20px;
 }
 
 .rock_button {
-  width: 80%;
+  width: 90%;
 	display: block;
   background-color: #eee;
   border: none;
@@ -31,4 +31,8 @@
 .selected {
 	background-color: lightcoral;
 	color: red;
+}
+
+.rock_button .delete {
+  margin-left: 20px;
 }
