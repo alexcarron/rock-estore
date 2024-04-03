@@ -2,40 +2,13 @@
   {
     "id": 0,
     "username": "admin",
-    "password": "admin",
-    "name": "admin"
-=======
     "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
     "name": "admin"
   },
   {
     "id": 1,
-    "username": "RJLE",
-    "password": "6a6203f891eab5524216afb7c6c038707b35a8dcbc03901911dc0c975572584d",
-    "name": "RJLE"
-  },
-  {
-    "id": 2,
-    "username": "RYman123",
-    "password": "d1632543c4f7252dd2e45c3ee703891316200fb2c7907eebe901213d888d58c3",
-    "name": "RYman123"
-  },
-  {
-    "id": 3,
-    "username": "rizzler",
-    "password": "1912766d6ba0e50e8b1bacfb51207e83b95b7ac0cd8ce15307cdf4965e7e3f6c",
-    "name": "rizzler"
-  },
-  {
-    "id": 4,
-    "username": "opp",
-    "password": "591a0354f0692cb69c9d592a101cecec3efa25be9cbc0029e58447ca2fcb3de3",
-    "name": "opp"
-  },
-  {
-    "id": 5,
-    "username": "abcd",
-    "password": "78c0e72b7fa101674d6fd3c184d1e7863b87dd320c585026cb34c8b3433efa5a",
-    "name": "abcd"
+    "username": "alex",
+    "password": "4135aa9dc1b842a653dea846903ddb95bfb8c5a10c504a7fa16e10bc31d1fdf0",
+    "name": "alex"
   }
 ]
