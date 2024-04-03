@@ -63,10 +63,7 @@ export class CartService {
 		const url = `${this.cartUrl}/clear`;
 		const payload = { id };
 	  
-		return this.http.put(url, payload, this.httpOptions)
-		  .pipe(
-			catchError(this.handleError<any>(`clearCart user id=${id}`))
-		  );
+		return this.http.put(url, payload, this.httpOptions).pipe();
 	  }
 
 	addCart(id: number): Observable<any> {

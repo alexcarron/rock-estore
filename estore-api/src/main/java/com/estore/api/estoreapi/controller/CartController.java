@@ -118,7 +118,7 @@ public class CartController {
             : cartDao.deleteItem(rockId, userId);
 
             if (updatedCart != null)
-                return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);
+                return new ResponseEntity<Cart>(updatedCart,HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -146,10 +146,14 @@ public class CartController {
         try {
             Cart updatedCart = cartDao.clearCart(cartId);
 
-            if (updatedCart != null)
-                return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (updatedCart != null) {
+                LOG.info("SUCCESS UPDATING CART " + cartId);
+                return new ResponseEntity<Cart>(updatedCart,HttpStatus.OK);
+            }
+            else {
+                LOG.info("FAILURE UPDATING CART " + cartId);
+                return new ResponseEntity<Cart>(updatedCart, HttpStatus.INSUFFICIENT_STORAGE);
+            }
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
