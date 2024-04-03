@@ -26,7 +26,6 @@ export class RockService {
 	getRocks(): Observable<Rock[]> {
 		return this.http.get<Rock[]>(this.rocksUrl)
 			.pipe(
-				tap(() => this.log('Fetched rocks')),
 				catchError(
 					this.handleError<Rock[]>('getRocks', [])
 				)

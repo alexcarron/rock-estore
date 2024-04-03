@@ -40,7 +40,6 @@ export class CartService {
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`Added rock id=${rock_updating} to cart!`)),
 				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
@@ -52,7 +51,6 @@ export class CartService {
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`Removed rock id=${rock_updating} from cart!`)),
 				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
