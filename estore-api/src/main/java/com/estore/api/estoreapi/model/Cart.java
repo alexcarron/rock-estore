@@ -77,7 +77,6 @@ public class Cart {
 
     public void clearItems() {
         item_ids = new int[0];
-    
     }
 
     /**

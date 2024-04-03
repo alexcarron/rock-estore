@@ -118,10 +118,16 @@ public class Rock {
      public String getImageUrl() {return this.image_url;}
 
      /**
-     * Gets the image url of the rock
-     * @return The rock's image url
+     * Gets the stock of the rock
+     * @return The rock's stock
      */
     public int getStock() {return this.stock;}
+
+    /**
+     * Removes one from the stock of this rock
+     */
+    public void removeStock() {this.stock--;}
+
 
 
     /**
