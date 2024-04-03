@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
@@ -183,7 +185,34 @@ public class CartFileDAOTest {
         assertEquals(expectedCart, resultCart, "A new cart should be added with the specified ID");
     }
 */
+    @Test
+    public void testClearCartSuccess() throws IOException {
+
+        // Setup
+        Cart testCart = testCarts[0];
+        int[] expectedIds = new int[0];
+
+        // Invoke
+        Cart resultCart = cartFileDao.clearCart(testCart.getId());
+        int[] actualIds = resultCart.getItemIds();
+
+        // Assert
+        assertArrayEquals(expectedIds, actualIds);
+    }
     
+    @Test
+    public void testClearCartNotFound() throws IOException {
+
+        // Setup
+        int testId = 4;
+
+        // Invoke
+        Cart resultCart = cartFileDao.clearCart(testId);
+
+        // Assert
+        assertNull(resultCart);
+    }
+
     @Test
     public void testAddCartExisting() throws IOException {
         // Setup
@@ -195,6 +224,4 @@ public class CartFileDAOTest {
         // Assert
         assertNull(resultCart, "No new cart should be added if it already exists");
     }
-
-
 }
