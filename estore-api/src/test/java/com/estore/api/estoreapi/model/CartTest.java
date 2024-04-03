@@ -64,6 +64,20 @@ public class CartTest {
         
     }
 
+    @Test
+    void testClearItems() {
+        // Setup
+        int expected_length = 0;
+        Cart cart = new Cart(100, new int[] {1, 2, 3});
+
+        // Invoke
+        cart.clearItems();
+        int actual_length = cart.getItemIds().length;
+
+        // Assert
+        assertEquals(expected_length, actual_length);
+    }
+
 
     @Test
     public void testToString() {

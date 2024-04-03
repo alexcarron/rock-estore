@@ -174,6 +174,49 @@ public class CartControllerTest {
     }
 
     @Test
+    public void testClearCart() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("id", 10);
+        Cart expectedCart = new Cart(10, new int[]{});
+        when(mockCartDao.clearCart(10)).thenReturn(expectedCart);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.clearCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(expectedCart, response.getBody());
+    }
+
+    @Test
+    public void testClearCartNotFound() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("id", 10);
+        when(mockCartDao.clearCart(10)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.clearCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    @Test
+    public void testClearCartIOException() throws IOException {
+        // Setup
+        Map<String, Object> payload = Map.of("id", 10);
+        when(mockCartDao.clearCart(10)).thenThrow(IOException.class);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.clearCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNull(response.getBody());
+    }
+
+    @Test
     public void testAddCart() throws IOException {
         // Setup
         int id = 10;

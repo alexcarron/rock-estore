@@ -74,6 +74,9 @@ public class Cart {
         item_ids = new_item_ids;
     }
 
+    /**
+     * Clears the entire cart of all items.
+     */
     public void clearItems() {
         item_ids = new int[0];
     
