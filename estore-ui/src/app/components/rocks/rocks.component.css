@@ -1,4 +1,11 @@
-div.rock_button {
+.rock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.rock_button {
+  width: 50%;
 	display: block;
   background-color: #eee;
   border: none;
@@ -12,11 +19,11 @@ div.rock_button {
   margin-top: 1rem;
 	text-decoration: none;
 }
-div.rock_button:hover {
-  background-color: black;
+.rock_button:hover {
+  background-color: gray;
   color: white;
 }
-div.rock_button:disabled {
+.rock_button:disabled {
   background-color: #eee;
   color: #aaa;
   cursor: auto;
