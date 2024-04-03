@@ -163,7 +163,7 @@ export class UserService {
 		)
 		.pipe(
 			tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
-			catchError(this.handleError<User>('addUser')),
+			catchError(this.handleError<User>('Either your username is incorrect or your password is not strong')),
 		)
 	}
 
