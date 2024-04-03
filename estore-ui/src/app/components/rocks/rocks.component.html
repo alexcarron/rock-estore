@@ -15,7 +15,7 @@
     Add rock
   </button>
 </div>
-<div>
+<div class = "rock-grid">
 	<div class="rock_button" *ngFor="let rock of rocks" >
 		<a routerLink="/detail/{{rock.id}}">
 			<span class="badge">{{rock.id}}</span> {{rock.name}}
