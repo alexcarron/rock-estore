@@ -82,4 +82,17 @@ public interface CartDAO {
      * @throws IOException if an issue with underlying storage
      */
     Cart[] getCarts() throws IOException;
+
+    /**
+     * Retrieves the {@linkplain Cart cart} of the specified id and deletes every item in that cart.
+     *
+     * @param id The id of the cart to be cleared
+     * 
+     * @return The cleared {@link Cart cart}
+     *
+     * @throws IOException if an issue occurs with underlying storage
+     */
+    Cart clearCart(int id) throws IOException;
+
+
 }

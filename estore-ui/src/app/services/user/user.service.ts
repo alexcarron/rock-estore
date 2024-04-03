@@ -26,7 +26,7 @@ export class UserService {
 	) { }
 
 	private log(message: string) {
-		this.messageService.add(`UserService: ${message}`);
+		this.messageService.add(`${message}`);
 	}
 
 	isUserSignedIn() {
@@ -63,7 +63,7 @@ export class UserService {
 			this.signedInUserID = -1;
 			this.signedInUser = null;
 
-			this.log(`Logged out user w/ id=${userLoggingOutID}`);
+			this.log(`Successfully logged out`);
 			return userLoggingOutID;
 		}
 		else {
@@ -125,7 +125,6 @@ export class UserService {
 	getUsers(): Observable<User[]> {
 		return this.http.get<User[]>(this.usersUrl)
 			.pipe(
-				tap(() => this.log('fetched users')),
 				catchError(
 					this.handleError<User[]>('getUsers', [])
 				)
@@ -188,10 +187,8 @@ export class UserService {
 		)
 		.pipe(
 			tap(users => {
-				if (users.length)
-					this.log(`found users matching "${search_term}"`);
-				else
-					this.log(`no users matching "${search_term}"`);
+				if (!users.length)
+					this.log(`No users matching "${search_term}"`);
 			}),
 			catchError(this.handleError<User[]>('searchUsers', []))
 		);
