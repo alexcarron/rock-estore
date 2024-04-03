@@ -1,8 +1,8 @@
 <h1>{{title}}</h1>
 <nav>
+	<a *ngIf="userService.getSignedInUserId()>  -1"routerLink="/dashboard">Home</a>
 	<a *ngIf="userService.getSignedInUserId()>   0"routerLink="/rocks">Rocks</a>
 	<a *ngIf="userService.getSignedInUserId()==  0"routerLink="/rocks">Inventory</a>
-	<a *ngIf="userService.getSignedInUserId()>  -1"routerLink="/dashboard">Dashboard</a>
     <a *ngIf="userService.getSignedInUserId()>   0"routerLink="/cart">Cart</a>
 	<a *ngIf="userService.getSignedInUserId()> -1"routerLink="/login" (click)="userService.logOutUser()">Log Out</a>
 </nav>
