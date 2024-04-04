@@ -24,7 +24,7 @@
 				type="button"
 				class="add"
 				title="add rock to cart"
-				(click)="addToCart(rock, userService.getSignedInUserId())"
+				(click)="$event.stopPropagation(); addToCart(rock, userService.getSignedInUserId())"
 			>
 				Add to cart
 			</button>
