@@ -17,15 +17,17 @@ An online E-store system built in Java 11=> Spring Boot and Angular 17.
 - Java 8=>11 (Make sure to have correct JAVA_HOME setup in your environment)
 - Maven
 - Angular 17
--  _add any other tech stack requirements_
 
 
 ## How to run it
 
 1. Clone the repository and go to the root directory.
-2. Execute `mvn compile exec:java`
-3. Open in your browser `http://localhost:8080/`
-4.  _add any other steps required or examples of how to use/run_
+2. Execute `cd estore-api`
+3. Execute `mvn compile exec:java`
+4. In a new terminal, execute `cd estore-ui`
+5. Execute `npm install`
+6. If `npm install` does not work, try executing `npm install --force`
+7. Open in your browser `http://localhost:8080/`
 
 ## Known bugs and disclaimers
 (It may be the case that your implementation is not perfect.)
