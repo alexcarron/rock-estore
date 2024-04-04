@@ -11,7 +11,7 @@
 	<div class="rock-detail-image-display">
 		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock" style="width: 300px; height: 300px;">
 		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay">
-		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay" style="width: 200px; height: 200px;">
+		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
 	</div>
 
 	<select [(ngModel)]="selectedHatName">
