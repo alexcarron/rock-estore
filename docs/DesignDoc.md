@@ -179,15 +179,27 @@ We have considered the following OO principles for our project:
 
 > _**[Sprint 2, 3 & 4]** Will eventually address up to **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller. If you look at the tiers and layers diagram within the architecture and design summary it can be seen how the classes in the model have different responsibilies. Some perform the actual model, others are persistence for API call handeling, and then storage. And within these different tiers there are classes to handle certain information whether it be related to users, carts, or rocks.
+### Single Responsibility
 
-- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrieve information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls. As seen with our model class diagrams we have the DAO classes that are abstract classes that are interfaces for the FileDao classes to implement. Also seen in the model class diagram is how the controllers use the interface rather than directly connecting to the FileDao implementations. This is further supported with the following code snippet which displays the constructor for the Rock Cotnroller and demonstrates how a dependency can be injected as long as it implements the RockDao interface.
+Single Responsibility is implemented through our controller classes, which handle all our API calls without concerning themselves with how the data is stored. Similarly, the DAO does not worry about how data is requested; it simply interacts with the controller. By examining the tiers and layers diagram in the architecture and design summary, one can observe the varied responsibilities of the classes in the model. Some perform the actual modeling, while others handle persistence for API call handling and storage. Within these different tiers, there are classes dedicated to managing specific information, whether it pertains to users, carts, or rocks.
+
+### Dependency Inversion
+
+Dependency Inversion dictates that high-level modules should not rely on lower-level modules; instead, they should each depend on abstractions. We implemented this principle in our model through the RockDao, UserDao, and CartDao classes. These classes are abstract and define method headers that can be utilized by a lower-level class to specify the behavior of each method, allowing a higher-level module to call these methods to retrieve information. If the method of accessing or storing our objects changes, we can create a new implementation of the class without affecting our higher-level HTTP calls. As evident in our model class diagrams, the DAO classes are abstract interfaces for the FileDao classes to implement. Additionally, the controllers in the model class diagram utilize these interfaces rather than directly connecting to the FileDao implementations. This is further supported by the following code snippet, which displays the constructor for the Rock Controller and demonstrates how a dependency can be injected as long as it implements the RockDao interface.
 
 ![RockController Constructor](rockController-constructor.jpg)
 
-- Pure Fabrication: One of the classes that is a pure fabrication in our project is the Password class. Password does not represent an entity as seen in our domain model, however to maintain single responsibility, by keeping password checking and genration out of the user class, we decided to make the Password class in the model as shown in our model class diagram and tiers-layers diagram.
+### Pure Fabrication
 
-- 
+One of the classes that is purely fabricated in our project is the Password class. The Password class does not represent an entity as depicted in our domain model. However, to maintain single responsibility and keep password checking and generation separate from the user class, we decided to create the Password class within the model, as illustrated in both our model class diagram and tiers-layers diagram.
+
+
+### Information Expert
+
+We apply the Information Expert principle to our design with many of our domain entities. Our RockController class is an expert on managing rocks and their quantities. It includes methods for adding, removing, and updating rocks. The Rock class has its own price and description making it an expert in holding and providing information about rocks. The shopping cart class is an expert in managing the rocks selected by a customer for purchase. It can hold the selected rocks and has behaviors like adding, removing, or updating quantities of rocks in the cart.
+
+
+-
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
@@ -207,10 +219,10 @@ We have considered the following OO principles for our project:
 For Sprint 1 there were 7 user stories, all of which had all of their acceptance criteria pass.
 
 
-For Sprint 2 we planned to complete an additional 11 user stories, at the end of which 
+For Sprint 2 we planned to complete an additional 11 user stories, at the end of which
   * 8 had passed all of their acceptance criteria
   * 3 that had mostly but not fully passed their acceptance criteria.
-    The acceptance criteria that failed were 
+    The acceptance criteria that failed were
       * Given that I am on the products page when there are products in the inventory then I see each product and short description.
       * * This had failed becuase we had yet to include all fields of a rock item in the details page
       The follwing acceptance criteria failed due to the deicison of moving away from the admin using product ids and rather interacting with a GUI, as a result
@@ -221,7 +233,7 @@ For Sprint 2 we planned to complete an additional 11 user stories, at the end of
       * Given a user is logged in as an admin when that user enters an invalid product id or invalid product information and attempts to update it then the product is not updated in our inventory
 
 As of Sprint 3 all failed acceptence criteria from Sprint 2 have passed.
-      
+
 
 ### Unit Testing and Code Coverage
 
