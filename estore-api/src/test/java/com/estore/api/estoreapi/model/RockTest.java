@@ -22,13 +22,38 @@ public class RockTest {
 				double expected_size = 25;
 				String expected_shape = "spherical";
 				String expected_description = "A rock";
+				String expected_image_url = "media/images/rocks/andesite.png";
+        String expected_custom_hat = "baseball cap";
+        String expected_custom_clothes = "blazer";
+
+        int expected_stock = 33;
 
         // Invoke
-        Rock rock = new Rock(expected_id, expected_name, expected_type, expected_price, expected_size, expected_shape, expected_description);
+        Rock rock = new Rock(
+					expected_id,
+					expected_name,
+					expected_type,
+					expected_price,
+					expected_size,
+					expected_shape,
+					expected_description,
+					expected_image_url,
+          expected_stock,
+          expected_custom_hat,
+          expected_custom_clothes
+				);
 
         // Analyze
-        assertEquals(expected_id,rock.getId());
-        assertEquals(expected_name,rock.getName());
+        assertEquals(expected_id, rock.getId());
+        assertEquals(expected_name, rock.getName());
+        assertEquals(expected_type, rock.getType());
+        assertEquals(expected_size, rock.getSize());
+        assertEquals(expected_shape, rock.getShape());
+        assertEquals(expected_description, rock.getDescription());
+        assertEquals(expected_image_url, rock.get_image_url());
+        assertEquals(expected_custom_hat, rock.get_custom_hat());
+        assertEquals(expected_custom_clothes, rock.get_custom_clothes());
+        assertEquals(expected_stock, rock.getStock());
     }
 
     @Test
@@ -41,9 +66,13 @@ public class RockTest {
 				double size = 25;
 				String shape = "spherical";
 				String description = "A rock";
+				String image_url = "media/images/rocks/andesite.png";
+        String custom_hat = "";
+        String custom_clothes = "";        int stock = 33;
+
 
         // Invoke
-        Rock rock = new Rock(id, name, type, price, size, shape, description);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, stock, custom_hat, custom_clothes);
 
 
         String expected_name = "Galactic Agent";
@@ -65,15 +94,20 @@ public class RockTest {
 				double size = 25;
 				String shape = "spherical";
 				String description = "A rock";
+				String image_url = "media/images/rocks/andesite.png";
+        String custom_hat = "";
+        String custom_clothes = "";        
+        int stock = 33;
 
-        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description);
 
-        Rock rock = new Rock(id, name, type, price, size, shape, description);
+        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url, stock);
+
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, stock, custom_hat, custom_clothes);
 
         // Invoke
         String actual_string = rock.toString();
 
         // Analyze
-        assertEquals(expected_string,actual_string);
+        assertEquals(expected_string, actual_string);
     }
 }

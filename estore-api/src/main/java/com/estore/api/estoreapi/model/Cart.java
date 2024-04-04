@@ -1,7 +1,9 @@
 package com.estore.api.estoreapi.model;
 
 import java.util.logging.Logger;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -16,7 +18,7 @@ public class Cart {
     static final String STRING_FORMAT = "cart [id=%d,item_ids=%s]";
 
     @JsonProperty("id") private int id;
-    @JsonProperty("item_ids") private int[] item_ids;
+    @JsonProperty("rocks") private List<Rock> rocks;
 
     /**
      * Create a user cart with the given id and item ids
@@ -30,11 +32,11 @@ public class Cart {
      * value, i.e. 0 for int
      */
     public Cart(
-			@JsonProperty("id") int id,
-			@JsonProperty("item_ids") int[] item_ids
-	    ) {
+        @JsonProperty("id") int id,
+        @JsonProperty("rocks") Rock[] rocksArray
+        ) {
         this.id = id;
-        this.item_ids = item_ids;
+        this.rocks = rocksArray != null ? new ArrayList<>(Arrays.asList(rocksArray)) : new ArrayList<>();
     }
 
     /**
@@ -47,36 +49,25 @@ public class Cart {
      * Retrieves the ids of the rocks in the cart
      * @return The ids of the rocks in the cart
      */
-    public int[] getItemIds() {return item_ids;}
+    public Rock[] getRocks() {return rocks.toArray(new Rock[0]);}
 
     /**
      * Appends itemId onto the item_ids list
      */
-    public void appendItem(int itemId) {
-        item_ids = Arrays.copyOf(item_ids, item_ids.length + 1);
-        item_ids[item_ids.length - 1] = itemId;
+    public void appendItem(Rock newRock) {
+        rocks.add(newRock);
     }
 
     /**
      * Removes the first instance of an itemId from the item_ids list
      */
-    public void removeItem(int itemId) {
-        int[] new_item_ids = new int[item_ids.length - 1];
-        boolean foundFirstItem = false;
-        for(int i=0; i<item_ids.length; i++) {
-            if(item_ids[i] == itemId && !foundFirstItem)
-                foundFirstItem = true;
-            else if (foundFirstItem)
-                new_item_ids[i-1] = item_ids[i];
-            else 
-                new_item_ids[i] = item_ids[i];
-        }
-        item_ids = new_item_ids;
+    public void removeItem(Rock remRock) {
+        rocks.remove(remRock);
     }
+    
 
     public void clearItems() {
-        item_ids = new int[0];
-    
+        rocks.clear();
     }
 
     /**
@@ -84,6 +75,10 @@ public class Cart {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id, Arrays.toString(item_ids));
+        String rockString = "Cart: " + id + " Rocks: ";
+        for (Rock rock: rocks) {
+            rockString += rock.toString() + " ";
+        }
+        return rockString;
     }
 }

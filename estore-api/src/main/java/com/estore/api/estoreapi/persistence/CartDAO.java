@@ -24,9 +24,9 @@ public interface CartDAO {
     Cart getCart(int id) throws IOException;
 
     /**
-     * Adds and saves a {@linkplain int rockId} to the cart
+     * Adds and saves a {@linkplain Rock newRock} to the cart
      *
-     * @param rockId {@linkplain int rockId} id of the rock to be added
+     * @param newRock {@linkplain Rock newRock} id of the rock to be added
      *  
      * @param userId {@linkplain int userId} id of the user's cart that
      * the rock will be added to
@@ -35,12 +35,12 @@ public interface CartDAO {
      *
      * @throws IOException if an issue with underlying storage
      */
-    Cart addItem(int rockId, int userId) throws IOException;
+    Cart addItem(Rock newRock, int userId) throws IOException;
 
     /**
-     * Adds and saves a {@linkplain int rockId} to the cart
+     * Removes {@linkplain Rock remRock} from the cart
      *
-     * @param rockId {@linkplain int rockId} id of the rock to be deleted
+     * @param remRock {@linkplain Rock remRock} id of the rock to be deleted
      *  
      * @param userId {@linkplain int userId} id of the user's cart that
      * the rock will be deleted from
@@ -49,7 +49,7 @@ public interface CartDAO {
      *
      * @throws IOException if an issue with underlying storage
      */
-    Cart deleteItem(int rockId, int userId) throws IOException;
+    public Cart deleteItem(Rock remRock, int userId) throws IOException;
 
     /**
      * Adds and saves a {@linkplain int rockId} to the cart

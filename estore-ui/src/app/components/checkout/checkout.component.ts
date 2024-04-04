@@ -28,8 +28,8 @@ export class CheckoutComponent {
   clearCart() {
     let id = this.userService.getSignedInUserId();
     this.cartService.clearCart(id).subscribe(
-      () => this.log("Successfully checked out!"),
-      error => this.log("An error occured while checking out")
+      () => this.log("Checkout: Success!"),
+      error => this.log("Checkout: Failed; Rocks in cart exceed inventory stock!")
     );
     this.router.navigate(['/dashboard']);
   }

@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
@@ -42,9 +44,21 @@ public class CartFileDAOTest {
     public void setupCartFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testCarts = new Cart[3];
-        testCarts[0] = new Cart(10, new int[]{1, 2, 3, 4, 5});
-        testCarts[1] = new Cart(11, new int[]{6, 7, 8, 9, 10});
-        testCarts[2] = new Cart(12, new int[]{99, 100, 101});
+        testCarts[0] = new Cart(10, new Rock[]{
+            new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 1, "", "shirt"),
+            new Rock(2, "Galactic age",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 2, "", "shirt"),
+            new Rock(3, "Galactic nt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 3, "", "shirt")
+        });
+        testCarts[1] = new Cart(11, new Rock[]{
+            new Rock(4, "Galactic bAgent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 4, "", "shirt"),
+            new Rock(5, "Galactic bage",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 5, "", "shirt"),
+            new Rock(6, "Galactic bnt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 6, "", "shirt")
+        });
+        testCarts[2] = new Cart(12, new Rock[]{
+            new Rock(7, "Galactic cAgent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 7, "", "shirt"),
+            new Rock(8, "Galactic cage",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 8, "", "shirt"),
+            new Rock(9, "Galactic cnt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 9, "", "shirt")
+        });
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the cart array above
@@ -183,6 +197,34 @@ public class CartFileDAOTest {
         assertEquals(expectedCart, resultCart, "A new cart should be added with the specified ID");
     }
 */
+    // @Test
+    // public void testClearCartSuccess() throws IOException {
+
+    //     // Setup
+    //     Cart testCart = testCarts[0];
+    //     Rock[] expectedRocks = new Rock[0];
+
+    //     // Invoke
+    //     Cart resultCart = cartFileDao.clearCart(testCart.getId());
+    //     Rock[] actualIds = resultCart.getRocks();
+
+    //     // Assert
+    //     assertArrayEquals(expectedRocks, actualIds);
+    // }
+    
+    @Test
+    public void testClearCartNotFound() throws IOException {
+
+        // Setup
+        int testId = 4;
+
+        // Invoke
+        Cart resultCart = cartFileDao.clearCart(testId);
+
+        // Assert
+        assertNull(resultCart);
+    }
+
     @Test
     public void testAddCartExisting() throws IOException {
         // Setup
@@ -194,6 +236,4 @@ public class CartFileDAOTest {
         // Assert
         assertNull(resultCart, "No new cart should be added if it already exists");
     }
-
-
 }

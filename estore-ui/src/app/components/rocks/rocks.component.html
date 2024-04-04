@@ -15,23 +15,10 @@
     Add rock
   </button>
 </div>
-<div>
-	<div class="rock_button" *ngFor="let rock of rocks" >
-		<a routerLink="/detail/{{rock.id}}">
+<div class = "rock-grid">
+	<div class="rock-button" routerLink = "/detail/{{rock.id}}" *ngFor="let rock of rocks" >
 			<span class="badge">{{rock.id}}</span> {{rock.name}}
-		</a>
-		
-		<div *ngIf="userService.getSignedInUserId() > 0">
-			<button
-				type="button"
-				class="add"
-				title="add rock to cart"
-				(click)="addToCart(rock, userService.getSignedInUserId())"
-			>
-				Add to cart
-			</button>
-		</div>
-    
+
     <button
 			*ngIf="userService.userIsAdmin()"
 			type="button"

@@ -51,13 +51,8 @@ export class RocksComponent {
 
 	delete(rock_deleting: Rock): void {
 		this.rocks = this.rocks.filter(rock => rock !== rock_deleting);
-		this.rockService.deleteRock(rock_deleting.id).subscribe();
-	}
-
-	addToCart(rock_adding_to_cart: Rock, user_id: number): void {
-		this.cartService.addToCart(rock_adding_to_cart.id, user_id).subscribe(
-			() => this.log(`${rock_adding_to_cart.name} has been added to your cart!`),
-			error => this.log(`An error occurred while adding ${rock_adding_to_cart.name} to cart`)
+		this.rockService.deleteRock(rock_deleting.id).subscribe(
+			() => this.log(`${rock_deleting.name} has been deleted`),
 		);
 	}
 }

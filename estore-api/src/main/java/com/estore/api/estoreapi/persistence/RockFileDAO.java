@@ -3,6 +3,7 @@ package com.estore.api.estoreapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ import com.estore.api.estoreapi.model.Rock;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  *
- * @author SWEN Faculty
+ * @author Party Rockers
  */
 @Component
 public class RockFileDAO implements RockDAO {
@@ -145,6 +146,14 @@ public class RockFileDAO implements RockDAO {
     @Override
     public Rock[] getRocks() {
         synchronized(rocks) {
+            try {
+                load();
+            }
+            catch(IOException e) {
+                LOG.severe(e.getLocalizedMessage());
+                return null;
+            }
+
             return getRocksArray();
         }
     }
@@ -165,6 +174,14 @@ public class RockFileDAO implements RockDAO {
     @Override
     public Rock getRock(int id) {
         synchronized(rocks) {
+            try {
+                load();
+            }
+            catch(IOException e) {
+                LOG.severe(e.getLocalizedMessage());
+                return null;
+            }
+
             if (rocks.containsKey(id))
                 return rocks.get(id);
             else
@@ -193,7 +210,11 @@ public class RockFileDAO implements RockDAO {
 							rock.getPrice(),
 							rock.getSize(),
 							rock.getShape(),
-							rock.getDescription()
+							rock.getDescription(),
+							rock.get_image_url(),
+                            rock.getStock(),
+                            rock.get_custom_hat(),
+                            rock.get_custom_clothes()
 						);
             rocks.put(newRock.getId(),newRock);
             save(); // may throw an IOException
@@ -230,4 +251,39 @@ public class RockFileDAO implements RockDAO {
                 return false;
         }
     }
+
+    /**
+    ** {@inheritDoc}
+     */
+    public boolean removeStockRocks(Rock[] rockArr) throws IOException {
+    synchronized(rocks) {
+        // Create a map to store the total quantity to be removed for each rock
+        Map<Integer, Integer> rockQuantities = new HashMap<>();
+
+        // Iterate over the rockArr array and update the rockQuantities map
+        for (Rock rock : rockArr) {
+            rockQuantities.put(rock.getId(), rockQuantities.getOrDefault(rock.getId(), 0) + 1);
+        }
+
+        // Iterate over the rockQuantities map and decrease the stock for each rock
+        for (Map.Entry<Integer, Integer> entry : rockQuantities.entrySet()) {
+            Rock rock = rocks.get(entry.getKey());
+            if (rock != null) {
+                if (rock.getStock() < entry.getValue()) {
+                    return false;
+                }
+                rock.removeStock(entry.getValue());
+                rocks.put(rock.getId(), rock);
+            } else {
+                return false;
+            }
+        }
+
+        boolean success = save();
+        if (!success) {
+            return false;
+        }
+        return success;
+    }
+}
 }

@@ -8,9 +8,16 @@
 		<tr class = "rocks-in-cart" *ngFor="let rock of rocks">
 			<td>
 				<div class ="rocks-info">
-					<img [src] = "'../../../assets/' + rock.name + '.jpg'">
 					<div class = "col">
-						<p>{{rock.name}}</p>
+						<p>{{rock.name}} 
+							<span *ngIf="rock.custom_hat">
+								+{{rock.custom_hat}}
+							</span>
+							<span *ngIf="rock.custom_clothes">
+								+{{rock.custom_clothes}}
+							</span>
+							
+						</p>
 						<button (click) = "removeFromCart(rock, this.userService.getSignedInUserId())">
 							Remove
 						</button>

@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from '../message/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { RockService } from '../rock/rock.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class CartService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+	private rockService: RockService
   ) { }
 
   private log(message: string) {
@@ -33,26 +35,24 @@ export class CartService {
 			);
 	}
 
-	addToCart(rock_updating: number, id: number): Observable<any> {
+	addToCart(rock_updating: Rock, id: number): Observable<any> {
 		const url = `${this.cartUrl}`;
 		let adding = true;
 		const payload = { rock_updating, id, adding };
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`Added rock id=${rock_updating} to cart!`)),
 				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
 
-	removeFromCart(rock_updating: number, id: number): Observable<any> {
+	removeFromCart(rock_updating: Rock, id: number): Observable<any> {
 		const url = `${this.cartUrl}`;
 		let adding = false;
 		const payload = { rock_updating, id, adding };
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`Removed rock id=${rock_updating} from cart!`)),
 				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
 			);
 	}
@@ -61,10 +61,7 @@ export class CartService {
 		const url = `${this.cartUrl}/clear`;
 		const payload = { id };
 	  
-		return this.http.put(url, payload, this.httpOptions)
-		  .pipe(
-			catchError(this.handleError<any>(`clearCart user id=${id}`))
-		  );
+		return this.http.put(url, payload, this.httpOptions).pipe();
 	  }
 
 	addCart(id: number): Observable<any> {

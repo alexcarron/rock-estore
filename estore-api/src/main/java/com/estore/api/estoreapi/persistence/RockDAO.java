@@ -19,6 +19,15 @@ public interface RockDAO {
     Rock[] getRocks() throws IOException;
 
     /**
+     * Retrieves all {@linkplain Rock rocks}
+     *
+     * @return An array of {@link Rock rock} objects, may be empty
+     *
+     * @throws IOException if an issue with underlying storage
+     */
+    boolean removeStockRocks(Rock[] rockArr) throws IOException;
+    
+    /**
      * Finds all {@linkplain Rock rocks} whose name contains the given text
      *
      * @param containsText The text to match against
