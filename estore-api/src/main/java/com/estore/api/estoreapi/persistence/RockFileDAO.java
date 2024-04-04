@@ -254,15 +254,14 @@ public class RockFileDAO implements RockDAO {
     /**
     ** {@inheritDoc}
      */
-    public boolean removeStockRocks(int[] itemIds) throws IOException {
+    public boolean removeStockRocks(Rock[] rockArr) throws IOException {
         synchronized(rocks) {
-            for (int itemId : itemIds) {
-                if (rocks.containsKey(itemId)) {
-                    Rock rock = rocks.get(itemId);
+            for (Rock rock : rockArr) {
+                if (rocks.containsKey(rock.getId())) {
                     if(rock.getStock() <= 0)
                         return false;
                     rock.removeStock();
-                    rocks.put(itemId,rock);
+                    rocks.put(rock.getId(),rock);
                 }
                 else
                     return false;

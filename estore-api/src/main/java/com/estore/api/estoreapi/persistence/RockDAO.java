@@ -25,7 +25,7 @@ public interface RockDAO {
      *
      * @throws IOException if an issue with underlying storage
      */
-    boolean removeStockRocks(int[] itemIds) throws IOException;
+    boolean removeStockRocks(Rock[] rockArr) throws IOException;
     
     /**
      * Finds all {@linkplain Rock rocks} whose name contains the given text

@@ -124,7 +124,8 @@ export class RockDetailComponent {
 			description: customizedRock.description,
 			image_url: customizedRock.image_url,
 			custom_hat: customizedRock.custom_hat,
-			custom_clothes: customizedRock.custom_clothes
+			custom_clothes: customizedRock.custom_clothes,
+			stock: customizedRock.stock
 		  };
 
 		this.cartService.addToCart(filteredRock, user_id).subscribe(
