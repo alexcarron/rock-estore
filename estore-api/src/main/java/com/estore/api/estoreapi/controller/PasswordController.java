@@ -21,7 +21,7 @@ import com.estore.api.estoreapi.persistence.UserDAO;
 import com.estore.api.estoreapi.model.Password;
 
 /**
- * Handles the REST API requests for the Cart resource
+ * Handles the REST API requests for the User resource
  * <p>
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
@@ -37,7 +37,7 @@ public class PasswordController {
     /**
      * Creates a REST API controller to reponds to requests
      *
-     * @param userDAO The {@link CartDAO Cart Data Access Object} to perform CRUD operations
+     * @param userDAO The {@link UserDAO User Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
@@ -46,9 +46,9 @@ public class PasswordController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Cart carts}
+     * Responds to the GET request for a strong password
      *
-     * @return ResponseEntity with array of {@link Cart cart} objects (may be empty) and
+     * @return ResponseEntity with a strong password and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */

@@ -161,7 +161,7 @@ export class UserService {
 			this.httpOptions
 		)
 		.pipe(
-			tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
+			tap((newUser: User) => this.log(`You've successfuly signed up, ${newUser.username}`)),
 			catchError(this.handleError<User>('Either your username is incorrect or your password is not strong')),
 		)
 	}
@@ -219,7 +219,7 @@ export class UserService {
 			console.error(error); // log to console instead
 
 			// TODO: better job of transforming error for user consumption
-			this.log(`${operation} failed: ${error.message}`);
+			this.log(`${operation}`); // failed: ${error.message}
 
 			// Let the app keep running by returning an empty result.
 			return of(result as Type);
