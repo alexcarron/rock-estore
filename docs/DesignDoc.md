@@ -19,7 +19,12 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
+Party Rockers is an ecommerce website that customers can buy rocks to fufill all of their geological desires. On this website customers can sign in with their own username
+and secure password, at which point they will have access to the many rock on the website. Customers will be able to look at the details of their rocks and even customize them.
+Once they found the items of their choice they'll be able to add them to their cart at which point they will be able to checkout and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove items from the store.
+
+Remember it's not just a boulder it's a rock.
+
 
 ### Purpose
 We are developipng this website as a term project for a class in preparation of our peers using our website at the end of the semester.
@@ -51,6 +56,11 @@ They're user goals are to...
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| OO  | Object Oriented |
+| MVVM | Model View ViewModel |
+| HTML | Hypertext Markup Language |
+| CSS | Cascading Style Sheets |
+| DAO | Data Acess Object |
 
 
 ## Requirements
@@ -178,10 +188,21 @@ We have considered the following OO principles for our project:
 For Sprint 1 there were 7 user stories, all of which had all of their acceptance criteria pass.
 
 
-For Sprint 2 we planned to complete 10 user stories, of these so far
-  * 5 have passed all of their acceptance criteria
-  * 3 are partially completed
-  * 2 are yet to be tested
+For Sprint 2 we planned to complete an additional 11 user stories, at the end of which 
+  * 8 had passed all of their acceptance criteria
+  * 3 that had mostly but not fully passed their acceptance criteria.
+    The acceptance criteria that failed were 
+      * Given that I am on the products page when there are products in the inventory then I see each product and short description.
+      * * This had failed becuase we had yet to include all fields of a rock item in the details page
+      The follwing acceptance criteria failed due to the deicison of moving away from the admin using product ids and rather interacting with a GUI, as a result
+      the acceptance criteria will be modified or removed for sprint 3.
+      * Given a user is logged in as an admin when that user enters a valid product id and attempts to remove it then the product is removed from our inventory
+      * Given a user is logged in as an admin when that user enters an invalid product id and attempts to remove it then the product is not remove from our inventory
+      * Given a user is logged in as an admin when that user enters a valid product id and valid product information and attempts to updates it then the product is updated in our inventory
+      * Given a user is logged in as an admin when that user enters an invalid product id or invalid product information and attempts to update it then the product is not updated in our inventory
+
+As of Sprint 3 all failed acceptence criteria from Sprint 2 have passed.
+      
 
 ### Unit Testing and Code Coverage
 
