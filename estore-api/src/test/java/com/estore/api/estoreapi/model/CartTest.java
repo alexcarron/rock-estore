@@ -17,16 +17,18 @@ public class CartTest {
     public void testCtor() {
         // Setup
         int expected_id = 53;
-        Rock[] expected_rocks = {new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
-        new Rock(2, "Galactic age",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
-        new Rock(3, "Galactic nt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")};
+        Rock[] expected_rocks = {
+            new Rock(1, "Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(2, "Galactic age", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(3, "Galactic nt", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        };
 
         // Invoke
         Cart cart = new Cart(expected_id, expected_rocks);
 
         // Assert
         assertEquals(expected_id, cart.getId());
-        assertEquals(expected_rocks, cart.getRocks());
+        assertArrayEquals(expected_rocks, cart.getRocks());
     }
 
     @Test
