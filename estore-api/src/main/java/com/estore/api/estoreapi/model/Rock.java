@@ -147,7 +147,7 @@ public class Rock {
     /**
      * Removes one from the stock of this rock
      */
-    public void removeStock() {this.stock--;}
+    public void removeStock(int count) {this.stock-=count;}
 
 
 
