@@ -196,8 +196,17 @@ One of the classes that is purely fabricated in our project is the Password clas
 
 ### Information Expert
 
-We apply the Information Expert principle to our design with many of our domain entities. Our RockController class is an expert on managing rocks and their quantities. It includes methods for adding, removing, and updating rocks. The Rock class has its own price and description making it an expert in holding and providing information about rocks. The shopping cart class is an expert in managing the rocks selected by a customer for purchase. It can hold the selected rocks and has behaviors like adding, removing, or updating quantities of rocks in the cart.
+We apply the Information Expert principle to our design with many of our domain entities. Our RockController class is an expert on managing rocks and their quantities. It includes methods for adding, removing, and updating rocks.
 
+![RockController UML Class Diagram](rock-controller-uml-class-diagram.png)
+
+The Rock class has its own price and description making it an expert in holding and providing information about rocks.
+
+![RockController UML Class Diagram](rock-uml-class-diagram.png)
+
+The Cart class representing a shopping cart is an expert in managing the rocks selected by a customer for purchase. It can hold the selected rocks and has behaviors like adding, removing, or updating quantities of rocks in the cart.
+
+![RockController UML Class Diagram](cart-uml-class-diagram.png)
 
 -
 
