@@ -40,7 +40,9 @@ export class RockDetailComponent {
 	 */
 	readonly mockAvailableHats: Hat[] = [
 		{ name: "Baseball Cap", image_url: "https://zildjian.com/cdn/shop/products/alchemy-curve-hat-threeforths_grande.png?v=1684246018" },
-		{name: "Cowboy Hat", image_url: "https://jillcorbett.com/wp-content/uploads/2020/05/Cowboy-Hats.png"},
+		{ name: "Cowboy Hat", image_url: "https://jillcorbett.com/wp-content/uploads/2020/05/Cowboy-Hats.png"},
+		{ name: "Clown Wig", image_url: "https://www.pngall.com/wp-content/uploads/15/Clown-Wig-PNG-Photo.png"},
+		{ name: "Nerd Glasses", image_url: "https://static.vecteezy.com/system/resources/thumbnails/011/222/238/small/black-glasses-isolated-png.png"}
 	];
 
 	/**
@@ -48,7 +50,9 @@ export class RockDetailComponent {
 	 */
 	readonly mockAvailableClothing: Clothing[] = [
 		{ name: "Dwayne", image_url: "https://media.tenor.com/IyweQyb3MhIAAAAj/the-rock-sus.gif" },
-		{name: "Blazer", image_url: "https://ae01.alicdn.com/kf/Sba54dde3b8d64be2b9de7f38a8ec9a02b/Men-s-Suit-Jackets-New-Slim-Fit-Business-Casual-Jacket-Fashion-Men-s-Top-Blazer-Masculino.jpg"},
+		{ name: "Blazer", image_url: "https://ae01.alicdn.com/kf/Sba54dde3b8d64be2b9de7f38a8ec9a02b/Men-s-Suit-Jackets-New-Slim-Fit-Business-Casual-Jacket-Fashion-Men-s-Top-Blazer-Masculino.jpg"},
+		{ name: "Clown Nose", image_url: "https://boxcritters.wiki/images/8/8f/Icon_clown_nose.png"},
+		{ name: "Moustache", image_url: "https://pngimg.com/d/moustache_PNG8.png"}
 	];
 
 	selectedHatName: string = "";

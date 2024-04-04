@@ -1,12 +1,17 @@
 <div *ngIf="rock">
-  <h2>{{rock.name | uppercase}} Details</h2>
-  <div>Name: {{rock.name}}</div>
-  <div>Description: {{rock.description}}</div>
-  <div>Price: ${{rock.price}}</div>
-  <div>Type: {{rock.type}}</div>
-  <div>Size: {{rock.size}}</div>
-  <div>Shape: {{rock.shape}}</div>
-  <div>Stock: {{rock.stock}} remaining!</div>
+  <h2 class="rock-title">
+		<div class="rock-name">{{rock.name}}</div>
+		<div class="price"> ${{rock.price.toFixed(2)}}</div>
+	</h2>
+
+  <div class="description"> {{rock.description}} </div>
+
+	<div class="attributes">
+		<div> <strong>Type:</strong> {{rock.type}} </div>
+		<div> <strong>Size:</strong> {{rock.size}} Stonemasses </div>
+		<div> <strong>Shape:</strong> {{rock.shape}} </div>
+    <div> <strong>Stock:</strong> {{rock.stock}} remaining!</div>
+	</div>
 
 	<div class="rock-detail-image-display">
 		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock" style="width: 300px; height: 300px;">
@@ -14,13 +19,21 @@
 		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
 	</div>
 
-	<select *ngIf="!userService.userIsAdmin()" [(ngModel)]="selectedHatName">
-		<option  *ngFor="let hat of mockAvailableHats" [value]="hat.name">{{ hat.name }}</option>
-	</select>
+  <div class="select-input">
+		<label for="hatSelection">Select a Hat to Add</label>
+		<select id="hatSelection" [(ngModel)]="selectedHatName">
+			<option value=""> None </option>
+			<option *ngFor="let hat of mockAvailableHats" [value]="hat.name">{{ hat.name }}</option>
+		</select>
+	</div>
 
-	<select *ngIf="!userService.userIsAdmin()" [(ngModel)]="selectedClothingName">
-		<option *ngFor="let clothing of mockAvailableClothing" [value]="clothing.name">{{ clothing.name }}</option>
-	</select>
+	<div class="select-input">
+		<label for="clothingSelection">Select a Clothing to Add</label>
+		<select id="clothingSelection" [(ngModel)]="selectedClothingName">
+			<option value=""> None </option>
+			<option *ngFor="let clothing of mockAvailableClothing" [value]="clothing.name">{{ clothing.name }}</option>
+		</select>
+	</div>
 
   <div *ngIf="userService.userIsAdmin()">
     <br><br><br>
@@ -55,7 +68,7 @@
     </div>
     <button type="button" (click)="save()">save</button>
   </div>
-	<button type="button" (click)="goBack()">go back</button>
+	<button type="button" (click)="goBack()">≺ Go Back</button>
 	<button
 		*ngIf="!userService.userIsAdmin() && rock.stock > 0"
 		type="button"
@@ -63,7 +76,7 @@
 		title="add rock to cart"
 		(click)="addToCart(rock, userService.getSignedInUserId())"
 	>
-		Add to cart
+    Add To Cart
 	</button>
   <button
 		*ngIf="!userService.userIsAdmin() && rock.stock <= 0"

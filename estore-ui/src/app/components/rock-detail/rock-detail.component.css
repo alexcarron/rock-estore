@@ -28,3 +28,54 @@ img.clothing-overlay {
   width: 250px;
   height: 250px;
 }
+
+.rock-title {
+	margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.rock-name {
+  text-align: left;
+  color: #444;
+	font-weight: bold;
+	font-size: xx-large;
+	text-shadow: 1px 1px 0px #0006;
+}
+
+.price {
+	color: #0f6100;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.description {
+	font-size: 16px;
+	font-style: italic;
+}
+
+.attributes {
+	margin-top: 10px;
+}
+
+select {
+	background-color: #f0f0f0;
+  padding: 8px;
+  border: 2px solid #909090;
+  border-radius: 4px;
+	margin-top: 2px;
+  width: 100%;
+	color: #707070;
+	font-weight: bold;
+}
+
+div.select-input {
+	margin: 15px 0px;
+}
+
+div.select-input > label {
+	font-weight: bold;
+	padding-left: 2px;
+	font-size: 20px;
+	color: #606060;
+}
