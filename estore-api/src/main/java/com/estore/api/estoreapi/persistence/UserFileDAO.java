@@ -2,6 +2,7 @@ package com.estore.api.estoreapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.estore.api.estoreapi.model.Password;
 import com.estore.api.estoreapi.model.User;
 
 /**
@@ -191,10 +193,23 @@ public class UserFileDAO implements UserDAO {
                     return null;
                 }
             }
+            
+            if(!Password.validPassword(user.getPassword())){
+                return null;
+            }
+            
+            // This hashes the password before the user is added to the system
+            String hashedPassword = "";
+            try{
+                hashedPassword = Password.hashPassword(user.getPassword());
+            } catch(NoSuchAlgorithmException e){
+                return null;
+            }
+
             User newUser = new User(
 							nextId(),
 							user.getName(),
-							user.getPassword()
+							hashedPassword
                             );
             users.put(newUser.getId(),newUser);
             save(); // may throw an IOException
@@ -229,6 +244,16 @@ public class UserFileDAO implements UserDAO {
             }
             else
                 return false;
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public String generateStrongUserPassword() throws IOException {
+        synchronized(users) {
+            return Password.createStrongPassword();
         }
     }
 }

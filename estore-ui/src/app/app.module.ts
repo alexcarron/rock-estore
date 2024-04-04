@@ -14,6 +14,7 @@ import { RockSearchComponent } from './components/rock-search/rock-search.compon
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { CartComponent } from './components/cart/cart.component';
+import { PasswordSettingsComponent } from './components/password-settings/password-settings.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -30,6 +31,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component'; //
     LoginComponent,
     LogoutComponent,
     CartComponent,
+    PasswordSettingsComponent,
     CheckoutComponent,
   ],
   imports: [

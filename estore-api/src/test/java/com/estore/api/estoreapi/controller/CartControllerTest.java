@@ -142,7 +142,7 @@ public class CartControllerTest {
         ResponseEntity<Cart> response = cartController.updateCart(payload);
 
         // Assert
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedCart, response.getBody());
     }
 

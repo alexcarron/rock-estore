@@ -26,6 +26,7 @@ public class RockTest {
         String expected_custom_hat = "baseball cap";
         String expected_custom_clothes = "blazer";
 
+        int expected_stock = 33;
 
         // Invoke
         Rock rock = new Rock(
@@ -38,7 +39,8 @@ public class RockTest {
 					expected_description,
 					expected_image_url,
           expected_custom_hat,
-          expected_custom_clothes
+          expected_custom_clothes,
+          expected_stock
 				);
 
         // Analyze
@@ -51,6 +53,7 @@ public class RockTest {
         assertEquals(expected_image_url, rock.get_image_url());
         assertEquals(expected_custom_hat, rock.get_custom_hat());
         assertEquals(expected_custom_clothes, rock.get_custom_clothes());
+        assertEquals(expected_stock, rock.getStock());
     }
 
     @Test
@@ -65,10 +68,11 @@ public class RockTest {
 				String description = "A rock";
 				String image_url = "media/images/rocks/andesite.png";
         String custom_hat = "";
-        String custom_clothes = "";
+        String custom_clothes = "";        int stock = 33;
+
 
         // Invoke
-        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, custom_hat, custom_clothes);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, custom_hat, custom_clothes, stock);
 
 
         String expected_name = "Galactic Agent";
@@ -92,11 +96,12 @@ public class RockTest {
 				String description = "A rock";
 				String image_url = "media/images/rocks/andesite.png";
         String custom_hat = "";
-        String custom_clothes = "";
+        String custom_clothes = "";        int stock = 33;
 
-        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url);
 
-        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, custom_hat, custom_clothes);
+        String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url, stock);
+
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, custom_hat, custom_clothes, stock);
 
         // Invoke
         String actual_string = rock.toString();

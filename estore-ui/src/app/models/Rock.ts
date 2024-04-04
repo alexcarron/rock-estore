@@ -9,4 +9,5 @@ export interface Rock {
 	image_url: string;
 	custom_hat: string;
 	custom_clothes:	string;
+	stock: number;
 }

@@ -42,8 +42,8 @@ public class UserFileDAOTest {
         mockObjectMapper = mock(ObjectMapper.class);
         testUsers = new User[3];
         testUsers[0] = new User(10, "admin", "admin");
-        testUsers[1] = new User(11, "Galactic Agent",  "igneous");
-        testUsers[2] = new User(12, "Ice Gladiator",  "sedimentary");
+        testUsers[1] = new User(11, "Galactic Agent",  "Igenous1!");
+        testUsers[2] = new User(12, "Ice Gladiator",  "Sedimentary1!");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the user array above
@@ -119,9 +119,9 @@ public class UserFileDAOTest {
     @Test
     public void testCreateUser() {
         // Setup
-        User user = new User(13, "Wonder-Person",  "johnson");
+        User user = new User(13, "Wonder-Person",  "Johnson1!");
 
-        User sameName = new User(14,"Galactic Agent", "iceicebaby");
+        User sameName = new User(14,"Galactic Agent", "Iceicebaby1!");
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.createUser(user),
@@ -188,7 +188,7 @@ public class UserFileDAOTest {
                                     any(User[].class)
                                 );
 
-        User user = new User(102, "The Rock Johnson",  "dwayne123");
+        User user = new User(102, "The Rock Johnson",  "Dwayne123!");
 
         assertThrows(
                     IOException.class,
@@ -229,7 +229,7 @@ public class UserFileDAOTest {
     @Test
     public void testUpdateUserNotFound() {
         // Setup
-        User user = new User(98, "Bolt",  "igneous");
+        User user = new User(98, "Bolt",  "Igenous1!");
 
         // Invoke
         User result = assertDoesNotThrow(() -> userFileDAO.updateUser(user),

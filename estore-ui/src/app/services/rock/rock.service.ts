@@ -36,7 +36,6 @@ export class RockService {
 	getRocks(): Observable<Rock[]> {
 		return this.http.get<Rock[]>(this.rocksUrl)
 			.pipe(
-				tap(() => this.log('Fetched rocks')),
 				catchError(
 					this.handleError<Rock[]>('getRocks', [])
 				)
@@ -48,6 +47,7 @@ export class RockService {
 
 		return this.http.get<Rock>(url)
 			.pipe(
+				tap(() => this.log(`Fetched rock id=${id}`)),
 				catchError(this.handleError<Rock>(`getRock id=${id}`))
 			);
 	}
@@ -96,12 +96,6 @@ export class RockService {
 			`${this.rocksUrl}/?name=${search_term}`
 		)
 		.pipe(
-			tap(rocks => {
-				if (rocks.length)
-					this.log(`Found rocks matching "${search_term}"`);
-				else
-					this.log(`No rocks matching "${search_term}"`);
-			}),
 			catchError(this.handleError<Rock[]>('searchRocks', []))
 		);
 	}

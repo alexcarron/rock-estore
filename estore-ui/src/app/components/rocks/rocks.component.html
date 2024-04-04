@@ -15,11 +15,9 @@
     Add rock
   </button>
 </div>
-<div>
-	<div class="rock_button" *ngFor="let rock of rocks" >
-		<a routerLink="/detail/{{rock.id}}">
+<div class = "rock-grid">
+	<div class="rock-button" routerLink = "/detail/{{rock.id}}" *ngFor="let rock of rocks" >
 			<span class="badge">{{rock.id}}</span> {{rock.name}}
-		</a>
 
     <button
 			*ngIf="userService.userIsAdmin()"

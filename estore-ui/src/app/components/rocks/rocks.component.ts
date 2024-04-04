@@ -51,6 +51,8 @@ export class RocksComponent {
 
 	delete(rock_deleting: Rock): void {
 		this.rocks = this.rocks.filter(rock => rock !== rock_deleting);
-		this.rockService.deleteRock(rock_deleting.id).subscribe();
+		this.rockService.deleteRock(rock_deleting.id).subscribe(
+			() => this.log(`${rock_deleting.name} has been deleted`),
+		);
 	}
 }

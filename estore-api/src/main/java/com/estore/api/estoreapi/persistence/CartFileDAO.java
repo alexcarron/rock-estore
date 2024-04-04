@@ -181,9 +181,19 @@ public class CartFileDAO implements CartDAO{
         synchronized(carts) {
             if (carts.containsKey(id)) {
                 Cart cart = carts.get(id);
-                cart.clearItems();
-                save();
-                return cart;
+                int[] rockIds = cart.getItemIds();
+                
+                RockFileDAO rockDAO = new RockFileDAO("data/rocks.json", objectMapper);
+                
+                boolean success = rockDAO.removeStockRocks(rockIds);
+                
+                if(success) {
+                    cart.clearItems();
+                    save();
+                    return cart;
+                }
+                else
+                    return null;
             }
             else
                 return null;

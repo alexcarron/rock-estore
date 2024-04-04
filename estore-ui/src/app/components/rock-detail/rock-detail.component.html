@@ -1,16 +1,16 @@
 <div *ngIf="rock">
   <h2>{{rock.name | uppercase}} Details</h2>
-  <div>name: {{rock.name}}</div>
-  <div>description: {{rock.description}}</div>
-  <div>price: {{rock.price}}</div>
-  <div>type: {{rock.type}}</div>
-  <div>size: {{rock.size}}</div>
-  <div>shape: {{rock.shape}}</div>
-  <div>shape: {{rock.image_url}}</div>
+  <div>Name: {{rock.name}}</div>
+  <div>Description: {{rock.description}}</div>
+  <div>Price: ${{rock.price}}</div>
+  <div>Type: {{rock.type}}</div>
+  <div>Size: {{rock.size}}</div>
+  <div>Shape: {{rock.shape}}</div>
+  <div>Stock: {{rock.stock}} remaining!</div>
 
 	<div class="rock-detail-image-display">
-		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock">
-		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay" >
+		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock" style="width: 300px; height: 300px;">
+		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay">
 		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
 	</div>
 
@@ -49,17 +49,29 @@
       <label for="rock-price">Edit description: </label>
       <input id="rock-price" [(ngModel)]="rock.description" placeholder="description">
     </div>
+    <div>
+      <label for="rock-stock">Edit stock: </label>
+      <input id="rock-stock" [(ngModel)]="rock.stock" placeholder="stock">
+    </div>
     <button type="button" (click)="save()">save</button>
   </div>
 	<button type="button" (click)="goBack()">go back</button>
 	<button
-		*ngIf="!userService.userIsAdmin()"
+		*ngIf="!userService.userIsAdmin() && rock.stock > 0"
 		type="button"
 		class="add"
 		title="add rock to cart"
 		(click)="addToCart(rock, userService.getSignedInUserId())"
 	>
 		Add to cart
+	</button>
+  <button
+		*ngIf="!userService.userIsAdmin() && rock.stock <= 0"
+		type="button"
+		class="stock"
+		title="rock is out of stock"
+	>
+		OUT OF STOCK
 	</button>
 
 </div>

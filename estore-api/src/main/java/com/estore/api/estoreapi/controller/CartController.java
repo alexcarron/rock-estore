@@ -141,7 +141,7 @@ public class CartController {
             : cartDao.deleteItem(rock, userId);
 
             if (updatedCart != null)
-                return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);
+                return new ResponseEntity<Cart>(updatedCart,HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -156,8 +156,8 @@ public class CartController {
      *
      * @param rock - The {@link Rock rock} to create
      *
-     * @return ResponseEntity with created {@link Rock rock} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Rock rock} object already exists<br>
+     * @return ResponseEntity with updated {@link Cart cart} and HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INSUFFICIENT_STORAGE if not enough {@link Rock rock}s exist in storage<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("/clear")
@@ -168,11 +168,15 @@ public class CartController {
         
         try {
             Cart updatedCart = cartDao.clearCart(cartId);
-
-            if (updatedCart != null)
-                return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            System.out.println(updatedCart);
+            if (updatedCart != null) {
+                LOG.info("SUCCESS UPDATING CART " + cartId);
+                return new ResponseEntity<Cart>(updatedCart, HttpStatus.OK);
+            }
+            else {
+                LOG.info("FAILURE UPDATING CART " + cartId);
+                return new ResponseEntity<Cart>(updatedCart, HttpStatus.INSUFFICIENT_STORAGE);
+            }
         }
         catch(IOException e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
