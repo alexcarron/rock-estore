@@ -181,17 +181,41 @@ We have considered the following OO principles for our project:
 
 ### Single Responsibility
 
-Single Responsibility is implemented through our controller classes, which handle all our API calls without concerning themselves with how the data is stored. Similarly, the DAO does not worry about how data is requested; it simply interacts with the controller. By examining the tiers and layers diagram in the architecture and design summary, one can observe the varied responsibilities of the classes in the model. Some perform the actual modeling, while others handle persistence for API call handling and storage. Within these different tiers, there are classes dedicated to managing specific information, whether it pertains to users, carts, or rocks.
+Single Responsibility is implemented through our controller classes, which handle all our API calls without concerning themselves with how the data is stored.
+
+![RockController UML Class Diagram](rock-controller-uml-class-diagram.png)
+
+Similarly, the DAO does not worry about how data is requested; it simply interacts with the controller.
+
+![RockDAO UML Class Diagram](rock-dao-uml-class-diagram.png)
+
+By examining the tiers and layers diagram in the architecture and design summary, one can observe the varied responsibilities of the classes in the model. Some perform the actual modeling, while others handle persistence for API call handling and storage. Within these different tiers, there are classes dedicated to managing specific information, whether it pertains to users, carts, or rocks.
+
+![ViewModel and Model Only Architecture Tiers and Layers Diagram](viewmodel-model-only-architecture-tiers-and-layers.png)
+
 
 ### Dependency Inversion
 
 Dependency Inversion dictates that high-level modules should not rely on lower-level modules; instead, they should each depend on abstractions. We implemented this principle in our model through the RockDao, UserDao, and CartDao classes. These classes are abstract and define method headers that can be utilized by a lower-level class to specify the behavior of each method, allowing a higher-level module to call these methods to retrieve information. If the method of accessing or storing our objects changes, we can create a new implementation of the class without affecting our higher-level HTTP calls. As evident in our model class diagrams, the DAO classes are abstract interfaces for the FileDao classes to implement. Additionally, the controllers in the model class diagram utilize these interfaces rather than directly connecting to the FileDao implementations. This is further supported by the following code snippet, which displays the constructor for the Rock Controller and demonstrates how a dependency can be injected as long as it implements the RockDao interface.
 
+
+#### CartDAO Dependency Inversion Class Diagram
+![CartDAO Dependency Inversion UML Class Diagram](cart-dao-dependency-inversion-uml-class-diagram.png)
+
+#### RockController Constructor Which Uses Depencency Inversion
 ![RockController Constructor](rockController-constructor.jpg)
 
 ### Pure Fabrication
 
 One of the classes that is purely fabricated in our project is the Password class. The Password class does not represent an entity as depicted in our domain model. However, to maintain single responsibility and keep password checking and generation separate from the user class, we decided to create the Password class within the model, as illustrated in both our model class diagram and tiers-layers diagram.
+
+#### Password Class Model
+![Password Model UML Class Diagram](password-uml-class-diagram.png)
+
+#### Password Controller Model
+
+![PasswordController UML Class Diagram](password-controller-uml-class-diagram.png)
+
 
 
 ### Information Expert
@@ -202,11 +226,11 @@ We apply the Information Expert principle to our design with many of our domain 
 
 The Rock class has its own price and description making it an expert in holding and providing information about rocks.
 
-![RockController UML Class Diagram](rock-uml-class-diagram.png)
+![Rock Model UML Class Diagram](rock-uml-class-diagram.png)
 
 The Cart class representing a shopping cart is an expert in managing the rocks selected by a customer for purchase. It can hold the selected rocks and has behaviors like adding, removing, or updating quantities of rocks in the cart.
 
-![RockController UML Class Diagram](cart-uml-class-diagram.png)
+![Cart Model UML Class Diagram](cart-uml-class-diagram.png)
 
 -
 
