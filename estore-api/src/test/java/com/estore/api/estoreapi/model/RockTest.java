@@ -46,7 +46,7 @@ public class RockTest {
         assertEquals(expected_shape, rock.getShape());
         assertEquals(expected_description, rock.getDescription());
         assertEquals(expected_image_url, rock.getImageUrl());
-        assertEquals(expected_image_url, rock.getStock());
+        assertEquals(expected_stock, rock.getStock());
     }
 
     @Test

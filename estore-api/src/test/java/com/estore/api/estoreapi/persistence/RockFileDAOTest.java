@@ -130,7 +130,7 @@ public class RockFileDAOTest {
     @Test
     public void testUpdateRock() {
         // Setup
-        Rock rock = new Rock(99, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", 32);
+        Rock rock = testRocks[0];
 
         // Invoke
         Rock result = assertDoesNotThrow(() -> rockFileDAO.updateRock(rock),
