@@ -75,12 +75,10 @@ public class Cart {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Cart [id=" + id + ", rocks=");
-        rocks.forEach(rock -> sb.append(rock.toString()).append(", "));
-        if (!rocks.isEmpty()) {
-            sb.setLength(sb.length() - 2); // Remove the last comma and space
+        String rockString = "Cart: " + id + " Rocks: ";
+        for (Rock rock: rocks) {
+            rockString += rock.toString() + " ";
         }
-        sb.append("]");
-        return sb.toString();
+        return rockString;
     }
 }

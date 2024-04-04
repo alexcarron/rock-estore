@@ -16,6 +16,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 import com.estore.api.estoreapi.persistence.CartDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -57,7 +58,7 @@ public class CartControllerTest {
      */
     @Test
     void testGetItemsFromCartFound() throws IOException {
-        Rock[] rocks = {new Rock(1, "Rock1", "Type1", 1.0, 1.0, "Round", "Desc", "url", "hat1", "clothes1")};
+        Rock[] rocks = {new Rock(1, "Rock1", "Type1", 1.0, 1.0, "Round", "Desc", "url", 0, "hat1", "clothes1")};
         Cart expectedCart = new Cart(1, rocks);
 
         when(mockCartDao.getCart(1)).thenReturn(expectedCart);
@@ -102,6 +103,25 @@ public class CartControllerTest {
         ResponseEntity<Cart[]> response = cartController.getCarts();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertArrayEquals(carts, response.getBody());
+    }
+
+    @Test
+    void testUpdateCartIOException() throws IOException {
+        // Setup
+        Map<String, Object> payload = new HashMap<>();
+        Rock rock = new Rock(1, "Rock1", "Type1", 1.0, 1.0, "Round", "Desc", "url", 0, "hat1", "clothes1");
+        payload.put("rock_updating", rock);
+        payload.put("id", 1);
+        payload.put("adding", true);
+
+        when(mockCartDao.addItem(rock, 1)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Cart> response = cartController.updateCart(payload);
+
+        // Assert
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertNull(response.getBody());
     }
 
     /*

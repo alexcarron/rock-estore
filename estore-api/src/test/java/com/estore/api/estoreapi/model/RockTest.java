@@ -38,9 +38,9 @@ public class RockTest {
 					expected_shape,
 					expected_description,
 					expected_image_url,
+          expected_stock,
           expected_custom_hat,
-          expected_custom_clothes,
-          expected_stock
+          expected_custom_clothes
 				);
 
         // Analyze
@@ -72,7 +72,7 @@ public class RockTest {
 
 
         // Invoke
-        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, custom_hat, custom_clothes, stock);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, stock, custom_hat, custom_clothes);
 
 
         String expected_name = "Galactic Agent";
@@ -96,12 +96,13 @@ public class RockTest {
 				String description = "A rock";
 				String image_url = "media/images/rocks/andesite.png";
         String custom_hat = "";
-        String custom_clothes = "";        int stock = 33;
+        String custom_clothes = "";        
+        int stock = 33;
 
 
         String expected_string = String.format(Rock.STRING_FORMAT, id, name, type, price, size, shape, description, image_url, stock);
 
-        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, custom_hat, custom_clothes, stock);
+        Rock rock = new Rock(id, name, type, price, size, shape, description, image_url, stock, custom_hat, custom_clothes);
 
         // Invoke
         String actual_string = rock.toString();
