@@ -48,9 +48,9 @@ public class RockTest {
         assertEquals(expected_size, rock.getSize());
         assertEquals(expected_shape, rock.getShape());
         assertEquals(expected_description, rock.getDescription());
-        assertEquals(expected_image_url, rock.getImageUrl());
-        assertEquals(expected_custom_hat, rock.getCustomHat());
-        assertEquals(expected_custom_clothes, rock.getCustomClothes());
+        assertEquals(expected_image_url, rock.get_image_url());
+        assertEquals(expected_custom_hat, rock.get_custom_hat());
+        assertEquals(expected_custom_clothes, rock.get_custom_clothes());
     }
 
     @Test

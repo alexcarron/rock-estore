@@ -38,7 +38,7 @@ public class CartControllerTest {
     @BeforeEach
     public void setupCartController() {
         mockCartDao = mock(CartDAO.class);
-        cartController = new CartController(mockCartDao);
+        cartController = new CartController(mockCartDao, null);
     }
 
     /**

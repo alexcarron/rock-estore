@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.estore.api.estoreapi.persistence.CartDAO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.estore.api.estoreapi.model.Cart;
 import com.estore.api.estoreapi.model.Rock;
 
@@ -34,6 +36,7 @@ import com.estore.api.estoreapi.model.Rock;
  @RequestMapping("cart")
 public class CartController {
     private static final Logger LOG = Logger.getLogger(CartController.class.getName());
+    private ObjectMapper objectMapper;
     private CartDAO cartDao;
 
     /**
@@ -43,8 +46,9 @@ public class CartController {
      * <br>
      * This dependency is injected by the Spring Framework
      */
-    public CartController(CartDAO cartDao) {
+    public CartController(CartDAO cartDao, ObjectMapper objectMapper) {
         this.cartDao = cartDao;
+        this.objectMapper = objectMapper;
     }
 
     /**
@@ -107,10 +111,23 @@ public class CartController {
     @PutMapping("")
     public ResponseEntity<Cart> updateCart(@RequestBody Map<String, Object> payload) {
         Rock rock = null;
-        if(payload.get("rock_updating") instanceof Rock) 
-            rock = (Rock) payload.get("rock_updating");
-        else {
-            return new ResponseEntity<>(HttpStatus.IM_USED);
+        try {
+            // Extract the rock_updating part of the payload and convert it to a Rock object
+            if(payload.containsKey("rock_updating")) {
+                LOG.info("found it!");
+
+                Object rockUpdating = payload.get("rock_updating");
+                String rockUpdatingStr = objectMapper.writeValueAsString(rockUpdating);
+
+                LOG.info(rockUpdatingStr);
+                rock = objectMapper.convertValue(rockUpdating, Rock.class);
+            } else {
+                return new ResponseEntity<>(HttpStatus.IM_USED);
+            }
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
         
         int userId = (int) payload.get("id");

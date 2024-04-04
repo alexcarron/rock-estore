@@ -113,11 +113,23 @@ export class RockDetailComponent {
 		// Add the selected hat and clothes to the rock object
 		customizedRock.custom_hat = this.selectedHatName;
 		customizedRock.custom_clothes = this.selectedClothingName;
-		this.log(`${customizedRock.custom_hat} and ${customizedRock.custom_clothes} have been added to the rock!`)
-		
-		this.cartService.addToCart(customizedRock.id, user_id).subscribe(
-			() => this.log(`${customizedRock.name} has been added to your cart!`),
-			error => this.log(`An error occurred while adding ${customizedRock.name} to cart`)
+
+		const filteredRock: Rock = {
+			id: customizedRock.id,
+			name: customizedRock.name,
+			type: customizedRock.type,
+			price: customizedRock.price,
+			size: customizedRock.size,
+			shape: customizedRock.shape,
+			description: customizedRock.description,
+			image_url: customizedRock.image_url,
+			custom_hat: customizedRock.custom_hat,
+			custom_clothes: customizedRock.custom_clothes
+		  };
+
+		this.cartService.addToCart(filteredRock, user_id).subscribe(
+			() => this.log(`${filteredRock.name} has been added to your cart!`),
+			error => this.log(`An error occurred while adding ${filteredRock.name} to cart`)
 		);
 	}
 }

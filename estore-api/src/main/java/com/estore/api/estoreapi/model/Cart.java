@@ -1,7 +1,9 @@
 package com.estore.api.estoreapi.model;
 
 import java.util.logging.Logger;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -16,7 +18,7 @@ public class Cart {
     static final String STRING_FORMAT = "cart [id=%d,item_ids=%s]";
 
     @JsonProperty("id") private int id;
-    @JsonProperty("rocks") private Rock[] rocks;
+    @JsonProperty("rocks") private List<Rock> rocks;
 
     /**
      * Create a user cart with the given id and item ids
@@ -30,11 +32,11 @@ public class Cart {
      * value, i.e. 0 for int
      */
     public Cart(
-			@JsonProperty("id") int id,
-			@JsonProperty("rocks") Rock[] rocks
-	    ) {
+        @JsonProperty("id") int id,
+        @JsonProperty("rocks") Rock[] rocksArray
+        ) {
         this.id = id;
-        this.rocks = rocks;
+        this.rocks = rocksArray != null ? new ArrayList<>(Arrays.asList(rocksArray)) : new ArrayList<>();
     }
 
     /**
@@ -47,37 +49,25 @@ public class Cart {
      * Retrieves the ids of the rocks in the cart
      * @return The ids of the rocks in the cart
      */
-    public Rock[] getRocks() {return rocks;}
+    public Rock[] getRocks() {return rocks.toArray(new Rock[0]);}
 
     /**
      * Appends itemId onto the item_ids list
      */
     public void appendItem(Rock newRock) {
-        rocks = Arrays.copyOf(rocks, rocks.length + 1);
-        rocks[rocks.length - 1] = newRock;
+        rocks.add(newRock);
     }
 
     /**
      * Removes the first instance of an itemId from the item_ids list
      */
     public void removeItem(Rock remRock) {
-        Rock[] new_rocks = new Rock[rocks.length - 1];
-        boolean foundFirstItem = false;
-        for(int i=0; i<rocks.length; i++) {
-            if(rocks[i].getId() == remRock.getId() && 
-            rocks[i].getCustomHat() == remRock.getCustomHat() && 
-            rocks[i].getCustomClothes() == remRock.getCustomClothes() && !foundFirstItem)
-                foundFirstItem = true;
-            else if (foundFirstItem)
-                new_rocks[i-1] = rocks[i];
-            else 
-                new_rocks[i] = rocks[i];
-        }
-        rocks = new_rocks;
+        rocks.remove(remRock);
     }
+    
 
     public void clearItems() {
-        rocks = new Rock[0];
+        rocks.clear();
     }
 
     /**
@@ -85,6 +75,12 @@ public class Cart {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id, Arrays.toString(rocks));
+        StringBuilder sb = new StringBuilder("Cart [id=" + id + ", rocks=");
+        rocks.forEach(rock -> sb.append(rock.toString()).append(", "));
+        if (!rocks.isEmpty()) {
+            sb.setLength(sb.length() - 2); // Remove the last comma and space
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

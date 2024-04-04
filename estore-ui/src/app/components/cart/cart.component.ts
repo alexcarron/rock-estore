@@ -41,7 +41,7 @@ export class CartComponent {
 
   removeFromCart(rock_removing_from_cart: Rock, user_id: number): void {
     this.rocks = this.rocks.filter(rock => rock !== rock_removing_from_cart);
-		this.cartService.removeFromCart(rock_removing_from_cart.id, user_id).subscribe();
+		this.cartService.removeFromCart(rock_removing_from_cart, user_id).subscribe();
 	}
 
   calculateCartTotal(): number {

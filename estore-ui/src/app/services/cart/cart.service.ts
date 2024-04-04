@@ -33,27 +33,28 @@ export class CartService {
 			);
 	}
 
-	addToCart(rock_updating: number, id: number): Observable<any> {
+	addToCart(rock_updating: Rock, id: number): Observable<any> {
 		const url = `${this.cartUrl}`;
 		let adding = true;
 		const payload = { rock_updating, id, adding };
 
+		this.log(JSON.stringify(rock_updating))
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`Added rock id=${rock_updating} to cart!`)),
-				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
+				tap(() => this.log(`Added rock id=${rock_updating.id} customize=|${rock_updating.custom_hat}| |${rock_updating.custom_clothes}| to cart!`)),
+				catchError(this.handleError<any>(`addToCart rock id=${rock_updating.id} user id=${id}`))
 			);
 	}
 
-	removeFromCart(rock_updating: number, id: number): Observable<any> {
+	removeFromCart(rock_updating: Rock, id: number): Observable<any> {
 		const url = `${this.cartUrl}`;
 		let adding = false;
 		const payload = { rock_updating, id, adding };
 
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
-				tap(() => this.log(`Removed rock id=${rock_updating} from cart!`)),
-				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating} user id=${id}`))
+				tap(() => this.log(`Removed rock id=${rock_updating.id} from cart!`)),
+				catchError(this.handleError<any>(`removeFromCart rock id=${rock_updating.id} user id=${id}`))
 			);
 	}
 

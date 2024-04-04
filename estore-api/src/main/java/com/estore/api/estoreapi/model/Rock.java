@@ -1,5 +1,6 @@
 package com.estore.api.estoreapi.model;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,8 +25,6 @@ public class Rock {
     @JsonProperty("image_url") private String image_url;
     @JsonProperty("custom_hat") private String custom_hat;
     @JsonProperty("custom_clothes") private String custom_clothes;
-
-
 
     /**
      * Create a rock with the given id, price, type, size, shape, description, and image_url
@@ -121,19 +120,19 @@ public class Rock {
      * Gets the image url of the rock
      * @return The rock's image url
      */
-     public String getImageUrl() {return this.image_url;}
+     public String get_image_url() {return this.image_url;}
 
      /**
      * Gets the name of the custom hat
      * @return The custom hat
      */
-    public String getCustomHat() {return this.custom_hat;}
+    public String get_custom_hat() {return this.custom_hat;}
 
     /**
      * Gets the name of the custom clothes
      * @return The custom clothes
      */
-    public String getCustomClothes() {return this.custom_clothes;}
+    public String get_custom_clothes() {return this.custom_clothes;}
 
 
     /**
@@ -146,16 +145,18 @@ public class Rock {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Rock rock = (Rock) obj;
-        return id == rock.id &&
-            Double.compare(rock.price, price) == 0 &&
-            Double.compare(rock.size, size) == 0 &&
-            name.equals(rock.name) &&
-            type.equals(rock.type) &&
-            shape.equals(rock.shape) &&
-            description.equals(rock.description) &&
-            image_url.equals(rock.image_url);
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Rock rock = (Rock) obj;
+    return id == rock.id &&
+        Double.compare(rock.price, price) == 0 &&
+        Double.compare(rock.size, size) == 0 &&
+        name.equals(rock.name) &&
+        type.equals(rock.type) &&
+        shape.equals(rock.shape) &&
+        description.equals(rock.description) &&
+        image_url.equals(rock.image_url) &&
+        Objects.equals(custom_hat, rock.custom_hat) &&  // Use Objects.equals for potential nulls
+        Objects.equals(custom_clothes, rock.custom_clothes);
     }
 }
