@@ -55,15 +55,18 @@ They're user goals are to...
 
 | Term | Definition |
 |------|------------|
-| SPA | Single Page |
+| SPA | Single Page Application |
 | OO  | Object Oriented |
 | MVVM | Model View ViewModel |
 | HTML | Hypertext Markup Language |
 | CSS | Cascading Style Sheets |
-| DAO | Data Acess Object |
+| JS | JavaScript |
+| TS | TypeScript |
+| DAO | Data Access Object |
 | API | Application Programming Interface |
 | UI | User Interface |
 | GUI | Graphical User Interface |
+| REST | Representational State Transfer |
 
 
 ## Requirements
@@ -73,7 +76,7 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
-Enable users to register and log in with basic authentication. Customers can browse a list of rocks, search by name, add/remove items from their cart, and proceed to checkout. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
+Enable users to register and log in with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove items from their cart, and proceed to checkout. They may also add customization options to their items before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
 
 
 ### MVP Features
@@ -100,7 +103,7 @@ This section describes the application domain.
 > can discuss the more important domain entities and their relationship
 > to each other._
 
-The domain of this application is an e-store system where users interact with products in an inventory. Users, who can be either an owner or customers, register, log in, and log out of the e-store. Users browse products in the inventory, search for specific items. Only customers add them to their cart and proceed to checkout. Only owners can manage products in the inventory.
+The domain of this application is an e-store system where users interact with products in an inventory. Users, who can be either an owner or customers, register, log in, log out of, change their password for, or generate a psasword for the e-store. Users browse products in the inventory, search for specific items. Only customers manage items in their cart, customize products, and proceed to checkout. Only owners can manage products in the inventory.
 
 
 ## Architecture and Design
@@ -108,7 +111,6 @@ The domain of this application is an e-store system where users interact with pr
 ### Summary
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture.
-**NOTE**: detailed diagrams are required in later sections of this document.
 
 ![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
 
@@ -133,10 +135,23 @@ When the user first opens up the website they will be placed on the sign up/sign
 
 ### ViewModel Tier
 
-  * RockController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the  rock model takes place. This class creates the urls for the calls, and defines what functions it will call, status codes to return and error handles.
-  * UserController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the User model takes place. This allows for calls to create new users, updating users, retrieving users, and gathering the information necessary to sign in users.
-  * CartController Class - This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to add, delete, and view the shopping cart.
-  * PasswordController Class - This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to generate a strong password.
+
+#### RockController Class
+
+This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the  rock model takes place. This class creates the urls for the calls, and defines what functions it will call, status codes to return and error handles.
+
+#### UserController Class
+
+This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the User model takes place. This allows for calls to create new users, updating users, retrieving users, and gathering the information necessary to sign in users.
+
+#### CartController Class
+
+This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to add, delete, and view the shopping cart.
+
+#### PasswordController Class
+
+This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to generate a strong password.
+
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
 > Tier above._
@@ -144,17 +159,45 @@ When the user first opens up the website they will be placed on the sign up/sign
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 >
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+
+#### ViewModel UML Class Diagram
+![ViewModel Classes UML Class Diagram](controller-classes-uml-class-diagram.png)
 
 ### Model Tier
 
-  * Rock - This class defines what a rock object should look like, and the properties it holds.
-  * RockDao - This class creates an interface in order to access or manipulate the information related to the rock object which can then be implemented by some storage system.
-  * User -  This class defines what a user object should look like, and the properties it holds.
-  * UserDao - This class creates an interface in order to access or manipulate the information related to a user which can then be implemented by some storage system.
-  * Cart - This class defines what a shopping cart object should look like, and the properties it holds.
-  * CartDao - This class creates an interface in order to access or manipulate the information related to a shopping cart which can then be implemented by some storage system.
-  * Password - This class handles the methods for checking if a password meets our security requirments, hashing passwords, and generating strong passwords.
+#### Rock
+
+This class defines what a rock object should look like, and the properties it holds.
+
+
+#### RockDao
+
+This class creates an interface in order to access or manipulate the information related to the rock object which can then be implemented by some storage system.
+
+
+#### User
+
+ This class defines what a user object should look like, and the properties it holds.
+
+
+#### UserDao
+
+This class creates an interface in order to access or manipulate the information related to a user which can then be implemented by some storage system.
+
+
+#### Cart
+
+This class defines what a shopping cart object should look like, and the properties it holds.
+
+
+#### CartDao
+
+This class creates an interface in order to access or manipulate the information related to a shopping cart which can then be implemented by some storage system.
+
+
+#### Password
+
+This class handles the methods for checking if a password meets our security requirments, hashing passwords, and generating strong passwords.
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -165,17 +208,25 @@ The model tier is the core of the application. It defines essential classes and 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 >
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
+
+#### Model UML Class Diagram
+![Model UML Class Diagram](model-classes-uml-class-diagram.png)
+
+#### Data Access Objects UML Class Diagram
+![Data Access Objects UML Class Diagram](dao-classes-uml-class-diagram.png)
+
+#### Model and ViewModel Tier UML Class Diagram
+![Model and ViewModel Tier UML Class Diagram](view-viewmodel-uml-class-diagram.png)
 
 ## OO Design Principles
 
 We have considered the following OO principles for our project:
-  * Single Responsility - Each class is responsible for one task and should be very good at that one task
-  * Dependency Inversion - High level classes should not rely on lower level classes instead they should rely on abstractions
-  * Information Expert - The class that has the information needed to complete a task should be the one to implement it
-  * Open/Closed - A class should be extended by another class not modified
-  * Law of Demeter - Keep coupling low. Meaning that a class should only use the methods of the classes directly linked to it.
-  * Pure Fabrication - Creating helper classes to maintain single responsibility
+  * **Single Responsility:** Each class is responsible for one task and should be very good at that one task
+  * **Dependency Inversion:** High level classes should not rely on lower level classes instead they should rely on abstractions
+  * **Information Expert:** The class that has the information needed to complete a task should be the one to implement it
+  * **Open/Closed:** A class should be extended by another class not modified
+  * **Law of Demeter:** Keep coupling low. Meaning that a class should only use the methods of the classes directly linked to it.
+  * **Pure Fabrication:** Creating helper classes to maintain single responsibility
 
 > _**[Sprint 2, 3 & 4]** Will eventually address up to **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
@@ -222,6 +273,9 @@ One of the classes that is purely fabricated in our project is the Password clas
 
 We apply the Information Expert principle to our design with many of our domain entities. Our RockController class is an expert on managing rocks and their quantities. It includes methods for adding, removing, and updating rocks.
 
+#### Controllers
+Controllers are used when needed to make api calls to any of our objects instead of having the UI directly interact with our data.
+
 ![RockController UML Class Diagram](rock-controller-uml-class-diagram.png)
 
 The Rock class has its own price and description making it an expert in holding and providing information about rocks.
@@ -232,11 +286,8 @@ The Cart class representing a shopping cart is an expert in managing the rocks s
 
 ![Cart Model UML Class Diagram](cart-uml-class-diagram.png)
 
--
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
-
-- **Controllers** are used when needed to make api calls to any of our objects instead of having the UI directly interact with our data.
 
 
 ## Testing
