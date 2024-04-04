@@ -16,10 +16,8 @@
   </button>
 </div>
 <div class = "rock-grid">
-	<div class="rock_button" *ngFor="let rock of rocks" >
-		<a routerLink="/detail/{{rock.id}}">
-			<span class="badge">{{rock.id}}</span> {{rock.name}}
-		</a>
+	<div class="rock_button"routerLink = "/detail/{{rock.id}}" *ngFor="let rock of rocks" >
+		<span class="badge">{{rock.id}}</span> {{rock.name}}
 		
 		<div *ngIf="userService.getSignedInUserId() > 0">
 			<button
