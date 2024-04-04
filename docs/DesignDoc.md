@@ -62,6 +62,8 @@ They're user goals are to...
 | CSS | Cascading Style Sheets |
 | DAO | Data Acess Object |
 | API | Application Programming Interface |
+| UI | User Interface |
+| GUI | Graphical User Interface |
 
 
 ## Requirements
@@ -79,6 +81,13 @@ Enable users to register and log in with basic authentication. Customers can bro
 * Creating and signing into an account
 * Shopping carts tied to a specific user
 * Inventory management
+* Adding and removing items to a cart
+* Retain items in cart after logging out and then signing back in
+* Reserved admin account
+* Search for items
+* See a list of items
+* Strong and secure passwords
+* Product customization
 
 
 ## Application Domain
@@ -118,6 +127,7 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
+When the user first opens up the website they will be placed on the sign up/sign in screen. If they are an admin they will be able to sign in with the reserved credtials of admin admin and will then be transported to the dashboard. Otherwise a customer will either have to create an account or sign in with their own existing account. On the dashboard both customers and the admin can search for products and see the top 5 products. There is also a button to go to the products page, where a user can see all the availbile items. When clicking on an item to go its detail page a customer will see the products informtion, a customization menu, and a add to cart button. If the user slects add to cart the item gets added and the user can see this by selecting the cart button at the top of the page. Admins will have the same information but rather than a add to cart button there is a menu to update the product information and save this information. Finally when a customer is in their cart and ready to checkout they hit the checkout button, which will direct them to a page to put in their information at which point they can pay for their items.
 
 
 
@@ -126,6 +136,7 @@ This section describes the web interface flow; this is how the user views and in
   * RockController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the  rock model takes place. This class creates the urls for the calls, and defines what functions it will call, status codes to return and error handles.
   * UserController Class - This class creates the REST API calls such that the Angular view can send a http request to the ViewModel and a corresponding action from the User model takes place. This allows for calls to create new users, updating users, retrieving users, and gathering the information necessary to sign in users.
   * CartController Class - This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to add, delete, and view the shopping cart.
+  * PasswordController Class - This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to generate a strong password.
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
 > Tier above._
