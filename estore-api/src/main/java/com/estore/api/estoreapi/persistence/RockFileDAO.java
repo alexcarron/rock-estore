@@ -3,6 +3,7 @@ package com.estore.api.estoreapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -255,21 +256,34 @@ public class RockFileDAO implements RockDAO {
     ** {@inheritDoc}
      */
     public boolean removeStockRocks(Rock[] rockArr) throws IOException {
-        synchronized(rocks) {
-            for (Rock rock : rockArr) {
-                if (rocks.containsKey(rock.getId())) {
-                    if(rock.getStock() <= 0)
-                        return false;
-                    rock.removeStock();
-                    rocks.put(rock.getId(),rock);
-                }
-                else
-                    return false;
-            }
-            boolean success = save();
-            if(!success)
-                return false;
-            return success;
+    synchronized(rocks) {
+        // Create a map to store the total quantity to be removed for each rock
+        Map<Integer, Integer> rockQuantities = new HashMap<>();
+
+        // Iterate over the rockArr array and update the rockQuantities map
+        for (Rock rock : rockArr) {
+            rockQuantities.put(rock.getId(), rockQuantities.getOrDefault(rock.getId(), 0) + 1);
         }
+
+        // Iterate over the rockQuantities map and decrease the stock for each rock
+        for (Map.Entry<Integer, Integer> entry : rockQuantities.entrySet()) {
+            Rock rock = rocks.get(entry.getKey());
+            if (rock != null) {
+                if (rock.getStock() < entry.getValue()) {
+                    return false;
+                }
+                rock.removeStock(entry.getValue());
+                rocks.put(rock.getId(), rock);
+            } else {
+                return false;
+            }
+        }
+
+        boolean success = save();
+        if (!success) {
+            return false;
+        }
+        return success;
     }
+}
 }

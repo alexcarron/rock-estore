@@ -40,7 +40,6 @@ export class CartService {
 		let adding = true;
 		const payload = { rock_updating, id, adding };
 
-		this.log(JSON.stringify(rock_updating))
 		return this.http.put(url, payload, this.httpOptions)
 			.pipe(
 				catchError(this.handleError<any>(`addToCart rock id=${rock_updating} user id=${id}`))
