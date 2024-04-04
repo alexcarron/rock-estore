@@ -13,6 +13,7 @@ export class RockService {
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
+	private static readonly ROCK_IMAGES_DIRECTORY = "/assets/images/rocks";
 
   constructor(
 		private http: HttpClient,
@@ -21,6 +22,15 @@ export class RockService {
 
 	private log(message: string) {
 		this.messageService.add(`${message}`);
+	}
+
+	/**
+	 * Gets the path to the image of a rock
+	 * @param rock Rock you want the image url path of
+	 * @returns Image url path of rock
+	 */
+	getRockImagePath(rock: Rock): string {
+		return `${RockService.ROCK_IMAGES_DIRECTORY}/${rock.image_url}`;
 	}
 
 	getRocks(): Observable<Rock[]> {
@@ -37,6 +47,7 @@ export class RockService {
 
 		return this.http.get<Rock>(url)
 			.pipe(
+				tap(() => this.log(`Fetched rock id=${id}`)),
 				catchError(this.handleError<Rock>(`getRock id=${id}`))
 			);
 	}

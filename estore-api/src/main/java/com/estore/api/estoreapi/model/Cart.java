@@ -47,6 +47,7 @@ public class Cart {
      * Retrieves the ids of the rocks in the cart
      * @return The ids of the rocks in the cart
      */
+    @JsonProperty("item_ids")
     public int[] getItemIds() {return item_ids;}
 
     /**
@@ -79,7 +80,6 @@ public class Cart {
      */
     public void clearItems() {
         item_ids = new int[0];
-    
     }
 
     /**

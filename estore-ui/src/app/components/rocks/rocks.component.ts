@@ -55,11 +55,4 @@ export class RocksComponent {
 			() => this.log(`${rock_deleting.name} has been deleted`),
 		);
 	}
-
-	addToCart(rock_adding_to_cart: Rock, user_id: number): void {
-		this.cartService.addToCart(rock_adding_to_cart.id, user_id).subscribe(
-			() => this.log(`${rock_adding_to_cart.name} has been added to your cart!`),
-			error => this.log(`An error occurred while adding ${rock_adding_to_cart.name} to cart`)
-		);
-	}
 }

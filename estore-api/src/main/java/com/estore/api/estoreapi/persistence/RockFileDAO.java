@@ -22,7 +22,7 @@ import com.estore.api.estoreapi.model.Rock;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  *
- * @author SWEN Faculty
+ * @author Party Rockers
  */
 @Component
 public class RockFileDAO implements RockDAO {
@@ -145,6 +145,14 @@ public class RockFileDAO implements RockDAO {
     @Override
     public Rock[] getRocks() {
         synchronized(rocks) {
+            try {
+                load();
+            }
+            catch(IOException e) {
+                LOG.severe(e.getLocalizedMessage());
+                return null;
+            }
+
             return getRocksArray();
         }
     }
@@ -165,6 +173,14 @@ public class RockFileDAO implements RockDAO {
     @Override
     public Rock getRock(int id) {
         synchronized(rocks) {
+            try {
+                load();
+            }
+            catch(IOException e) {
+                LOG.severe(e.getLocalizedMessage());
+                return null;
+            }
+
             if (rocks.containsKey(id))
                 return rocks.get(id);
             else
@@ -193,7 +209,9 @@ public class RockFileDAO implements RockDAO {
 							rock.getPrice(),
 							rock.getSize(),
 							rock.getShape(),
-							rock.getDescription()
+							rock.getDescription(),
+							rock.getImageUrl(),
+                            rock.getStock()
 						);
             rocks.put(newRock.getId(),newRock);
             save(); // may throw an IOException
@@ -228,6 +246,29 @@ public class RockFileDAO implements RockDAO {
             }
             else
                 return false;
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    public boolean removeStockRocks(int[] itemIds) throws IOException {
+        synchronized(rocks) {
+            for (int itemId : itemIds) {
+                if (rocks.containsKey(itemId)) {
+                    Rock rock = rocks.get(itemId);
+                    if(rock.getStock() <= 0)
+                        return false;
+                    rock.removeStock();
+                    rocks.put(itemId,rock);
+                }
+                else
+                    return false;
+            }
+            boolean success = save();
+            if(!success)
+                return false;
+            return success;
         }
     }
 }

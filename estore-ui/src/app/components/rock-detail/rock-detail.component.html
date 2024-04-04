@@ -1,12 +1,27 @@
 <div *ngIf="rock">
   <h2>{{rock.name | uppercase}} Details</h2>
-  <div>name: {{rock.name}}</div>
-  <div>description: {{rock.description}}</div>
-  <div>price: {{rock.price}}</div>
-  <div>type: {{rock.type}}</div>
-  <div>size: {{rock.size}}</div>
-  <div>shape: {{rock.shape}}</div>
-  
+  <div>Name: {{rock.name}}</div>
+  <div>Description: {{rock.description}}</div>
+  <div>Price: ${{rock.price}}</div>
+  <div>Type: {{rock.type}}</div>
+  <div>Size: {{rock.size}}</div>
+  <div>Shape: {{rock.shape}}</div>
+  <div>Stock: {{rock.stock}} remaining!</div>
+
+	<div class="rock-detail-image-display">
+		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock" style="width: 300px; height: 300px;">
+		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay">
+		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
+	</div>
+
+	<select [(ngModel)]="selectedHatName">
+		<option *ngFor="let hat of mockAvailableHats" [value]="hat.name">{{ hat.name }}</option>
+	</select>
+
+	<select [(ngModel)]="selectedClothingName">
+		<option *ngFor="let clothing of mockAvailableClothing" [value]="clothing.name">{{ clothing.name }}</option>
+	</select>
+
   <div *ngIf="userService.userIsAdmin()">
     <br><br><br>
     <div>id: {{rock.id}}</div>
@@ -34,8 +49,29 @@
       <label for="rock-price">Edit description: </label>
       <input id="rock-price" [(ngModel)]="rock.description" placeholder="description">
     </div>
+    <div>
+      <label for="rock-stock">Edit stock: </label>
+      <input id="rock-stock" [(ngModel)]="rock.stock" placeholder="stock">
+    </div>
     <button type="button" (click)="save()">save</button>
   </div>
 	<button type="button" (click)="goBack()">go back</button>
-	
+	<button
+		*ngIf="!userService.userIsAdmin() && rock.stock > 0"
+		type="button"
+		class="add"
+		title="add rock to cart"
+		(click)="addToCart(rock.id, userService.getSignedInUserId())"
+	>
+		Add to cart
+	</button>
+  <button
+		*ngIf="!userService.userIsAdmin() && rock.stock <= 0"
+		type="button"
+		class="stock"
+		title="rock is out of stock"
+	>
+		OUT OF STOCK
+	</button>
+
 </div>
