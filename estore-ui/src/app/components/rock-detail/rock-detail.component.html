@@ -1,18 +1,17 @@
 <div *ngIf="rock">
   <h2>{{rock.name | uppercase}} Details</h2>
-  <div>name: {{rock.name}}</div>
-  <div>description: {{rock.description}}</div>
-  <div>price: {{rock.price}}</div>
-  <div>type: {{rock.type}}</div>
-  <div>size: {{rock.size}}</div>
-  <div>shape: {{rock.shape}}</div>
-  <div>image_url: {{rock.image_url}}</div>
-  <div>stock: {{rock.stock}}</div>
+  <div>Name: {{rock.name}}</div>
+  <div>Description: {{rock.description}}</div>
+  <div>Price: ${{rock.price}}</div>
+  <div>Type: {{rock.type}}</div>
+  <div>Size: {{rock.size}}</div>
+  <div>Shape: {{rock.shape}}</div>
+  <div>Stock: {{rock.stock}} remaining!</div>
 
 	<div class="rock-detail-image-display">
-		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock">
-		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay" >
-		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
+		<img src="{{getImagePath()}}" alt="{{rock.name}} Rock" style="width: 300px; height: 300px;">
+		<img *ngIf="selectedClothingName" src="{{getClothingURLFromName(selectedClothingName)}}" alt="{{selectedClothingName}} Clothing" class="clothing-overlay">
+		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay" style="width: 200px; height: 200px;">
 	</div>
 
 	<select [(ngModel)]="selectedHatName">
