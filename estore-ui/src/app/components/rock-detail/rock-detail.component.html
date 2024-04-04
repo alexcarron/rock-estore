@@ -14,11 +14,11 @@
 		<img *ngIf="selectedHatName" src="{{getHatURLFromName(selectedHatName)}}" alt="{{selectedHatName}} Hat" class="hat-overlay">
 	</div>
 
-	<select *ngif="userService.userIsAdmin()" [(ngModel)]="selectedHatName">
+	<select *ngIf="!userService.userIsAdmin()" [(ngModel)]="selectedHatName">
 		<option  *ngFor="let hat of mockAvailableHats" [value]="hat.name">{{ hat.name }}</option>
 	</select>
 
-	<select *ngif="userService.userIsAdmin()" [(ngModel)]="selectedClothingName">
+	<select *ngIf="!userService.userIsAdmin()" [(ngModel)]="selectedClothingName">
 		<option *ngFor="let clothing of mockAvailableClothing" [value]="clothing.name">{{ clothing.name }}</option>
 	</select>
 
