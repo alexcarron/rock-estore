@@ -4,7 +4,7 @@
   gap: 20px;
 }
 
-.rock_button {
+.rock-button {
   width: 90%;
 	display: block;
   background-color: #eee;
@@ -19,11 +19,11 @@
   margin-top: 1rem;
 	text-decoration: none;
 }
-.rock_button:hover {
+.rock-button:hover {
   background-color: gray;
   color: white;
 }
-.rock_button:disabled {
+.rock-button:disabled {
   background-color: #eee;
   color: #aaa;
   cursor: auto;
@@ -33,6 +33,6 @@
 	color: red;
 }
 
-.rock_button .delete {
+.rock-button .delete {
   margin-left: 20px;
 }
