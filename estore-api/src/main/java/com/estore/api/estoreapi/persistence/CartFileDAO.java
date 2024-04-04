@@ -111,10 +111,10 @@ public class CartFileDAO implements CartDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Cart addItem(int rockId, int userId) throws IOException {
+    public Cart addItem(Rock newRock, int userId) throws IOException {
         synchronized(carts) {
             Cart userCart = getCart(userId);
-            userCart.appendItem(rockId);
+            userCart.appendItem(newRock);
             save();
             return userCart;
         }
@@ -124,10 +124,10 @@ public class CartFileDAO implements CartDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Cart deleteItem(int rockId, int userId) throws IOException {
+    public Cart deleteItem(Rock remRock, int userId) throws IOException {
         synchronized(carts) {
             Cart userCart = getCart(userId);
-            userCart.removeItem(rockId);
+            userCart.removeItem(remRock);
             save();
             return userCart;
         }
@@ -140,7 +140,7 @@ public class CartFileDAO implements CartDAO{
     public Cart addCart(int id) throws IOException {
         synchronized(carts) {
             if (!carts.containsKey(id)) {
-                Cart newCart = new Cart(id, new int[0]);
+                Cart newCart = new Cart(id, new Rock[0]);
                 carts.put(id, newCart);
                 save();
                 return newCart;
@@ -156,17 +156,16 @@ public class CartFileDAO implements CartDAO{
     @Override
     public Rock[] getRocksFromCart(Cart cart) throws IOException {
         synchronized(carts) {
-            int[] rockIds = cart.getItemIds();
+            Rock[] rocks = cart.getRocks();
 
-            RockFileDAO rockDAO = new RockFileDAO("data/rocks.json", objectMapper);
             ArrayList<Rock> rockArrayList = new ArrayList<Rock>();
             
-            for (int rockId : rockIds) {
-                Rock rock = rockDAO.getRock(rockId);
-                if (rock != null) {
+            if(rocks==null)
+                return null;
+                
+            for (Rock rock : rocks)
+                if (rock != null)
                     rockArrayList.add(rock);
-                }
-            }
 
             Rock[] rockArray = new Rock[rockArrayList.size()];
             rockArrayList.toArray(rockArray);

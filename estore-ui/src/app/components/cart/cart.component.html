@@ -10,7 +10,11 @@
 				<div class ="rocks-info">
 					<img [src] = "'../../../assets/' + rock.name + '.jpg'">
 					<div class = "col">
-						<p>{{rock.name}}</p>
+						<p>{{rock.name}} 
+							<span *ngIf="rock.custom_hat && rock.custom_clothes">
+								[Customized: Hat = {{rock.custom_hat}} Clothes = {{rock.custom_clothes}}
+							</span>
+						</p>
 						<button (click) = "removeFromCart(rock, this.userService.getSignedInUserId())">
 							Remove
 						</button>

@@ -22,6 +22,10 @@ public class Rock {
     @JsonProperty("shape") private String shape;
     @JsonProperty("description") private String description;
     @JsonProperty("image_url") private String image_url;
+    @JsonProperty("custom_hat") private String custom_hat;
+    @JsonProperty("custom_clothes") private String custom_clothes;
+
+
 
     /**
      * Create a rock with the given id, price, type, size, shape, description, and image_url
@@ -33,6 +37,8 @@ public class Rock {
      * @param shape The shape of the rock
      * @param description The description of the rock
      * @param image_url The url to the image of the rock
+     * @param custom_hat The name of custom hat
+     * @param custom_clothes The name of custom clothes
      *
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
@@ -47,7 +53,9 @@ public class Rock {
 			@JsonProperty("size") double size,
 			@JsonProperty("shape") String shape,
 			@JsonProperty("description") String description,
-			@JsonProperty("image_url") String image_url
+			@JsonProperty("image_url") String image_url,
+            @JsonProperty("custom_hat") String custom_hat,
+            @JsonProperty("custom_clothes") String custom_clothes
 		) {
         this.id = id;
         this.name = name;
@@ -57,6 +65,8 @@ public class Rock {
         this.shape = shape;
         this.description = description;
         this.image_url = image_url;
+        this.custom_hat = custom_hat;
+        this.custom_clothes = custom_clothes;
     }
 
     /**
@@ -113,6 +123,18 @@ public class Rock {
      */
      public String getImageUrl() {return this.image_url;}
 
+     /**
+     * Gets the name of the custom hat
+     * @return The custom hat
+     */
+    public String getCustomHat() {return this.custom_hat;}
+
+    /**
+     * Gets the name of the custom clothes
+     * @return The custom clothes
+     */
+    public String getCustomClothes() {return this.custom_clothes;}
+
 
     /**
      * {@inheritDoc}
@@ -120,5 +142,20 @@ public class Rock {
     @Override
     public String toString() {
         return String.format(STRING_FORMAT,id,name,type,price,size,shape,description, image_url);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Rock rock = (Rock) obj;
+        return id == rock.id &&
+            Double.compare(rock.price, price) == 0 &&
+            Double.compare(rock.size, size) == 0 &&
+            name.equals(rock.name) &&
+            type.equals(rock.type) &&
+            shape.equals(rock.shape) &&
+            description.equals(rock.description) &&
+            image_url.equals(rock.image_url);
     }
 }

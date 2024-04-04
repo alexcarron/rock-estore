@@ -51,8 +51,8 @@ export class RockDetailComponent {
 		{name: "Blazer", image_url: "https://ae01.alicdn.com/kf/Sba54dde3b8d64be2b9de7f38a8ec9a02b/Men-s-Suit-Jackets-New-Slim-Fit-Business-Casual-Jacket-Fashion-Men-s-Top-Blazer-Masculino.jpg"},
 	];
 
-	selectedHatName: string | null = null;
-	selectedClothingName: string | null = null;
+	selectedHatName: string = "";
+	selectedClothingName: string = ""
 
 	constructor(
 		private route: ActivatedRoute,
@@ -107,9 +107,17 @@ export class RockDetailComponent {
 
 
 	addToCart(rock_adding_to_cart: Rock, user_id: number): void {
-		this.cartService.addToCart(rock_adding_to_cart.id, user_id).subscribe(
-			() => this.log(`${rock_adding_to_cart.name} has been added to your cart!`),
-			error => this.log(`An error occurred while adding ${rock_adding_to_cart.name} to cart`)
+		// Create a copy of the rock object to avoid modifying the original
+		let customizedRock = {...rock_adding_to_cart};
+
+		// Add the selected hat and clothes to the rock object
+		customizedRock.custom_hat = this.selectedHatName;
+		customizedRock.custom_clothes = this.selectedClothingName;
+		this.log(`${customizedRock.custom_hat} and ${customizedRock.custom_clothes} have been added to the rock!`)
+		
+		this.cartService.addToCart(customizedRock.id, user_id).subscribe(
+			() => this.log(`${customizedRock.name} has been added to your cart!`),
+			error => this.log(`An error occurred while adding ${customizedRock.name} to cart`)
 		);
 	}
 }

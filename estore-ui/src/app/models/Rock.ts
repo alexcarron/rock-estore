@@ -7,4 +7,6 @@ export interface Rock {
 	shape: string;
 	description: string;
 	image_url: string;
+	custom_hat: string;
+	custom_clothes:	string;
 }

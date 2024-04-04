@@ -49,12 +49,13 @@ public class CartControllerTest {
     public void testGetItemsFromCart() throws IOException {
         // Setup rocks
         Rock[] expectedRocks = new Rock[2];
-        expectedRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock", "rock.png");
-        expectedRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        expectedRocks[0] = new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "hat", "clothes");
+        expectedRocks[1] = new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt");
 
         // Set up cart
         int testCartId = 10;
-        Cart testCart = new Cart(testCartId, new int[]{99, 100});
+        Cart testCart = new Cart(testCartId, new Rock[]{new Rock(99, "Wi-Fire",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "hat", "clothes")
+                                                        , new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")});
         when(mockCartDao.getCart(testCartId)).thenReturn(testCart);
         when(mockCartDao.getRocksFromCart(testCart)).thenReturn(expectedRocks);
 
@@ -104,9 +105,15 @@ public class CartControllerTest {
     public void testGetCarts() throws IOException{
         // Setup carts
         Cart[] expected_carts = new Cart[3];
-        expected_carts[0] = new Cart(10, new int[]{1,2,3});
-        expected_carts[1] = new Cart(11, new int[]{6,7,8});
-        expected_carts[2] = new Cart(12, new int[]{99,100,101});
+        expected_carts[0] = new Cart(10, new Rock[]{new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        ,new Rock(2, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        ,new Rock(3, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")});
+        expected_carts[1] = new Cart(11, new Rock[]{new Rock(6, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        ,new Rock(7, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        ,new Rock(8, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")});
+        expected_carts[2] = new Cart(12, new Rock[]{new Rock(99, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        ,new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        ,new Rock(101, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")});
         when(mockCartDao.getCarts()).thenReturn(expected_carts);
 
         // Invoke
@@ -119,9 +126,11 @@ public class CartControllerTest {
     @Test
     public void testUpdateCartAddingItem() throws IOException {
         // Setup
-        Map<String, Object> payload = Map.of("rock_updating", 1, "id", 10, "adding", true);
-        Cart expectedCart = new Cart(10, new int[]{1});
-        when(mockCartDao.addItem(1, 10)).thenReturn(expectedCart);
+        Map<String, Object> payload = Map.of("rock_updating", new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , "id", 10, "adding", true);
+        Cart expectedCart = new Cart(10, new Rock[]{new Rock(100, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")});
+        when(mockCartDao.addItem(new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , 10)).thenReturn(expectedCart);
 
         // Invoke
         ResponseEntity<Cart> response = cartController.updateCart(payload);
@@ -134,9 +143,11 @@ public class CartControllerTest {
     @Test
     public void testUpdateCartDeletingItem() throws IOException {
         // Setup
-        Map<String, Object> payload = Map.of("rock_updating", 1, "id", 10, "adding", false);
-        Cart expectedCart = new Cart(10, new int[]{});
-        when(mockCartDao.deleteItem(1, 10)).thenReturn(expectedCart);
+        Map<String, Object> payload = Map.of("rock_updating", new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , "id", 10, "adding", false);
+        Cart expectedCart = new Cart(10, new Rock[]{});
+        when(mockCartDao.deleteItem(new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , 10)).thenReturn(expectedCart);
 
         // Invoke
         ResponseEntity<Cart> response = cartController.updateCart(payload);
@@ -149,8 +160,10 @@ public class CartControllerTest {
     @Test
     public void testUpdateCartNotFound() throws IOException {
         // Setup
-        Map<String, Object> payload = Map.of("rock_updating", 1, "id", 10, "adding", true);
-        when(mockCartDao.addItem(1, 10)).thenReturn(null);
+        Map<String, Object> payload = Map.of("rock_updating", new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , "id", 10, "adding", true);
+        when(mockCartDao.addItem(new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , 10)).thenReturn(null);
 
         // Invoke
         ResponseEntity<Cart> response = cartController.updateCart(payload);
@@ -163,8 +176,10 @@ public class CartControllerTest {
     @Test
     public void testUpdateCartIOException() throws IOException {
         // Setup
-        Map<String, Object> payload = Map.of("rock_updating", -1, "id", 10, "adding", true);
-        doThrow(new IOException()).when(mockCartDao).addItem(-1, 10);
+        Map<String, Object> payload = Map.of("rock_updating", new Rock(-1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , "id", 10, "adding", true);
+        doThrow(new IOException()).when(mockCartDao).addItem(new Rock(-1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        , 10);
 
         // Invoke
         ResponseEntity<Cart> response = cartController.updateCart(payload);
@@ -177,7 +192,7 @@ public class CartControllerTest {
     public void testAddCart() throws IOException {
         // Setup
         int id = 10;
-        Cart expectedCart = new Cart(id, new int[]{});
+        Cart expectedCart = new Cart(id, new Rock[]{});
         when(mockCartDao.getCart(id)).thenReturn(expectedCart);
 
         // Invoke

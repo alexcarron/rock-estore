@@ -106,16 +106,22 @@ public class CartController {
      */
     @PutMapping("")
     public ResponseEntity<Cart> updateCart(@RequestBody Map<String, Object> payload) {
-        int rockId = (int) payload.get("rock_updating");
+        Rock rock = null;
+        if(payload.get("rock_updating") instanceof Rock) 
+            rock = (Rock) payload.get("rock_updating");
+        else {
+            return new ResponseEntity<>(HttpStatus.IM_USED);
+        }
+        
         int userId = (int) payload.get("id");
         boolean adding = (boolean) payload.get("adding");
 
-        LOG.info("PUT /cart " + rockId + " " + userId + " " + adding);
+        LOG.info("PUT /cart " + rock + " " + userId + " " + adding);
         
         try {
             Cart updatedCart = adding
-            ? cartDao.addItem(rockId, userId)
-            : cartDao.deleteItem(rockId, userId);
+            ? cartDao.addItem(rock, userId)
+            : cartDao.deleteItem(rock, userId);
 
             if (updatedCart != null)
                 return new ResponseEntity<Cart>(updatedCart,HttpStatus.CREATED);

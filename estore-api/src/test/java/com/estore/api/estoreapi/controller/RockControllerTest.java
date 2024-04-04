@@ -39,7 +39,7 @@ public class RockControllerTest {
     @Test
     public void testGetRock() throws IOException {  // getRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "tunic");
         // When the same id is passed in, our mock Rock DAO will return the Rock object
         when(mockRockDAO.getRock(rock.getId())).thenReturn(rock);
 
@@ -88,7 +88,7 @@ public class RockControllerTest {
     @Test
     public void testCreateRock() throws IOException {  // createRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Wi-Fire", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Wi-Fire", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "");
         // when createRock is called, return true simulating successful
         // creation and save
         when(mockRockDAO.createRock(rock)).thenReturn(rock);
@@ -104,7 +104,7 @@ public class RockControllerTest {
     @Test
     public void testCreateRockFailed() throws IOException {  // createRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Bolt", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Bolt", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "");
         // when createRock is called, return false simulating failed
         // creation and save
         when(mockRockDAO.createRock(rock)).thenReturn(null);
@@ -119,7 +119,7 @@ public class RockControllerTest {
     @Test
     public void testCreateRockHandleException() throws IOException {  // createRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Ice Gladiator", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Ice Gladiator", "igneous", 10, 25, "spherical", "A rock", "rock.png", "cap", "");
 
         // When createRock is called on the Mock Rock DAO, throw an IOException
         doThrow(new IOException()).when(mockRockDAO).createRock(rock);
@@ -134,7 +134,7 @@ public class RockControllerTest {
     @Test
     public void testUpdateRock() throws IOException { // updateRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Wi-Fire", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Wi-Fire", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "blazer");
         // when updateRock is called, return true simulating successful
         // update and save
         when(mockRockDAO.updateRock(rock)).thenReturn(rock);
@@ -152,7 +152,7 @@ public class RockControllerTest {
     @Test
     public void testUpdateRockFailed() throws IOException { // updateRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png", "pith helmet", "tunic");
         // when updateRock is called, return true simulating successful
         // update and save
         when(mockRockDAO.updateRock(rock)).thenReturn(null);
@@ -167,7 +167,7 @@ public class RockControllerTest {
     @Test
     public void testUpdateRockHandleException() throws IOException { // updateRock may throw IOException
         // Setup
-        Rock rock = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        Rock rock = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "");
         // When updateRock is called on the Mock Rock DAO, throw an IOException
         doThrow(new IOException()).when(mockRockDAO).updateRock(rock);
 
@@ -182,8 +182,8 @@ public class RockControllerTest {
     public void testGetRocks() throws IOException { // getRocks may throw IOException
         // Setup
         Rock[] rocks = new Rock[2];
-        rocks[0] = new Rock(99,"Bolt", "igneous", 10, 25, "spherical", "A rock", "rock.png");
-        rocks[1] = new Rock(100,"The Great Iguana", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        rocks[0] = new Rock(99,"Bolt", "igneous", 10, 25, "spherical", "A rock", "rock.png", "hat", "");
+        rocks[1] = new Rock(100,"The Great Iguana", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "");
         // When getRocks is called return the rocks created above
         when(mockRockDAO.getRocks()).thenReturn(rocks);
 
@@ -213,8 +213,8 @@ public class RockControllerTest {
         // Setup
         String searchString = "la";
         Rock[] rocks = new Rock[2];
-        rocks[0] = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png");
-        rocks[1] = new Rock(100,"Ice Gladiator", "igneous", 10, 25, "spherical", "A rock", "rock.png");
+        rocks[0] = new Rock(99,"Galactic Agent", "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "tunic");
+        rocks[1] = new Rock(100,"Ice Gladiator", "igneous", 10, 25, "spherical", "A rock", "rock.png", "cap", "shirt");
         // When findRocks is called with the search string, return the two
         /// rocks above
         when(mockRockDAO.findRocks(searchString)).thenReturn(rocks);

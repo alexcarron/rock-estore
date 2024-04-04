@@ -42,9 +42,21 @@ public class CartFileDAOTest {
     public void setupCartFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testCarts = new Cart[3];
-        testCarts[0] = new Cart(10, new int[]{1, 2, 3, 4, 5});
-        testCarts[1] = new Cart(11, new int[]{6, 7, 8, 9, 10});
-        testCarts[2] = new Cart(12, new int[]{99, 100, 101});
+        testCarts[0] = new Cart(10, new Rock[]{
+            new Rock(1, "Galactic Agent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(2, "Galactic age",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(3, "Galactic nt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        });
+        testCarts[1] = new Cart(11, new Rock[]{
+            new Rock(4, "Galactic bAgent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(5, "Galactic bage",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(6, "Galactic bnt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        });
+        testCarts[2] = new Cart(12, new Rock[]{
+            new Rock(7, "Galactic cAgent",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(8, "Galactic cage",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt"),
+            new Rock(9, "Galactic cnt",  "igneous", 10, 25, "spherical", "A rock", "rock.png", "", "shirt")
+        });
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the cart array above

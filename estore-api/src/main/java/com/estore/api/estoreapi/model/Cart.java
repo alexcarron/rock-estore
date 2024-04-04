@@ -16,7 +16,7 @@ public class Cart {
     static final String STRING_FORMAT = "cart [id=%d,item_ids=%s]";
 
     @JsonProperty("id") private int id;
-    @JsonProperty("item_ids") private int[] item_ids;
+    @JsonProperty("rocks") private Rock[] rocks;
 
     /**
      * Create a user cart with the given id and item ids
@@ -31,10 +31,10 @@ public class Cart {
      */
     public Cart(
 			@JsonProperty("id") int id,
-			@JsonProperty("item_ids") int[] item_ids
+			@JsonProperty("rocks") Rock[] rocks
 	    ) {
         this.id = id;
-        this.item_ids = item_ids;
+        this.rocks = rocks;
     }
 
     /**
@@ -47,36 +47,37 @@ public class Cart {
      * Retrieves the ids of the rocks in the cart
      * @return The ids of the rocks in the cart
      */
-    public int[] getItemIds() {return item_ids;}
+    public Rock[] getRocks() {return rocks;}
 
     /**
      * Appends itemId onto the item_ids list
      */
-    public void appendItem(int itemId) {
-        item_ids = Arrays.copyOf(item_ids, item_ids.length + 1);
-        item_ids[item_ids.length - 1] = itemId;
+    public void appendItem(Rock newRock) {
+        rocks = Arrays.copyOf(rocks, rocks.length + 1);
+        rocks[rocks.length - 1] = newRock;
     }
 
     /**
      * Removes the first instance of an itemId from the item_ids list
      */
-    public void removeItem(int itemId) {
-        int[] new_item_ids = new int[item_ids.length - 1];
+    public void removeItem(Rock remRock) {
+        Rock[] new_rocks = new Rock[rocks.length - 1];
         boolean foundFirstItem = false;
-        for(int i=0; i<item_ids.length; i++) {
-            if(item_ids[i] == itemId && !foundFirstItem)
+        for(int i=0; i<rocks.length; i++) {
+            if(rocks[i].getId() == remRock.getId() && 
+            rocks[i].getCustomHat() == remRock.getCustomHat() && 
+            rocks[i].getCustomClothes() == remRock.getCustomClothes() && !foundFirstItem)
                 foundFirstItem = true;
             else if (foundFirstItem)
-                new_item_ids[i-1] = item_ids[i];
+                new_rocks[i-1] = rocks[i];
             else 
-                new_item_ids[i] = item_ids[i];
+                new_rocks[i] = rocks[i];
         }
-        item_ids = new_item_ids;
+        rocks = new_rocks;
     }
 
     public void clearItems() {
-        item_ids = new int[0];
-    
+        rocks = new Rock[0];
     }
 
     /**
@@ -84,6 +85,6 @@ public class Cart {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id, Arrays.toString(item_ids));
+        return String.format(STRING_FORMAT,id, Arrays.toString(rocks));
     }
 }
