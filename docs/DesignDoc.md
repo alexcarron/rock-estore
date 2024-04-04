@@ -61,6 +61,7 @@ They're user goals are to...
 | HTML | Hypertext Markup Language |
 | CSS | Cascading Style Sheets |
 | DAO | Data Acess Object |
+| API | Application Programming Interface |
 
 
 ## Requirements
@@ -142,6 +143,7 @@ This section describes the web interface flow; this is how the user views and in
   * UserDao - This class creates an interface in order to access or manipulate the information related to a user which can then be implemented by some storage system.
   * Cart - This class defines what a shopping cart object should look like, and the properties it holds.
   * CartDao - This class creates an interface in order to access or manipulate the information related to a shopping cart which can then be implemented by some storage system.
+  * Password - This class handles the methods for checking if a password meets our security requirments, hashing passwords, and generating strong passwords.
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -158,22 +160,28 @@ The model tier is the core of the application. It defines essential classes and 
 
 We have considered the following OO principles for our project:
   * Single Responsility - Each class is responsible for one task and should be very good at that one task
-  * Dependency Inversion - High level classes should not rely on lowqer level classes instead they should rely on abstractions
+  * Dependency Inversion - High level classes should not rely on lower level classes instead they should rely on abstractions
   * Information Expert - The class that has the information needed to complete a task should be the one to implement it
   * Open/Closed - A class should be extended by another class not modified
   * Law of Demeter - Keep coupling low. Meaning that a class should only use the methods of the classes directly linked to it.
+  * Pure Fabrication - Creating helper classes to maintain single responsibility
 
 > _**[Sprint 2, 3 & 4]** Will eventually address up to **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller.
+- Single Responsibility:  Single Responsibility is used through our controller classes when we use them to handle all our api calls and doesn't need to care about how the data is stored. Similarly, the DAO does not worry about how data is being asked for as it just interacts with the controller. If you look at the tiers and layers diagram within the architecture and design summary it can be seen how the classes in the model have different responsibilies. Some perform the actual model, others are persistence for API call handeling, and then storage. And within these different tiers there are classes to handle certain information whether it be related to users, carts, or rocks.
 
-- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrieve information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls.
+- Dependency Inversion: Dependency Inversion tells us that high level modules should not rely lower level modules instead they should each rely on abstractions. We implemented this in our model via the RockDao, UserDao, and CartDao classes. These classes are abstract classes that define method headers that can be used by a lower level class to define the behavior of each method, and used by a higher level module to call these methods so it can retrieve information. If the way we access or store our objects changes we can create a new implementation of the class without affect our higher level http calls. As seen with our model class diagrams we have the DAO classes that are abstract classes that are interfaces for the FileDao classes to implement. Also seen in the model class diagram is how the controllers use the interface rather than directly connecting to the FileDao implementations. This is further supported with the following code snippet which displays the constructor for the Rock Cotnroller and demonstrates how a dependency can be injected as long as it implements the RockDao interface.
+
+![RockController Constructor](rockController-constructor.jpg)
+
+- Pure Fabrication: One of the classes that is a pure fabrication in our project is the Password class. Password does not represent an entity as seen in our domain model, however to maintain single responsibility, by keeping password checking and genration out of the user class, we decided to make the Password class in the model as shown in our model class diagram and tiers-layers diagram.
+
+- 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
 - **Controllers** are used when needed to make api calls to any of our objects instead of having the UI directly interact with our data.
 
-> _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
 ## Testing
 > _This section will provide information about the testing performed
