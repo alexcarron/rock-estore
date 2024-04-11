@@ -122,6 +122,7 @@ When the user first opens up the website they will be placed on the sign up/sign
 
 ### ViewModel Tier
 
+This tier is the middleman between the view and the model. This tier is charge of creating API calls that the view tier can use and then the action that is desired can be relayed from the viewmodel to the model to be completed.
 
 #### RockController Class
 
@@ -142,7 +143,10 @@ This class create the REST API call such that the Angular view can sent a http r
 #### ViewModel UML Class Diagram
 ![ViewModel Classes UML Class Diagram](controller-classes-uml-class-diagram.png)
 
+
 ### Model Tier
+
+This tier is directly invloved in the creation, storage, and maintence of data and the different entities that make up the prodcut
 
 #### Rock
 
@@ -289,6 +293,7 @@ We planned to complete an additional 10 user stories. By the end of the sprint,
   * Given I am logged in, I am on the page to change my password, and I do not enter a new password when I click the button to confirm changing my password then nothing should happen
 
 
+For Sprint 3 we had 11 user stories of which all passed their acceptance criteria
 
 ### Unit Testing and Code Coverage
 
