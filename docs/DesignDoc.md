@@ -21,7 +21,7 @@ geometry: margin=1in
 
 Party Rockers is an ecommerce website that customers can buy rocks to fufill all of their geological desires. On this website customers can sign in with their own username
 and secure password, at which point they will have access to the many rock on the website. Customers will be able to look at the details of their rocks and even customize them.
-Once they found the items of their choice they'll be able to add them to their cart at which point they will be able to checkout and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove items from the store.
+Once they found the rocks of their choice they'll be able to add them to their cart at which point they will be able to checkout and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove rocks from the store.
 
 Remember it's not just a boulder it's a rock.
 
@@ -76,7 +76,7 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
-Enable users to register and log in with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove items from their cart, and proceed to checkout. They may also add customization options to their items before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
+Enable users to register and log in with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove rocks from their cart, and proceed to checkout. They may also add customization options to their rocks before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
 
 
 ### MVP Features
@@ -84,11 +84,11 @@ Enable users to register and log in with basic authentication and a secure passw
 * Creating and signing into an account
 * Shopping carts tied to a specific user
 * Inventory management
-* Adding and removing items to a cart
-* Retain items in cart after logging out and then signing back in
+* Adding and removing rocks to a cart
+* Retain rocks in cart after logging out and then signing back in
 * Reserved admin account
-* Search for items
-* See a list of items
+* Search for rocks
+* See a list of rocks
 * Strong and secure passwords
 * Product customization
 
@@ -103,7 +103,7 @@ This section describes the application domain.
 > can discuss the more important domain entities and their relationship
 > to each other._
 
-The domain of this application is an e-store system where users interact with products in an inventory. Users, who can be either an owner or customers, register, log in, log out of, change their password for, or generate a psasword for the e-store. Users browse products in the inventory, search for specific items. Only customers manage items in their cart, customize products, and proceed to checkout. Only owners can manage products in the inventory.
+The domain of this application is an e-store system where users interact with products in an inventory. Users, who can be either an owner or customers, register, log in, log out of, change their password for, or generate a psasword for the e-store. Users browse products in the inventory, search for specific rocks. Only customers manage rocks in their cart, customize products, and proceed to checkout. Only owners can manage products in the inventory.
 
 
 ## Architecture and Design
@@ -129,7 +129,7 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
-When the user first opens up the website they will be placed on the sign up/sign in screen. If they are an admin they will be able to sign in with the reserved credtials of admin admin and will then be transported to the dashboard. Otherwise a customer will either have to create an account or sign in with their own existing account. On the dashboard both customers and the admin can search for products and see the top 5 products. There is also a button to go to the products page, where a user can see all the availbile items. When clicking on an item to go its detail page a customer will see the products informtion, a customization menu, and a add to cart button. If the user slects add to cart the item gets added and the user can see this by selecting the cart button at the top of the page. Admins will have the same information but rather than a add to cart button there is a menu to update the product information and save this information. Finally when a customer is in their cart and ready to checkout they hit the checkout button, which will direct them to a page to put in their information at which point they can pay for their items.
+When the user first opens up the website they will be placed on the sign up/sign in screen. If they are an admin they will be able to sign in with the reserved credtials of admin admin and will then be transported to the dashboard. Otherwise a customer will either have to create an account or sign in with their own existing account. On the dashboard both customers and the admin can search for products and see the top 5 products. There is also a button to go to the products page, where a user can see all the availbile rocks. When clicking on an rock to go its detail page a customer will see the products informtion, a customization menu, and a add to cart button. If the user slects add to cart the rock gets added and the user can see this by selecting the cart button at the top of the page. Admins will have the same information but rather than a add to cart button there is a menu to update the product information and save this information. Finally when a customer is in their cart and ready to checkout they hit the checkout button, which will direct them to a page to put in their information at which point they can pay for their rocks.
 
 
 
