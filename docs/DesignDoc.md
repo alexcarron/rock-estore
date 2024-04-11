@@ -3,10 +3,6 @@ geometry: margin=1in
 ---
 # PROJECT Design Documentation
 
-> _The following template provides the headings for your Design
-> Documentation.  As you edit each section make sure you remove these
-> commentary 'blockquotes'; the lines that start with a > character
-> and appear in the generated PDF in italics but do so only **after** all team members agree that the requirements for that section and current Sprint have been met. **Do not** delete future Sprint expectations._
 
 ## Team Information
 * Team name: Party Rockers
@@ -51,7 +47,6 @@ They're user goals are to...
 
 
 ### Glossary and Acronyms
-> _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
 
 | Term | Definition |
 |------|------------|
@@ -74,7 +69,6 @@ They're user goals are to...
 This section describes the features of the application.
 
 ### Definition of MVP
-> _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
 Enable users to register and log in with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove items from their cart, and proceed to checkout. They may also add customization options to their items before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
 
@@ -98,10 +92,6 @@ Enable users to register and log in with basic authentication and a secure passw
 This section describes the application domain.
 
 ![Domain Model](domain-model.png)
-
-> _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
 
 The domain of this application is an e-store system where users interact with products in an inventory. Users, who can be either an owner or customers, register, log in, log out of, change their password for, or generate a psasword for the e-store. Users browse products in the inventory, search for specific items. Only customers manage items in their cart, customize products, and proceed to checkout. Only owners can manage products in the inventory.
 
@@ -127,14 +117,13 @@ Both the ViewModel and Model are built using Java and Spring Framework. Details 
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
 
-> _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
-
 When the user first opens up the website they will be placed on the sign up/sign in screen. If they are an admin they will be able to sign in with the reserved credtials of admin admin and will then be transported to the dashboard. Otherwise a customer will either have to create an account or sign in with their own existing account. On the dashboard both customers and the admin can search for products and see the top 5 products. There is also a button to go to the products page, where a user can see all the availbile items. When clicking on an item to go its detail page a customer will see the products informtion, a customization menu, and a add to cart button. If the user slects add to cart the item gets added and the user can see this by selecting the cart button at the top of the page. Admins will have the same information but rather than a add to cart button there is a menu to update the product information and save this information. Finally when a customer is in their cart and ready to checkout they hit the checkout button, which will direct them to a page to put in their information at which point they can pay for their items.
 
 
 
 ### ViewModel Tier
 
+This tier is the middleman between the view and the model. This tier is charge of creating API calls that the view tier can use and then the action that is desired can be relayed from the viewmodel to the model to be completed.
 
 #### RockController Class
 
@@ -152,18 +141,14 @@ This class create the REST API call such that the Angular view can sent a http r
 
 This class create the REST API call such that the Angular view can sent a http request to the ViewModel and a corresponding action from the user model takes place.  This allows for calls to generate a strong password.
 
-> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
->
 
 #### ViewModel UML Class Diagram
 ![ViewModel Classes UML Class Diagram](controller-classes-uml-class-diagram.png)
 
+
 ### Model Tier
+
+This tier is directly invloved in the creation, storage, and maintence of data and the different entities that make up the prodcut
 
 #### Rock
 
@@ -199,15 +184,9 @@ This class creates an interface in order to access or manipulate the information
 
 This class handles the methods for checking if a password meets our security requirments, hashing passwords, and generating strong passwords.
 
-> _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
 
 The model tier is the core of the application. It defines essential classes and interfaces for managing rocks, users, and shopping carts. These components manipulate the data of and interaction with the application to make sure the business logic and information is handled consistently
 
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
->
 
 #### Model UML Class Diagram
 ![Model UML Class Diagram](model-classes-uml-class-diagram.png)
@@ -227,8 +206,6 @@ We have considered the following OO principles for our project:
   * **Open/Closed:** A class should be extended by another class not modified
   * **Law of Demeter:** Keep coupling low. Meaning that a class should only use the methods of the classes directly linked to it.
   * **Pure Fabrication:** Creating helper classes to maintain single responsibility
-
-> _**[Sprint 2, 3 & 4]** Will eventually address up to **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
 ### Single Responsibility
 
@@ -287,19 +264,9 @@ The Cart class representing a shopping cart is an expert in managing the rocks s
 ![Cart Model UML Class Diagram](cart-uml-class-diagram.png)
 
 
-> _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
-
-
 ## Testing
-> _This section will provide information about the testing performed
-> and the results of the testing._
 
 ### Acceptance Testing
-> _**[Sprint 2 & 4]** Report on the number of user stories that have passed all their
-> acceptance criteria tests, the number that have some acceptance
-> criteria tests failing, and the number of user stories that
-> have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
 For Sprint 1 there were 7 user stories, all of which had all of their acceptance criteria pass.
 
 
@@ -318,11 +285,9 @@ For Sprint 2 we planned to complete an additional 11 user stories, at the end of
 
 As of Sprint 3 all failed acceptence criteria from Sprint 2 have passed.
 
+For Sprint 3 we had 11 user stories of which all passed their acceptance criteria
 
 ### Unit Testing and Code Coverage
-
->_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
-> those._
 
 ### Overall Code Coverage
 In general, we had excellent code coverage. In fact, nearly all files were completely covered except a couple.
@@ -336,6 +301,5 @@ We only have one anomaly, and it is the CartFileDAO.java class. This class was d
 
 
 ## Ongoing Rationale
->_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
 
 (2024/03/17): Sprint #2 Decided to have the admin only update and delete through the UI instead of using id's to interact with specific projects.
