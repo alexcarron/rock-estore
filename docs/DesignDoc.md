@@ -14,9 +14,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-Party Rockers is an ecommerce website that customers can buy rocks to fulfill all of their geological desires. On this website customers can sign in with their own username
-and secure password, at which point they will have access to the many rocks on the website. Customers will be able to look at the details of their rocks and even customize them.
-Once they found the rocks of their choice they'll be able to add them to their cart at which point they will be able to checkout and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove rocks from the store.
+Party Rockers is an ecommerce website that customers can buy rocks to fulfill all of their geological desires from. On this website customers can sign in with their own username and secure password. Afterwards, they will have access to the many rocks on the website. Customers will be able to look at the details of their rocks and even customize them. Once they found the rocks of their choice, they'll be able to add them to their cart at which point they will be able to checkout, enter their payment information, and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove rocks from the store.
 
 Remember, it's not just a boulder; it's a rock.
 
@@ -24,7 +22,7 @@ Remember, it's not just a boulder; it's a rock.
 ### Purpose
 We are developing this website as a term project for a class, in preparation of our peers using our website at the end of the semester.
 
-This project involves building an e-store platform for selling rocks. They're are two main user groups.
+This project involves building an e-store platform for selling rocks. There are two main user groups.
 
 #### E-Store Owners
 Small business owners specializing in selling rocks who require a customized e-store for their business
@@ -40,7 +38,7 @@ Users interested in purchasing rocks from the e-store
 
 Their user goals are to...
 - View a list of available rocks.
-- Search for specific types of rocks.
+- Search for a specific type of rocks.
 - Add or remove rocks from the shopping cart.
 - Complete purchases securely through checkout.
 
@@ -69,7 +67,7 @@ This section describes the features of the application.
 
 ### Definition of MVP
 
-Enable users to register and log in with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove rocks from their cart, and proceed to checkout. They may also add customization options to their rocks before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
+Enable users to register and login with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove rocks from their cart, and proceed to checkout. They may also add customization options to their rocks before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
 
 
 ### MVP Features
@@ -112,7 +110,7 @@ The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeS
 Both the ViewModel and Model are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
 
 
-### Overview of User Interface
+### View Tier (User Interface)
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
 
@@ -195,6 +193,12 @@ The model tier is the core of the application. It defines essential classes and 
 #### Model and ViewModel Tier UML Class Diagram
 ![Model and ViewModel Tier UML Class Diagram](view-viewmodel-uml-class-diagram.png)
 
+### Flow of Application (Sequence Diagram)
+
+The following is a sequence diagram which represents the dynamic flow of our application when a customer attempts to add a rock to their shopping cart.
+
+![Add Rock To Cart Sequence Diagram](add-rock-to-cart-sequence-diagram.png)
+
 ## OO Design Principles
 
 We have considered the following OO principles for our project:
@@ -261,7 +265,6 @@ The Cart class representing a shopping cart is an expert in managing the rocks s
 
 ![Cart Model UML Class Diagram](cart-uml-class-diagram.png)
 
-
 ## Testing
 
 ### Acceptance Testing
@@ -307,6 +310,28 @@ We only have one anomaly, and it is the CartFileDAO.java class. This class was d
 
 ![CartFileDAO Code Coverage](CartFileDAO-coverage.png)
 
+## Static Code Analysis
+We used SonarQube to perform a static code analysis on our codebase and recieved the following results.
+
+![Overview of SonarQube Analysis](overview-of-sonarqube-analysis.png)
+
+### Accessibility Issues
+We had a few accessiblity issues with our HTML code including missing alt attributes on some images. These are needed for the visually impaired or to be used when the image can't be rendered.
+
+![Alt Attribute Missing SonarQube Issue](alt-attribute-missing-sonarqube-issue.png)
+
+We were also missing a description for our table in the shopping cart component for visually impaired users.
+
+![Missing Table Description SonarQube Issue](missing-table-description-sonarqube-issue.png)
+
+### Maintainability Issues
+There is some commented-out code left in our source code which creates noise and distracts the focus from the actual executed code.
+
+![Commented Out Code SonarQube Issue](commented-out-code-sonarqube-issue.png)
+
+We also used the subscribe method on the observable object returned from our angular UserService and CartService which is a depricated method. That means it's no logner recommended for use and not as effective as the alternative. This can lead to security risks or potential errors and have our code become obsolete.
+
+![Deprecated Subscribe Method SonarQube Issue](deprecated-subscribe-method-sonarqube-issue.png)
 
 ## Ongoing Rationale
 * (2024/03/17): Sprint #2: Decided to have the admin only update and delete through the UI instead of using id's to interact with specific projects.
