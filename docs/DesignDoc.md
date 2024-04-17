@@ -312,6 +312,24 @@ We only have one anomaly, and it is the CartFileDAO.java class. This class was d
 
 ![CartFileDAO Code Coverage](CartFileDAO-coverage.png)
 
+## Static Code Analysis
+### Accessibility Issues
+We had a few accessiblity issues with our HTML code including missing alt attributes on some images for the visually impaired or when the image can't be rendered.
+
+![Alt Attribute Missing SonarQube Issue](alt-attribute-missing-sonarqube-issue.png)
+
+We were also missing a description for our table in the shopping cart component for visually impaired users
+
+![Missing Table Description SonarQube Issue](missing-table-description-sonarqube-issue.png)
+
+### Maintainability Issues
+There is some commented-out code left in our source code which creates noise and distracts the focus from the actual executed code
+
+![Commented Out Code SonarQube Issue](commented-out-code-sonarqube-issue.png)
+
+We also used the subscribe method on the observable object returned from our angular UserService and CartService which is a depricated method. That means it's no logner recommended for use and not as effective as the alternative. This can lead to security risks or potential errors and have our code become obsolete.
+
+![Deprecated Subscribe Method SonarQube Issue](deprecated-subscribe-method-sonarqube-issue.png)
 
 ## Ongoing Rationale
 * (2024/03/17): Sprint #2: Decided to have the admin only update and delete through the UI instead of using id's to interact with specific projects.
