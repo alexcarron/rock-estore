@@ -313,17 +313,21 @@ We only have one anomaly, and it is the CartFileDAO.java class. This class was d
 ![CartFileDAO Code Coverage](CartFileDAO-coverage.png)
 
 ## Static Code Analysis
+We used SonarQube to perform a static code analysis on our codebase and recieved the following results.
+
+![Overview of SonarQube Analysis](overview-of-sonarqube-analysis.png)
+
 ### Accessibility Issues
-We had a few accessiblity issues with our HTML code including missing alt attributes on some images for the visually impaired or when the image can't be rendered.
+We had a few accessiblity issues with our HTML code including missing alt attributes on some images. These are needed for the visually impaired or to be used when the image can't be rendered.
 
 ![Alt Attribute Missing SonarQube Issue](alt-attribute-missing-sonarqube-issue.png)
 
-We were also missing a description for our table in the shopping cart component for visually impaired users
+We were also missing a description for our table in the shopping cart component for visually impaired users.
 
 ![Missing Table Description SonarQube Issue](missing-table-description-sonarqube-issue.png)
 
 ### Maintainability Issues
-There is some commented-out code left in our source code which creates noise and distracts the focus from the actual executed code
+There is some commented-out code left in our source code which creates noise and distracts the focus from the actual executed code.
 
 ![Commented Out Code SonarQube Issue](commented-out-code-sonarqube-issue.png)
 
