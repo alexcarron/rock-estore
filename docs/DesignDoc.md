@@ -298,7 +298,7 @@ For Sprint 3 we had 11 user stories of which all passed their acceptance criteri
 ### Unit Testing and Code Coverage
 
 ### Overall Code Coverage
-In general, we had excellent code coverage. In fact, nearly all files were completely covered except a couple.
+Our code coverage dropped during sprint 3
 
 ![Overall Code Coverage](overall-code-coverage.png)
 
