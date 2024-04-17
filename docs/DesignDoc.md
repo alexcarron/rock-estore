@@ -278,14 +278,14 @@ We planned to complete an additional 11 user stories, at the end of which
 * 3 that had mostly but not fully passed their acceptance criteria. The acceptance criteria that failed were
 	* Given that I am on the products page when there are products in the inventory, then I see each product and a short description of it.
 	* This had failed becuase we had yet to include all fields of a rock item in the details page
-	The follwing acceptance criteria failed due to the deicison of moving away from the admin using product ids and rather interacting with a GUI, as a result
+	The following acceptance criteria failed due to the deicison of moving away from the admin using product ids and rather interacting with a GUI, as a result
 	the acceptance criteria will be modified or removed for sprint 3.
 	* Given a user is logged in as an admin when that user enters a valid product id and attempts to remove it then the product is removed from our inventory
 	* Given a user is logged in as an admin when that user enters an invalid product id and attempts to remove it then the product is not remove from our inventory
 	* Given a user is logged in as an admin when that user enters a valid product id and valid product information and attempts to updates it then the product is updated in our inventory
 	* Given a user is logged in as an admin when that user enters an invalid product id or invalid product information and attempts to update it then the product is not updated in our inventory
 
-### Sprint 3
+#### Sprint 3
 We planned to complete an additional 10 user stories. By the end of the sprint,
 * All failed acceptence criteria from Sprint 2 have passed.
 * 9 sprint 3 user stories had passed all of their acceptance criteria
@@ -298,14 +298,14 @@ We planned to complete an additional 10 user stories. By the end of the sprint,
 
 For Sprint 3 we had 11 user stories of which all passed their acceptance criteria
 
-### Unit Testing and Code Coverage
+## Unit Testing and Code Coverage
 
 ### Overall Code Coverage
 Our code coverage dropped during sprint 3
 
 ![Overall Code Coverage](overall-code-coverage.png)
 
-### Anomalies
+#### Anomalies
 We only have one anomaly, and it is the CartFileDAO.java class. This class was difficult to write tests for and eventually we weren't able to complete them all. More specifically, the challenges came from ensuring that file writing is done correctly.
 
 ![CartFileDAO Code Coverage](CartFileDAO-coverage.png)
@@ -332,6 +332,24 @@ There is some commented-out code left in our source code which creates noise and
 We also used the subscribe method on the observable object returned from our angular UserService and CartService which is a depricated method. That means it's no logner recommended for use and not as effective as the alternative. This can lead to security risks or potential errors and have our code become obsolete.
 
 ![Deprecated Subscribe Method SonarQube Issue](deprecated-subscribe-method-sonarqube-issue.png)
+
+## Recommendations for Improvement
+<!---
+Complete recommendations for improvements in multiple areas of the software that are based on the metric data, software architecture design and usability principles and other thorough analysis.
+--->
+### Architecture Design
+* In our Angular frontend, we had User/Cart/RockServices which all used very similar methods for making HTTP requests. We possible could've made a seperate service for HTTP requests to avoid the duplicated code.
+* Our current implementation is not good for scalability and if we wanted to scale up the project for commercial use, we would use a Relational or NoSQL database management system.
+
+### Usability Principles
+* The UI design could be much more consistent between menus and have a consistent "theme" for every page.
+* The messages we display are be too frequent at times and too sparse at others.
+* We could gray out which menu the user is in so that they are not confused how to navigate the website.
+* If a user removes an item from their shopping cart, that data is lost forever. We could keep a history of items in their cart so they could recover items if they were lost.
+
+### Code Analysis
+* We should've definitely reached a higher code coverage to ensure all use cases in our code work properly and don't crash the program.
+* There are serveral places in our code where there was "dead" code that wasn't being used at all. We can delegate some time cleaning up some of the unused or commented-out code.
 
 ## Ongoing Rationale
 * (2024/03/17): Sprint #2: Decided to have the admin only update and delete through the UI instead of using id's to interact with specific projects.
