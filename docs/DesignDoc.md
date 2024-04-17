@@ -14,9 +14,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-Party Rockers is an ecommerce website that customers can buy rocks to fulfill all of their geological desires. On this website customers can sign in with their own username
-and secure password, at which point they will have access to the many rocks on the website. Customers will be able to look at the details of their rocks and even customize them.
-Once they found the rocks of their choice they'll be able to add them to their cart at which point they will be able to checkout and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove rocks from the store.
+Party Rockers is an ecommerce website that customers can buy rocks to fulfill all of their geological desires from. On this website customers can sign in with their own username and secure password. Afterwards, they will have access to the many rocks on the website. Customers will be able to look at the details of their rocks and even customize them. Once they found the rocks of their choice, they'll be able to add them to their cart at which point they will be able to checkout, enter their payment information, and get the rocks of their dreams. Admins will be able to set inventory and add/edit/remove rocks from the store.
 
 Remember, it's not just a boulder; it's a rock.
 
@@ -24,7 +22,7 @@ Remember, it's not just a boulder; it's a rock.
 ### Purpose
 We are developing this website as a term project for a class, in preparation of our peers using our website at the end of the semester.
 
-This project involves building an e-store platform for selling rocks. They're are two main user groups.
+This project involves building an e-store platform for selling rocks. There are two main user groups.
 
 #### E-Store Owners
 Small business owners specializing in selling rocks who require a customized e-store for their business
@@ -40,7 +38,7 @@ Users interested in purchasing rocks from the e-store
 
 Their user goals are to...
 - View a list of available rocks.
-- Search for specific types of rocks.
+- Search for a specific type of rocks.
 - Add or remove rocks from the shopping cart.
 - Complete purchases securely through checkout.
 
@@ -69,7 +67,7 @@ This section describes the features of the application.
 
 ### Definition of MVP
 
-Enable users to register and log in with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove rocks from their cart, and proceed to checkout. They may also add customization options to their rocks before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
+Enable users to register and login with basic authentication and a secure password. Customers can browse a list of rocks, search by name, add/remove rocks from their cart, and proceed to checkout. They may also add customization options to their rocks before purchase. Admins can manage inventory by adding/removing rocks, updating details, and setting quantities. Data persistence ensures continuity across user sessions. Additional features include rock customization for customers and password authentication for enhanced security.
 
 
 ### MVP Features
@@ -112,7 +110,7 @@ The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeS
 Both the ViewModel and Model are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
 
 
-### Overview of User Interface
+### View Tier (User Interface)
 
 This section describes the web interface flow; this is how the user views and interacts with the web application.
 
