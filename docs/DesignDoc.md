@@ -195,6 +195,12 @@ The model tier is the core of the application. It defines essential classes and 
 #### Model and ViewModel Tier UML Class Diagram
 ![Model and ViewModel Tier UML Class Diagram](view-viewmodel-uml-class-diagram.png)
 
+### Flow of Application (Sequence Diagram)
+
+The following is a sequence diagram which represents the dynamic flow of our application when a customer attempts to add a rock to their shopping cart.
+
+![Add Rock To Cart Sequence Diagram](add-rock-to-cart-sequence-diagram.png)
+
 ## OO Design Principles
 
 We have considered the following OO principles for our project:
@@ -260,7 +266,6 @@ The Rock class has its own price and description making it an expert in holding 
 The Cart class representing a shopping cart is an expert in managing the rocks selected by a customer for purchase. It can hold the selected rocks and has behaviors like adding, removing, or updating quantities of rocks in the cart.
 
 ![Cart Model UML Class Diagram](cart-uml-class-diagram.png)
-
 
 ## Testing
 
